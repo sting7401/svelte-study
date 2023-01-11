@@ -13,7 +13,7 @@
 	let formState = 'empty';
 	let createContacts = [];
 
-	const addContact = () => {
+	const addContact = (event) => {
 		createContacts = [
 			...createContacts,
 			{
@@ -38,21 +38,27 @@
 </script>
 
 <!-- markup (zero or more items) goes here -->
+<form id="form">
+	{#each inputList as { name, label, type, value }}
+		<div>
+			<label for={name}>{label}</label>
+			{#if type === 'textarea'}s
+				<textarea {name} id={name} bind:value cols="30" rows="10" />
+			{:else if type === 'input'}
+				<input id={name} bind:value type="text" />
+			{/if}
+		</div>
+	{/each}
 
-{#each inputList as { name, label, type, value }}
-	<div>
-		<label for={name}>{label}</label>
-		{#if type === 'textarea'}s
-			<textarea {name} id={name} bind:value cols="30" rows="10" />
-		{:else if type === 'input'}
-			<input id={name} bind:value type="text" />
-		{/if}
-	</div>
-{/each}
-
-<Button on:click={addContact} iconName="">더하기</Button>
-<Button on:click={del} iconName="">제거하기</Button>
-<Button on:click={last} iconName={formState}>마지막 제거</Button>
+	<button type="button" class="button" on:click|preventDefault={addContact}>더하기</button>
+	<button
+		type="button"
+		on:click={(event) => {
+			createContacts = createContacts.slice(1);
+		}}>제거하기</button
+	>
+	<button type="button" on:click={last}>마지막 제거</button>
+</form>
 
 {#if done}
 	<p>활성화</p>
