@@ -1,9 +1,9 @@
 <script>
-	// your script goes here
+	export let value;
 </script>
-
-<!-- markup (zero or more items) goes here -->
 
 <style>
 	/* your styles go here */
 </style>
+
+<input type="text" />

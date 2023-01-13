@@ -1,36 +1,26 @@
 <script>
-import MeetupItem from './MeetupItem.svelte';
+	import MeetupItem from './MeetupItem.svelte';
 
-export let meetups;
+	export let meetups;
 </script>
 
 <style>
-   section {
-    width: 100%;
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-gap: 1rem;
-    
-   }
+	section {
+		width: 100%;
+		display: grid;
+		grid-template-columns: 1fr;
+		grid-gap: 1rem;
+	}
 
-   @media( min-width: 768px) {
-        section {
-          grid-template-columns: repeat(2, 1fr);
-        }
-   }
+	@media (min-width: 768px) {
+		section {
+			grid-template-columns: repeat(2, 1fr);
+		}
+	}
 </style>
 
 <section id="meetups">
-  {#each meetups as meetup}
-  <MeetupItem 
-    id={meetup.id}
-    title={meetup.title}
-    subtitle={meetup.subtitle}
-    desc={meetup.desc}
-    imageUrl={meetup.imageUrl}
-    contactEmail={meetup.contactEmail}
-    address={meetup.address}
-    isFavor={meetup.isFavor}
-    on:toggleFavorite />
-{/each}
+	{#each meetups as meetup}
+		<MeetupItem {...meetup} on:toggleFavorite />
+	{/each}
 </section>
