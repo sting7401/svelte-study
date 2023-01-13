@@ -2,4 +2,3 @@
 <a href="/test02">test02</a>
 
 <slot><!-- optional fallback --></slot>
-\text02

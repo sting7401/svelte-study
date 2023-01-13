@@ -1,19 +1,14 @@
-<script>
-    import Header from "../UI/Header.svelte";
-	import MeetupGrid from "./MeetupGrid.svelte";
-	import TextInput from "../Ui/TextInput.svelte";
-	import Button from "../Ui/Button.svelte";
+<script >
+	import Meetup from './Meetup.svelte';
+    import Header from '../UI/Header.svelte';
+    import MeetupGrid from './MeetupGrid.svelte';
+    import TextInput from '../Ui/TextInput.svelte';
+    import Button from '../Ui/Button.svelte';
+    import EditMeetup from './EditMeetup.svelte';
     
     let id = '';
-    let title = '';
-    let subtitle= '';
-    let imageUrl= '';
-    let desc= '';
-    let contactEmail= '';
-    let address= '';
-    
 
-let meetups = [
+    let meetups = [
         {
             id: 'm1',
             title: 'title',
@@ -33,37 +28,42 @@ let meetups = [
             address: 'new york',
             contactEmail: 'skaldjfk@mail.com',
             isFavor : false,
-        }
-    ]
+        },
+    ];
 
-    function addMeetup() {
+    let editMode = null;
+
+    function addMeetup(event) {
         let newMeetup = {
             id: Math.random().toString(),
-            title: title,
-            subtitle: subtitle,
-            desc: desc,
-            imageUrl: imageUrl,
-            address: address,
-            contactEmail: contactEmail
-        }
+            title: event.detail.title,
+            subtitle: event.detail.subtitle,
+            desc: event.detail.desc,
+            imageUrl: event.detail.imageUrl,
+            address: event.detail.address,
+            contactEmail: event.detail.contactEmail,
+        };
 
-
-       //    meetups.push(newMeetup ) // do not
+        //    meetups.push(newMeetup ) // do not
         meetups = [newMeetup, ...meetups];
     }
 
 
-function toggleFavorite(e) {
-    const id = e.detail;
-    const update ={...meetups.find(m => m.id === id)};
+    function toggleFavorite(event) {
 
-    update.isFavor = !update.isFavor;
-    const meetupIndex = meetups.findIndex(m => m.id ===id);
-    const updateMeetups = [...meetups];
-    updateMeetups[meetupIndex] = updateMeetup;
-    meetups = updateMeetups;
+    const id = event.detail;
 
-}
+    const updatedMeetup = { ...meetups.find(m => m.id === id) };
+    updatedMeetup.isFavor = !updatedMeetup.isFavor;
+    const meetupIndex = meetups.findIndex(m => m.id === id);
+    const updatedMeetups = [...meetups];
+    updatedMeetups[meetupIndex] = updatedMeetup;
+    meetups = updatedMeetups;
+  }
+
+  function cancelEdit() {
+    editMode = null;
+  }
 </script>
 
 <style>
@@ -71,10 +71,8 @@ main {
     margin-top: 5rem;
 }
 
-form {
-    width: 30rem;
-    max-width: 90%;
-    margin: 0 auto;
+.meetup-controls {
+    margin: 1rem;
 }
 </style>
 
@@ -82,34 +80,16 @@ form {
 
 <main>
 
-    <form on:submit|preventDefault="{addMeetup}">
-        <TextInput id="title" label="Title" value={title} on:input={event => title = event.target.value} />
-        <TextInput id="subtitle" label="subtitle" value={subtitle} on:input={event => subtitle = event.target.value} />
-        <TextInput id="address" label="address" value={address} on:input={event => address = event.target.value} />
-        <TextInput id="imageUrl" label="imageUrl" value={imageUrl} on:input={event => imageUrl = event.target.value} />
-        <TextInput type="email" id="contactEmail" label="contactEmail" value={contactEmail} on:input={event => contactEmail = event.target.value} />
-        <TextInput controlType="textarea" id="desc" label="desc" value={desc} rows="30" on:input={event => desc = event.target.value} />
+    <div class="meetup-controls">
+        <Button  on:click={() => editMode= 'add'}>new meetup</Button>
+    </div>
 
-        <!-- <div class="form-control">
-            <label for="title">title</label><input type="text" bind:value={title} id="title" />
-        </div>
-        <div class="form-control">
-            <label for="subtitle">subtitle</label><input type="text" bind:value={subtitle} id="subtitle" />
-        </div>
-        <div class="form-control">
-            <label for="desc">desc</label><textarea row="3" id="desc" bind:value={desc} />
-        </div>
-        <div class="form-control">
-            <label for="address">address</label><input type="text" id="address" bind:value={address} />
-        </div>
-        <div class="form-control">
-            <label for="contactEmail">contactEmail</label><input type="email" id="contactEmail" bind:value={contactEmail} />
-        </div> -->
-
-
-        <Button type="submit" caption="save" />
-    </form>
-<MeetupGrid {meetups} on:toggleFavorite='{toggleFavorite}' />
+    {#if editMode === 'add'}
+         <!-- content here -->
+         <EditMeetup on:save={addMeetup} on:cancel={cancelEdit}  />
+    
+    {/if}
+    <MeetupGrid {meetups} on:toggleFavorite="{toggleFavorite}" />
 </main>
 
 

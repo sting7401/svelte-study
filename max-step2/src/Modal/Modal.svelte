@@ -1,38 +1,38 @@
 <script>
     import {createEventDispatcher, onMount, onDestroy, beforeUpdate, afterUpdate} from 'svelte';
 
-    export let content;
+    export let content = null;
 
     const dispatch = createEventDispatcher();
     
-let agreed = false;
-let autoScroll = false;
+    let agreed = false;
+    let autoScroll = false;
 
-console.log('scropt ex');
+    console.log('scropt ex');
 
-onMount(() => {
-    console.log('mount')
-})
+    onMount(() => {
+        console.log('mount');
+    });
 
-onDestroy(() => {
-    console.log('destroy')
-});
+    onDestroy(() => {
+        console.log('destroy');
+    });
 
-beforeUpdate(() => {
-    console.log('before update')
+    beforeUpdate(() => {
+        console.log('before update');
 
-    autoScroll = agreed;
-});
+        autoScroll = agreed;
+    });
 
-afterUpdate(() => {
-    console.log('after update')
+    afterUpdate(() => {
+        console.log('after update');
 
-    if (autoScroll) {const modal = document.querySelector('.modal');
+        if (autoScroll) {const modal = document.querySelector('.modal');
 
-    modal.scrollTo(0, modal.scrollHeight)
+            modal.scrollTo(0, modal.scrollHeight);
 
-    }
-});
+        }
+    });
 </script>
 
 <style>
@@ -56,7 +56,6 @@ afterUpdate(() => {
     top: 0;
     left: 0;
     width: 80vw;
-    max-height: 10vh;
     padding: 3rem;
     background-color: #fff;
     z-index: 100;

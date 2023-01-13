@@ -3,15 +3,15 @@
     import Product from './Product/Product.svelte';
 
     let products = [
-        {id: 'p1', title: 'A book', price: 9.99}
-    ]
+        {id: 'p1', title: 'A book', price: 9.99},
+    ];
 
     function addToCart(event) {
         console.log(event);
     }
 
     function delToCart(event) {
-       
+
     }
 
     let text ='dummy text';

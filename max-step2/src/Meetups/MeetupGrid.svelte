@@ -1,8 +1,7 @@
 <script>
-	import Meetup from "./Meetup.svelte";
-import MeetupItem from "./MeetupItem.svelte";
+import MeetupItem from './MeetupItem.svelte';
 
-    export let meetups;
+export let meetups;
 </script>
 
 <style>
@@ -22,10 +21,16 @@ import MeetupItem from "./MeetupItem.svelte";
 </style>
 
 <section id="meetups">
-    {#each meetups as meetup}
-        <MeetupItem 
-        if={meetup.id}
-        isFavor={meetup.isFavor}
-       {...meetup} on:toggleFavorite={meetup.isFavor} />
-    {/each}
+  {#each meetups as meetup}
+  <MeetupItem 
+    id={meetup.id}
+    title={meetup.title}
+    subtitle={meetup.subtitle}
+    desc={meetup.desc}
+    imageUrl={meetup.imageUrl}
+    contactEmail={meetup.contactEmail}
+    address={meetup.address}
+    isFavor={meetup.isFavor}
+    on:toggleFavorite />
+{/each}
 </section>
