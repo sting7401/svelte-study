@@ -3,9 +3,9 @@
 </script>
 
 <style global lang="postcss">
-	@tailwind base;
+	/* @tailwind base;
 	@tailwind components;
-	@tailwind utilities;
+	@tailwind utilities; */
 </style>
 
 <!-- markup (zero or more items) goes here -->

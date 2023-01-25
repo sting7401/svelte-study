@@ -38,7 +38,7 @@
 	}
 </script>
 
-<!-- markup (zero or more items) goes here -->
+
 
 {#each inputList as { name, label, type, value }}
 	<div>
