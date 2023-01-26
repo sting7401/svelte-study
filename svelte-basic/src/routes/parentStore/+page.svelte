@@ -1,20 +1,18 @@
 <script>
+	import { storeName } from './store.js';
 
-    import {storeName} from './store.js';
+	import Parent from './Parent.svelte';
 
-   import Parent from './Parent.svelte';
+	let name = 'world';
 
-
-let name = 'world';
-
-$storeName = name;
+	$storeName = name;
 </script>
+
+<style>
+	/* your styles go here */
+</style>
 
 <!-- markup (zero or more items) goes here -->
 
 <h1>app</h1>
-<Parent name="{name}"/>
-
-<style>
-    /* your styles go here */
-</style>
+<Parent name="{name}" />
