@@ -49,7 +49,7 @@
 
 		//    meetups.push(newMeetup ) // do not
 		// meetups = [newMeetup, ...meetups];
-		meetups.addMeetup(meetupData);
+		customMeetupStore.addMeetups(meetupData);
 		editMode = null;
 	}
 

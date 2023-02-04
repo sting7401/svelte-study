@@ -3556,9 +3556,9 @@ var app = (function () {
     			t2 = space();
     			create_component(meetupgrid.$$.fragment);
     			attr_dev(div, "class", "meetup-controls svelte-ruh85v");
-    			add_location(div, file, 80, 1, 1782);
+    			add_location(div, file, 80, 1, 1793);
     			attr_dev(main, "class", "svelte-ruh85v");
-    			add_location(main, file, 79, 0, 1773);
+    			add_location(main, file, 79, 0, 1784);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -3694,7 +3694,7 @@ var app = (function () {
 
     		//    meetups.push(newMeetup ) // do not
     		// meetups = [newMeetup, ...meetups];
-    		meetups.addMeetup(meetupData);
+    		customMeetupStore.addMeetups(meetupData);
 
     		$$invalidate(0, editMode = null);
     	}
