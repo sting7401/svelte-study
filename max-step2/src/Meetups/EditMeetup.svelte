@@ -4,7 +4,20 @@
 	import { createEventDispatcher } from 'svelte';
 	import TextInput from '../Ui/TextInput.svelte';
 	import Button from '../Ui/Button.svelte';
-	import { prevent_default } from 'svelte/internal';
+	import { isEmpty, isValidEmail } from '../helper/helper.js';
+
+	// let title = '';
+	// let titleValid = false;
+	// let subtitle = '';
+	// let subTitleValid = false;
+	// let imageUrl = '';
+	// let imageUrlValid = false;
+	// let desc = '';
+	// let descValid = false;
+	// let contactEmail = '';
+	// let contactEmailValid = false;
+	// let address = '';
+	// let addressValid = false;
 
 	let title = '';
 	let subtitle = '';
@@ -14,6 +27,20 @@
 	let address = '';
 
 	const dispatch = createEventDispatcher();
+
+	$: titleValid = !isEmpty(title);
+	$: subTitleValid = !isEmpty(subtitle);
+	$: imageUrlValid = !isEmpty(imageUrl);
+	$: descValid = !isEmpty(desc);
+	$: contactEmailValid = !isValidEmail(contactEmail);
+	$: addressValid = !isEmpty(address);
+	$: formIsValid =
+		titleValid &&
+		subTitleValid &&
+		imageUrlValid &&
+		descValid &&
+		contactEmailValid &&
+		addressValid;
 
 	function submitForm() {
 		dispatch('save', {
@@ -46,24 +73,32 @@
 			id="title"
 			label="Title"
 			value="{title}"
+			valid="{titleValid}"
+			validMessage="제목 입력해주세요."
 			on:input="{(event) => (title = event.target.value)}"
 		/>
 		<TextInput
 			id="subtitle"
 			label="subtitle"
 			value="{subtitle}"
+			valid="{subTitleValid}"
+			validMessage="소제목 입력해주세요."
 			on:input="{(event) => (subtitle = event.target.value)}"
 		/>
 		<TextInput
 			id="address"
 			label="address"
 			value="{address}"
+			valid="{addressValid}"
+			validMessage="주소 입력해주세요."
 			on:input="{(event) => (address = event.target.value)}"
 		/>
 		<TextInput
 			id="imageUrl"
 			label="imageUrl"
 			value="{imageUrl}"
+			valid="{imageUrlValid}"
+			validMessage="이미지 입력해주세요."
 			on:input="{(event) => (imageUrl = event.target.value)}"
 		/>
 		<TextInput
@@ -71,15 +106,18 @@
 			id="contactEmail"
 			label="contactEmail"
 			value="{contactEmail}"
+			valid="{contactEmailValid}"
+			validMessage="내용입력해주세요."
 			on:input="{(event) => (contactEmail = event.target.value)}"
 		/>
 		<TextInput
 			controlType="textarea"
 			id="desc"
 			label="desc"
-			value="{desc}"
+			bind:value="{desc}"
+			valid="{descValid}"
+			validMessage="내용 입력해주세요."
 			rows="30"
-			on:input="{(event) => (desc = event.target.value)}"
 		/>
 
 		<!-- <div class="form-control">
@@ -100,6 +138,8 @@
 	</form>
 	<div slot="footer">
 		<Button type="button" on:click="{cancel}">cancel</Button>
-		<Button type="button" on:click="{submitForm}">save</Button>
+		<Button type="button" on:click="{submitForm}" disabled="{!formIsValid}"
+			>save</Button
+		>
 	</div>
 </Modal>

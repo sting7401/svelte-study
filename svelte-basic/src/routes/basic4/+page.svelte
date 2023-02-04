@@ -1,20 +1,20 @@
 <script>
-let number = 0;
+	let number = 0;
 
-let arr = [1, 2, 3, 4, 5];
-let list = [{ name: 'list1' }, { name: 'list12' }, { name: 'list13' }];
-let list2 = [
-	{ name: 'list1', is: true },
-	{ name: 'list12', is: false },
-	{ name: 'list13', is: false }
-];
+	let arr = [1, 2, 3, 4, 5];
+	let list = [{ name: 'list1' }, { name: 'list12' }, { name: 'list13' }];
+	let list2 = [
+		{ name: 'list1', is: true },
+		{ name: 'list12', is: false },
+		{ name: 'list13', is: false }
+	];
 
-const person = {
-	id: '10',
-	name: 'key',
-	age: 10,
-	address: 'Seoul'
-};
+	const person = {
+		id: '10',
+		name: 'key',
+		age: 10,
+		address: 'Seoul'
+	};
 </script>
 
 <style>

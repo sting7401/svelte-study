@@ -1,7 +1,6 @@
 <script>
-	import Badge from './../Ui/Badge.svelte';
 	import { createEventDispatcher } from 'svelte';
-
+	import Badge from './../Ui/Badge.svelte';
 	import Button from '../Ui/Button.svelte';
 
 	export let id = null;
