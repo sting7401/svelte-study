@@ -1,23 +1,27 @@
 <script>
-	import { onDestroy } from 'svelte';
-	import { readTimer } from './timer-store.js';
-	import Cart from './Cart/Cart.svelte';
-	import Products from './Products/Products.svelte';
+	import Child from './Child.svelte';
+	import ChildBind from './ChildBind.svelte';
+	let number = 0;
 
-	const unsubscribe = readTimer.subscribe((count) => {
-		console.log('카트' + count);
-	});
+	let person = {
+		name: 'song',
+		age: 20,
+	};
 
-	onDestroy(() => {
-		if (unsubscribe) {
-			unsubscribe();
-		}
-	});
+	let pValue = 1;
+	let cValue = 1;
 </script>
 
 <style>
 </style>
 
-<p>{$readTimer}</p>
-<Cart />
-<Products />
+<div>
+	<button on:click="{() => (number += 1)}">+</button>
+	<button on:click="{() => (number -= 1)}">-</button>
+
+	<Child number="{number}" person="{person.name} {person.age}" />
+	<Child {...person} />
+
+	<ChildBind bind:cValue="{pValue}" />
+	<ChildBind bind:cValue="{cValue}" />
+</div>
