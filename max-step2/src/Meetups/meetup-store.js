@@ -1,6 +1,6 @@
 import { writable } from 'svelte/store';
 
-export const meetups = writable([
+ const meetups = writable([
     {
         id: 'm1',
         title: 'title',
@@ -10,7 +10,7 @@ export const meetups = writable([
             'https://cdn.pixabay.com/photo/2023/01/05/08/17/bird-7698384__340.jpg',
         address: 'new york',
         contactEmail: 'skaldjfk@mail.com',
-        isFavor: false,
+        isFavor: true,
     },
     {
         id: 'm2',
@@ -25,15 +25,30 @@ export const meetups = writable([
     },
 ]);
 
-export const customMeetupStore = {
+ const customMeetupStore = {
     subscribe : meetups.subscribe,
     addMeetups: (meetData) => {
         const newMeetups = {
             ...meetData,
-            isFav: false
+            id: Math.random().toString(),
+            isFavor: false
         };
         meetups.update(items => {
             return [newMeetups, ...items]
+        })
+    },
+    updatedMeetups: (id, meetupData) => {
+        meetups.update(items => {
+            const meetupIndex = items.findIndex(i => i.id === id);
+            const updatedMeetup = {...items[meetupIndex], ...meetupData};
+            const updatedMeetups = [...items];
+            updatedMeetups[meetupIndex] = updatedMeetup;
+            return updatedMeetups;
+        })
+    }   ,
+    removeMeetups:(id)=> {
+        meetups.update(items => {
+            return items.filter(i => i.id !== id);
         })
     },
     toggleFav: (id) => {
@@ -49,3 +64,5 @@ export const customMeetupStore = {
         
     }
 }
+
+export default customMeetupStore;

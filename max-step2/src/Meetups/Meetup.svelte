@@ -1,11 +1,12 @@
 <script>
-	import { meetups, customMeetupStore } from './meetup-store.js';
+	import meetups from './meetup-store.js';
 	import Meetup from './Meetup.svelte';
 	import Header from '../UI/Header.svelte';
 	import MeetupGrid from './MeetupGrid.svelte';
 	import TextInput from '../Ui/TextInput.svelte';
 	import Button from '../Ui/Button.svelte';
 	import EditMeetup from './EditMeetup.svelte';
+	import MeetupDetail from './MeetupDetail.svelte';
 
 	let id = '';
 
@@ -35,33 +36,57 @@
 	// ];
 
 	let editMode;
+	let editId;
+	let page = 'overview';
+	let pageData = {};
 
-	function addMeetup(event) {
-		let meetupData = {
-			id: Math.random().toString(),
-			title: event.detail.title,
-			subtitle: event.detail.subtitle,
-			desc: event.detail.desc,
-			imageUrl: event.detail.imageUrl,
-			address: event.detail.address,
-			contactEmail: event.detail.contactEmail,
-		};
+	// function saveMeetup(event) {
+	// 	let meetupData = {
+	// 		id: Math.random().toString(),
+	// 		title: event.detail.title,
+	// 		subtitle: event.detail.subtitle,
+	// 		desc: event.detail.desc,
+	// 		imageUrl: event.detail.imageUrl,
+	// 		address: event.detail.address,
+	// 		contactEmail: event.detail.contactEmail,
+	// 	};
 
-		//    meetups.push(newMeetup ) // do not
-		// meetups = [newMeetup, ...meetups];
-		customMeetupStore.addMeetups(meetupData);
+	// 	//    meetups.push(newMeetup ) // do not
+	// 	// meetups = [newMeetup, ...meetups];
+	// 	meetups.addMeetups(meetupData);
+	// 	editMode = null;
+	// }
+
+	// function toggleFavorite(event) {
+	// 	const id = event.detail;
+
+	// 	customMeetupStore.toggleFav(id);
+	// 	//meetups = updatedMeetups;
+	// }
+
+	function savedMeetup() {
 		editMode = null;
-	}
-
-	function toggleFavorite(event) {
-		const id = event.detail;
-
-		customMeetupStore.toggleFav(id);
-		//meetups = updatedMeetups;
+		editId = null;
 	}
 
 	function cancelEdit() {
 		editMode = null;
+		editId = null;
+	}
+
+	function showDetails(event) {
+		page = 'details';
+		pageData.id = event.detail;
+	}
+
+	function closeDetails(event) {
+		page = 'overview';
+		pageData = {};
+	}
+
+	function startEdit(event) {
+		editMode = 'edit';
+		editId = event.detail;
 	}
 </script>
 
@@ -69,22 +94,29 @@
 	main {
 		margin-top: 5rem;
 	}
-
-	.meetup-controls {
-		margin: 1rem;
-	}
 </style>
 
 <Header />
 
 <main>
-	<div class="meetup-controls">
-		<Button on:click="{() => (editMode = 'add')}">new meetup</Button>
-	</div>
-
-	{#if editMode === 'add'}
-		<!-- content here -->
-		<EditMeetup on:save="{addMeetup}" on:cancel="{cancelEdit}" />
+	{#if page === 'overview'}
+		{#if editMode === 'edit'}
+			<!-- content here -->
+			<EditMeetup
+				id="{editId}"
+				on:save="{savedMeetup}"
+				on:cancel="{cancelEdit}"
+			/>
+		{/if}
+		<MeetupGrid
+			meetups="{$meetups}"
+			on:showDetails="{showDetails}"
+			on:edit="{startEdit}"
+			on:add="{() => {
+				editMode = 'edit';
+			}}"
+		/>
+	{:else}
+		<MeetupDetail id="{pageData.id}" on:close="{closeDetails}" />
 	{/if}
-	<MeetupGrid meetups="{$meetups}" on:toggleFavorite="{toggleFavorite}" />
 </main>

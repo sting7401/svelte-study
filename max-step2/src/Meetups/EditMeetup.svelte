@@ -1,4 +1,5 @@
 <script>
+	import meetups from './meetup-store.js';
 	import Modal from './../Ui/Modal.svelte';
 	// your script goes here
 	import { createEventDispatcher } from 'svelte';
@@ -19,12 +20,29 @@
 	// let address = '';
 	// let addressValid = false;
 
+	export let id = null;
+
 	let title = '';
 	let subtitle = '';
 	let imageUrl = '';
 	let desc = '';
 	let contactEmail = '';
 	let address = '';
+
+	if (id) {
+		const unsubscribe = meetups.subscribe((items) => {
+			const selectedMeetup = items.find((i) => i.id === id);
+
+			console.log(id);
+			title = selectedMeetup.title;
+			subtitle = selectedMeetup.subtitle;
+			address = selectedMeetup.address;
+			contactEmail = selectedMeetup.contactEmail;
+			desc = selectedMeetup.desc;
+			imageUrl = selectedMeetup.imageUrl;
+		});
+		unsubscribe();
+	}
 
 	const dispatch = createEventDispatcher();
 
@@ -43,14 +61,25 @@
 		addressValid;
 
 	function submitForm() {
-		dispatch('save', {
+		let meetupData = {
 			title: title,
 			subtitle: subtitle,
 			desc: desc,
 			imageUrl: imageUrl,
 			address: address,
 			contactEmail: contactEmail,
-		});
+		};
+
+		if (id) {
+			meetups.updatedMeetups(id, meetupData);
+		} else {
+			meetups.addMeetups(meetupData);
+		}
+		dispatch('save');
+	}
+	function del() {
+		meetups.removeMeetups(id);
+		dispatch('save');
 	}
 	function cancel() {
 		dispatch('cancel');
@@ -141,5 +170,9 @@
 		<Button type="button" on:click="{submitForm}" disabled="{!formIsValid}"
 			>save</Button
 		>
+
+		{#if id}
+			<Button type="button" on:click="{del}">del</Button>
+		{/if}
 	</div>
 </Modal>
