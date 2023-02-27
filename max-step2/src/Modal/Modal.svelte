@@ -1,5 +1,6 @@
 <script>
     import {createEventDispatcher, onMount, onDestroy, beforeUpdate, afterUpdate} from 'svelte';
+    import {fade, fly} from 'svelte/transition';
 
     export let content = null;
 
@@ -51,11 +52,11 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
     position: fixed;
     top: 0;
     left: 0;
-    width: 80vw;
+    right: 0;
+    width: 100vw;
     padding: 3rem;
     background-color: #fff;
     z-index: 100;
@@ -67,8 +68,8 @@
     }
 </style>
 
-<div class="backdrop" on:click="{() => dispatch('cancel')}"></div>
-<div class="modal">
+<div class="backdrop" transition:fade on:click="{() => dispatch('cancel')}"></div>
+<div class="modal" transition:fly="{y: 300}">
     <header>
         <slot name="header"><!-- optional fallback --></slot>
     </header>
