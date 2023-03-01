@@ -1,7 +1,7 @@
 <script>
 	import { createEventDispatcher } from 'svelte';
-	import {scale} from 'svelte/transition';
-	import {flip} from 'svelte/animate';
+	import { scale } from 'svelte/transition';
+	import { flip } from 'svelte/animate';
 	import Button from '../Ui/Button.svelte';
 	import MeetupItem from './MeetupItem.svelte';
 	import MeetupFilet from './MeetupFilet.svelte';
@@ -27,6 +27,9 @@
 		grid-gap: 1rem;
 	}
 
+	.none {
+	}
+
 	@media (min-width: 768px) {
 		section {
 			grid-template-columns: repeat(2, 1fr);
@@ -39,7 +42,9 @@
 
 	<MeetupFilet on:select="{setFilter}" />
 </section>
-
+{#if filterMeetups.length === 0}
+	<p class="none">없음</p>
+{/if}
 <section id="meetups">
 	{#each filterMeetups as meetup (meetup.id)}
 		<div transition:scale animate:flip>

@@ -39,6 +39,7 @@
 	let editId;
 	let page = 'overview';
 	let pageData = {};
+	let isLoading = true;
 
 	// function saveMeetup(event) {
 	// 	let meetupData = {
@@ -63,6 +64,30 @@
 	// 	customMeetupStore.toggleFav(id);
 	// 	//meetups = updatedMeetups;
 	// }
+
+	fetch('https://svelte-max-658a0-default-rtdb.firebaseio.com/meetup.json')
+		.then((res) => {
+			if (!res.ok) {
+				throw new Error('error');
+			}
+
+			return res.json();
+		})
+		.then((data) => {
+			let loadData = [];
+			for (const key in data) {
+				loadData.push({
+					...data[key],
+					id: key,
+				});
+			}
+			isLoading = false;
+			meetups.setMeetups(loadData);
+		})
+		.catch((err) => {
+			isLoading = false;
+			console.log(err);
+		});
 
 	function savedMeetup() {
 		editMode = null;
@@ -107,6 +132,9 @@
 				on:save="{savedMeetup}"
 				on:cancel="{cancelEdit}"
 			/>
+		{/if}
+		{#if isLoading}
+			<p>loading</p>
 		{/if}
 		<MeetupGrid
 			meetups="{$meetups}"

@@ -71,9 +71,42 @@
 		};
 
 		if (id) {
+			fetch(
+				'https://svelte-max-658a0-default-rtdb.firebaseio.com/meetup.json',
+				{
+					method: 'PUT',
+					body: JSON.stringify({ ...meetupData }),
+					headers: { 'Content-Type': 'application/json' },
+				},
+			);
 			meetups.updatedMeetups(id, meetupData);
 		} else {
-			meetups.addMeetups(meetupData);
+			fetch(
+				'https://svelte-max-658a0-default-rtdb.firebaseio.com/meetup.json',
+				{
+					method: 'POST',
+					body: JSON.stringify({ ...meetupData, isFavor: false }),
+					headers: { 'Content-Type': 'application/json' },
+				},
+			)
+				.then((res) => {
+					if (!res.ok) {
+						throw new Error('error');
+					}
+
+					return res.json();
+				})
+				.then((data) => {
+					meetups.addMeetups({
+						...meetupData,
+						isFovr: false,
+						id: data.name,
+					});
+				})
+				.catch((err) => {
+					console.log(err);
+				});
+			// meetups.addMeetups(meetupData);
 		}
 		dispatch('save');
 	}
