@@ -7,6 +7,7 @@
 	import Button from '../Ui/Button.svelte';
 	import EditMeetup from './EditMeetup.svelte';
 	import MeetupDetail from './MeetupDetail.svelte';
+	import Error from '../Ui/Error.svelte';
 
 	let id = '';
 
@@ -40,6 +41,7 @@
 	let page = 'overview';
 	let pageData = {};
 	let isLoading = true;
+	let error;
 
 	// function saveMeetup(event) {
 	// 	let meetupData = {
@@ -82,9 +84,10 @@
 				});
 			}
 			isLoading = false;
-			meetups.setMeetups(loadData);
+			meetups.setMeetups(loadData.reverse());
 		})
 		.catch((err) => {
+			error = err;
 			isLoading = false;
 			console.log(err);
 		});
@@ -113,6 +116,10 @@
 		editMode = 'edit';
 		editId = event.detail;
 	}
+
+	function clearError() {
+		error = null;
+	}
 </script>
 
 <style>
@@ -120,6 +127,10 @@
 		margin-top: 5rem;
 	}
 </style>
+
+{#if error}
+	<Error message="{error.message}" on:cancel="{clearError}" />
+{/if}
 
 <Header />
 

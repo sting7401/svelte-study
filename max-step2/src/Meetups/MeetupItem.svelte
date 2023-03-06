@@ -13,10 +13,32 @@
 	export let address;
 	export let isFavor;
 
+	let isLoading = false;
+
 	const dispatch = createEventDispatcher();
 
 	const toggleFavor = () => {
-		meetups.toggleFav(id);
+		isLoading = true;
+		fetch(
+			`https://svelte-max-658a0-default-rtdb.firebaseio.com/meetup/${id}.json`,
+			{
+				method: 'PATCH',
+				body: JSON.stringify({ isFavor: !isFavor }),
+				headers: { 'Content-Type': 'application/json' },
+			},
+		)
+			.then((res) => {
+				if (!res.ok) {
+					throw new Error('error');
+				}
+
+				isLoading = false;
+				meetups.toggleFav(id);
+			})
+			.catch((err) => {
+				isLoading = false;
+				console.log(err);
+			});
 	};
 </script>
 
@@ -31,7 +53,7 @@
 	}
 </style>
 
-<article >
+<article>
 	<header>
 		<h1>
 			{title}
@@ -53,13 +75,18 @@
 		<Button type="button" on:click="{() => dispatch('edit', id)}"
 			>edit</Button
 		>
-		<Button
-			type="button"
-			mode="outline"
-			color="{isFavor ? null : 'succes'}"
-			on:click="{toggleFavor}"
-			>{isFavor ? 'Unfavorite' : 'Favorite'}</Button
-		>
+
+		{#if isLoading}
+			<p>loading</p>
+		{:else}
+			<Button
+				type="button"
+				mode="outline"
+				color="{isFavor ? null : 'succes'}"
+				on:click="{toggleFavor}"
+				>{isFavor ? 'Unfavorite' : 'Favorite'}</Button
+			>
+		{/if}
 		<Button type="button" on:click="{() => dispatch('showDetails', id)}"
 			>show</Button
 		>

@@ -1,5 +1,5 @@
 <script>
-	import {scale} from 'svelte/transition';
+	import {slide} from 'svelte/transition';
 </script>
 
 <style>

@@ -72,10 +72,10 @@
 
 		if (id) {
 			fetch(
-				'https://svelte-max-658a0-default-rtdb.firebaseio.com/meetup.json',
+				`https://svelte-max-658a0-default-rtdb.firebaseio.com/meetup/${id}.json`,
 				{
-					method: 'PUT',
-					body: JSON.stringify({ ...meetupData }),
+					method: 'PATCH',
+					body: JSON.stringify(meetupData),
 					headers: { 'Content-Type': 'application/json' },
 				},
 			);
@@ -93,8 +93,6 @@
 					if (!res.ok) {
 						throw new Error('error');
 					}
-
-					return res.json();
 				})
 				.then((data) => {
 					meetups.addMeetups({
@@ -110,10 +108,24 @@
 		}
 		dispatch('save');
 	}
+
 	function del() {
-		meetups.removeMeetups(id);
+		fetch(
+			`https://svelte-max-658a0-default-rtdb.firebaseio.com/meetup/${id}.json`,
+			{ method: 'DELETE' },
+		)
+			.then((res) => {
+				if (!res.ok) {
+					throw new Error('error');
+				}
+				meetups.removeMeetups(id);
+			})
+			.catch((err) => {
+				console.log(err);
+			});
 		dispatch('save');
 	}
+
 	function cancel() {
 		dispatch('cancel');
 	}
