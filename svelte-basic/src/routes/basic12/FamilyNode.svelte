@@ -34,6 +34,7 @@
 	}
 </style>
 
+
 <div on:click="{setActive}" class:active="{isActive}">
 	<h1>{member.name}</h1>
 
