@@ -5100,7 +5100,7 @@ var app = (function () {
     const { Error: Error_1, console: console_1 } = globals;
     const file = "src\\Meetups\\Meetup.svelte";
 
-    // (131:0) {#if error}
+    // (130:0) {#if error}
     function create_if_block_3(ctx) {
     	let error_1;
     	let current;
@@ -5143,14 +5143,14 @@ var app = (function () {
     		block,
     		id: create_if_block_3.name,
     		type: "if",
-    		source: "(131:0) {#if error}",
+    		source: "(130:0) {#if error}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (158:1) {:else}
+    // (157:1) {:else}
     function create_else_block(ctx) {
     	let meetupdetail;
     	let current;
@@ -5193,14 +5193,14 @@ var app = (function () {
     		block,
     		id: create_else_block.name,
     		type: "else",
-    		source: "(158:1) {:else}",
+    		source: "(157:1) {:else}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (138:1) {#if page === 'overview'}
+    // (137:1) {#if page === 'overview'}
     function create_if_block(ctx) {
     	let t0;
     	let t1;
@@ -5297,14 +5297,14 @@ var app = (function () {
     		block,
     		id: create_if_block.name,
     		type: "if",
-    		source: "(138:1) {#if page === 'overview'}",
+    		source: "(137:1) {#if page === 'overview'}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (139:2) {#if editMode === 'edit'}
+    // (138:2) {#if editMode === 'edit'}
     function create_if_block_2(ctx) {
     	let editmeetup;
     	let current;
@@ -5348,14 +5348,14 @@ var app = (function () {
     		block,
     		id: create_if_block_2.name,
     		type: "if",
-    		source: "(139:2) {#if editMode === 'edit'}",
+    		source: "(138:2) {#if editMode === 'edit'}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (147:2) {#if isLoading}
+    // (146:2) {#if isLoading}
     function create_if_block_1(ctx) {
     	let p;
 
@@ -5363,7 +5363,7 @@ var app = (function () {
     		c: function create() {
     			p = element("p");
     			p.textContent = "loading";
-    			add_location(p, file, 147, 3, 3151);
+    			add_location(p, file, 146, 3, 3111);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, p, anchor);
@@ -5377,7 +5377,7 @@ var app = (function () {
     		block,
     		id: create_if_block_1.name,
     		type: "if",
-    		source: "(147:2) {#if isLoading}",
+    		source: "(146:2) {#if isLoading}",
     		ctx
     	});
 
@@ -5414,7 +5414,7 @@ var app = (function () {
     			main = element("main");
     			if_block1.c();
     			attr_dev(main, "class", "svelte-x789jm");
-    			add_location(main, file, 136, 0, 2928);
+    			add_location(main, file, 135, 0, 2888);
     		},
     		l: function claim(nodes) {
     			throw new Error_1("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -5634,7 +5634,6 @@ var app = (function () {
 
     	$$self.$capture_state = () => ({
     		meetups: customMeetupStore,
-    		Meetup: Meetup_1,
     		Header,
     		MeetupGrid,
     		TextInput,
@@ -5690,14 +5689,14 @@ var app = (function () {
     	];
     }
 
-    class Meetup_1 extends SvelteComponentDev {
+    class Meetup extends SvelteComponentDev {
     	constructor(options) {
     		super(options);
     		init(this, options, instance$1, create_fragment$1, safe_not_equal, {});
 
     		dispatch_dev("SvelteRegisterComponent", {
     			component: this,
-    			tagName: "Meetup_1",
+    			tagName: "Meetup",
     			options,
     			id: create_fragment$1.name
     		});
@@ -5709,7 +5708,7 @@ var app = (function () {
     function create_fragment(ctx) {
     	let meetup;
     	let current;
-    	meetup = new Meetup_1({ $$inline: true });
+    	meetup = new Meetup({ $$inline: true });
 
     	const block = {
     		c: function create() {
@@ -5763,7 +5762,7 @@ var app = (function () {
     		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== '$$' && key !== 'slot') console.warn(`<App> was created with unknown prop '${key}'`);
     	});
 
-    	$$self.$capture_state = () => ({ Meetup: Meetup_1, showCart, showCartButton });
+    	$$self.$capture_state = () => ({ Meetup, showCart, showCartButton });
 
     	$$self.$inject_state = $$props => {
     		if ('showCart' in $$props) showCart = $$props.showCart;
