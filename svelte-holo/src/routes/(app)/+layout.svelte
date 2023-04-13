@@ -7,5 +7,7 @@
 <a href="/blog/first">/blog/first</a>
 <a href="/docs">docs</a>
 <a href="/doc">doc</a>
+<a href="/price">price</a>
+<a href="/price-server">price-server</a>
 
 <slot><!-- optional fallback --></slot>
