@@ -1,6 +1,7 @@
 <script>
 	import { arrPokemon } from './../store/pokestore.js';
 	import PokemonCard from '$lib/components/PokemonCard.svelte';
+	import PokemonDetail from '$lib/components/PokemonDetail.svelte';
 
 	let searchTerm = '';
 	let filterPoke = [];
@@ -36,9 +37,13 @@
 </div>
 
 <ul class="grid gap-4 md:grid-cols-3 grid-cols-2">
-	{#each filterPoke as { ...pokemon }}
-		<li>
-			<PokemonCard {pokemon} />
-		</li>
-	{/each}
+	{#if filterPoke.length}
+		{#each filterPoke as { ...pokemon }}
+			<li>
+				<PokemonCard {pokemon} />
+			</li>
+		{/each}
+	{:else}
+		<p>현재 없음</p>
+	{/if}
 </ul>
