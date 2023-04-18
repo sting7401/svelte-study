@@ -10,8 +10,10 @@
 	const keyPush = text => {
 		if (text === 'clear') {
 			value = '';
+			text = 'clear';
 		} else if (text === 'submit') {
 			dispatch('submit');
+			text = 'submit';
 		} else {
 			value += text;
 		}

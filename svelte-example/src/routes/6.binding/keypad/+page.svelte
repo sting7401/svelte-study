@@ -13,13 +13,7 @@
 
 	<div class="grid grid-cols-3 gap-3">
 		{#each keyNumber as item}
-			{#if item === 'clear'}
-				<Key text={item} on:keyPush={item} bind:value />
-			{:else if item === 'submit'}
-				<Key text={item} on:keyPush={item} bind:value />
-			{:else}
-				<Key text={item} on:keyPush={item} bind:value />
-			{/if}
+			<Key text={item} on:keyPush={item} bind:value />
 		{/each}
 
 		{sub}
