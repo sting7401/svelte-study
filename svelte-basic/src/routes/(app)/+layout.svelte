@@ -1,5 +1,5 @@
 <script>
-	import '../input.css';
+	import '$lib/css/output.css';
 </script>
 
 <style>
@@ -13,7 +13,7 @@
 	{#each Array(12) as _, index (index)}
 		<li>
 			<a
-				href="/start/basic{index}"
+				href="/basic{index}"
 				class="text-sm font-bold underline transition animate-bounce hover:text-lg"
 			>
 				{index}
@@ -23,7 +23,7 @@
 	{#each Array(2) as _, i (i)}
 		<li>
 			<a
-				href="/start/step0{i + 1}"
+				href="/step0{i + 1}"
 				class="text-sm font-bold underline transition animate-bounce hover:text-lg"
 			>
 				{i + 1}
