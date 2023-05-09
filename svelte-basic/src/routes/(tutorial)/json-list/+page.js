@@ -11,3 +11,7 @@ export const load = async ({ fetch, data }) => {
 
 	return { title, products, Component: Product, notification };
 };
+
+export const ssr = true;
+export const csr = false;
+export const prerender = true;

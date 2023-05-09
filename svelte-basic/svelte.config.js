@@ -1,4 +1,4 @@
-import adapter from '@sveltejs/adapter-auto';
+import adapter from '@sveltejs/adapter-vercel';
 import { vitePreprocess } from '@sveltejs/kit/vite';
 import preprocess from 'svelte-preprocess';
 import tailwind from 'tailwindcss';
@@ -9,21 +9,24 @@ const config = {
 	// Consult https://kit.svelte.dev/docs/integrations#preprocessors
 	// for more information about preprocessors
 
+	kit: {
+		adapter: adapter({
+			// see the 'Deployment configuration' section below
+		}),
+		prerender: { crawl: true, entries: [''] },
+		//prerender: { crawl: false, entries: ['/','json-list/1','json-list/2'] },
+	},
 	preprocess: [
 		vitePreprocess(),
 		preprocess({
 			defaults: {
-				style: 'postcss'
+				style: 'postcss',
 			},
 			postcss: {
-				plugins: [tailwind, autoprefixer]
-			}
-		})
+				plugins: [tailwind, autoprefixer],
+			},
+		}),
 	],
-
-	kit: {
-		adapter: adapter()
-	}
 };
 
 export default config;

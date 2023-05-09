@@ -1,11 +1,16 @@
 <script>
 	export let product;
 
-	const { title = '', price = '' } = product;
+	const { id = '', title = '', price = '' } = product;
 </script>
 
 <style>
 </style>
 
-<p>{title}</p>
-<p>{price}</p>
+<div class="p-1">
+	<a href="{`/products/${id}`}" class="p-2">
+		<p class="text-lg">{title}</p></a
+	>
+
+	<p>{price}</p>
+</div>

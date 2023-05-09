@@ -14,4 +14,4 @@
 
 <slot />
 
-<footer>footer</footer>
+<footer data-sveltekit-preload-code="hover">footer</footer>

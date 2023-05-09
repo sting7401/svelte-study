@@ -24,3 +24,5 @@ export const load = (async ({ fetch, params, url, route }) => {
 		notification,
 	};
 }) satisfies PageServerLoad;
+
+export const prerender = 'auto';

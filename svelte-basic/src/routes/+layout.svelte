@@ -5,8 +5,6 @@
 <style>
 </style>
 
-<<<<<<< HEAD
-=======
 <nav class="flex hover:">
 	{#each Array(12) as _, index (index)}
 		<li>
@@ -30,5 +28,4 @@
 	{/each}
 </nav>
 
->>>>>>> 015d45502796f9dbf24e0d51025d4e9e479792af
 <slot><!-- optional fallback --></slot>
