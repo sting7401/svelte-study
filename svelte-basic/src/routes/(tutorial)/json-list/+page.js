@@ -14,4 +14,4 @@ export const load = async ({ fetch, data }) => {
 
 export const ssr = true;
 export const csr = false;
-export const prerender = false;
+// export const prerender = true;

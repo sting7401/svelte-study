@@ -6,5 +6,4 @@ export const load = async ({ fetch }) => {
 	return { currentTime };
 };
 
-export const prerender = false;
-export const csr = false;
+// export const prerender = true;

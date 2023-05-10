@@ -25,4 +25,4 @@ export const load = (async ({ fetch, params, url, route }) => {
 	};
 }) satisfies PageServerLoad;
 
-export const prerender = 'auto';
+// export const prerender = 'auto';
