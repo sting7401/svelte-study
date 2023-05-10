@@ -23,6 +23,11 @@
 	<p>키: {height}</p>
 	<p>무게: {weight}</p>
 	<p>
-		<img src={sprites['front_default']} alt={name} class="w-40 h-40" />
+		<img
+			src={sprites['front_default']}
+			alt={name}
+			class="w-40 h-40"
+			loading="lazy"
+		/>
 	</p>
 </div>

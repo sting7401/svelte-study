@@ -4,7 +4,7 @@ export const manifest = {
 	assets: new Set(["favicon.ico","favicon.png"]),
 	mimeTypes: {".ico":"image/vnd.microsoft.icon",".png":"image/png"},
 	_: {
-		client: {"start":"_app/immutable/entry/start.d981ce8c.js","app":"_app/immutable/entry/app.9829a644.js","imports":["_app/immutable/entry/start.d981ce8c.js","_app/immutable/chunks/index.204e011a.js","_app/immutable/chunks/singletons.911e4197.js","_app/immutable/chunks/index.1aa3161a.js","_app/immutable/chunks/parse.d12b0d5b.js","_app/immutable/entry/app.9829a644.js","_app/immutable/chunks/index.204e011a.js"],"stylesheets":[],"fonts":[]},
+		client: {"start":"_app/immutable/entry/start.3a67b2e7.js","app":"_app/immutable/entry/app.9184f922.js","imports":["_app/immutable/entry/start.3a67b2e7.js","_app/immutable/chunks/index.204e011a.js","_app/immutable/chunks/singletons.fa18ad3b.js","_app/immutable/chunks/index.1aa3161a.js","_app/immutable/chunks/parse.d12b0d5b.js","_app/immutable/entry/app.9184f922.js","_app/immutable/chunks/index.204e011a.js"],"stylesheets":[],"fonts":[]},
 		nodes: [
 			() => import('../output/server/nodes/0.js'),
 			() => import('../output/server/nodes/1.js'),
@@ -53,9 +53,18 @@ export const manifest = {
 			() => import('../output/server/nodes/44.js'),
 			() => import('../output/server/nodes/45.js'),
 			() => import('../output/server/nodes/46.js'),
-			() => import('../output/server/nodes/47.js')
+			() => import('../output/server/nodes/47.js'),
+			() => import('../output/server/nodes/48.js'),
+			() => import('../output/server/nodes/49.js')
 		],
 		routes: [
+			{
+				id: "/(tutorial)/address",
+				pattern: /^\/address\/?$/,
+				params: [],
+				page: { layouts: [0,], errors: [1,], leaf: 31 },
+				endpoint: null
+			},
 			{
 				id: "/api/comments",
 				pattern: /^\/api\/comments\/?$/,
@@ -90,6 +99,13 @@ export const manifest = {
 				params: [],
 				page: null,
 				endpoint: () => import('../output/server/entries/endpoints/api/postcodes/_server.js')
+			},
+			{
+				id: "/api/stocks",
+				pattern: /^\/api\/stocks\/?$/,
+				params: [],
+				page: null,
+				endpoint: () => import('../output/server/entries/endpoints/api/stocks/_server.js')
 			},
 			{
 				id: "/(form)/auth-modal",
@@ -249,119 +265,119 @@ export const manifest = {
 				id: "/start/basic10",
 				pattern: /^\/start\/basic10\/?$/,
 				params: [],
-				page: { layouts: [0,], errors: [1,], leaf: 32 },
+				page: { layouts: [0,], errors: [1,], leaf: 34 },
 				endpoint: null
 			},
 			{
 				id: "/start/basic11",
 				pattern: /^\/start\/basic11\/?$/,
 				params: [],
-				page: { layouts: [0,], errors: [1,], leaf: 33 },
+				page: { layouts: [0,], errors: [1,], leaf: 35 },
 				endpoint: null
 			},
 			{
 				id: "/start/basic12",
 				pattern: /^\/start\/basic12\/?$/,
 				params: [],
-				page: { layouts: [0,], errors: [1,], leaf: 34 },
+				page: { layouts: [0,], errors: [1,], leaf: 36 },
 				endpoint: null
 			},
 			{
 				id: "/start/basic2",
 				pattern: /^\/start\/basic2\/?$/,
 				params: [],
-				page: { layouts: [0,], errors: [1,], leaf: 35 },
+				page: { layouts: [0,], errors: [1,], leaf: 37 },
 				endpoint: null
 			},
 			{
 				id: "/start/basic3",
 				pattern: /^\/start\/basic3\/?$/,
 				params: [],
-				page: { layouts: [0,], errors: [1,], leaf: 36 },
+				page: { layouts: [0,], errors: [1,], leaf: 38 },
 				endpoint: null
 			},
 			{
 				id: "/start/basic4",
 				pattern: /^\/start\/basic4\/?$/,
 				params: [],
-				page: { layouts: [0,], errors: [1,], leaf: 37 },
+				page: { layouts: [0,], errors: [1,], leaf: 39 },
 				endpoint: null
 			},
 			{
 				id: "/start/basic5",
 				pattern: /^\/start\/basic5\/?$/,
 				params: [],
-				page: { layouts: [0,], errors: [1,], leaf: 38 },
+				page: { layouts: [0,], errors: [1,], leaf: 40 },
 				endpoint: null
 			},
 			{
 				id: "/start/basic6",
 				pattern: /^\/start\/basic6\/?$/,
 				params: [],
-				page: { layouts: [0,], errors: [1,], leaf: 39 },
+				page: { layouts: [0,], errors: [1,], leaf: 41 },
 				endpoint: null
 			},
 			{
 				id: "/start/basic7",
 				pattern: /^\/start\/basic7\/?$/,
 				params: [],
-				page: { layouts: [0,], errors: [1,], leaf: 40 },
+				page: { layouts: [0,], errors: [1,], leaf: 42 },
 				endpoint: null
 			},
 			{
 				id: "/start/basic8",
 				pattern: /^\/start\/basic8\/?$/,
 				params: [],
-				page: { layouts: [0,], errors: [1,], leaf: 41 },
+				page: { layouts: [0,], errors: [1,], leaf: 43 },
 				endpoint: null
 			},
 			{
 				id: "/start/basic9",
 				pattern: /^\/start\/basic9\/?$/,
 				params: [],
-				page: { layouts: [0,], errors: [1,], leaf: 42 },
+				page: { layouts: [0,], errors: [1,], leaf: 44 },
 				endpoint: null
 			},
 			{
 				id: "/start/basic",
 				pattern: /^\/start\/basic\/?$/,
 				params: [],
-				page: { layouts: [0,], errors: [1,], leaf: 31 },
+				page: { layouts: [0,], errors: [1,], leaf: 33 },
 				endpoint: null
 			},
 			{
 				id: "/start/database1",
 				pattern: /^\/start\/database1\/?$/,
 				params: [],
-				page: { layouts: [0,], errors: [1,], leaf: 43 },
+				page: { layouts: [0,], errors: [1,], leaf: 45 },
 				endpoint: null
 			},
 			{
 				id: "/start/parentStore",
 				pattern: /^\/start\/parentStore\/?$/,
 				params: [],
-				page: { layouts: [0,], errors: [1,], leaf: 44 },
+				page: { layouts: [0,], errors: [1,], leaf: 46 },
 				endpoint: null
 			},
 			{
 				id: "/start/step01",
 				pattern: /^\/start\/step01\/?$/,
 				params: [],
-				page: { layouts: [0,], errors: [1,], leaf: 45 },
+				page: { layouts: [0,], errors: [1,], leaf: 47 },
 				endpoint: null
 			},
 			{
 				id: "/start/step02",
 				pattern: /^\/start\/step02\/?$/,
 				params: [],
-				page: { layouts: [0,], errors: [1,], leaf: 46 },
+				page: { layouts: [0,], errors: [1,], leaf: 48 },
 				endpoint: null
 			},
 			{
 				id: "/start/test02",
 				pattern: /^\/start\/test02\/?$/,
 				params: [],
-				page: { layouts: [0,], errors: [1,], leaf: 47 },
+				page: { layouts: [0,], errors: [1,], leaf: 49 },
 				endpoint: null
 			},
 			{
@@ -383,6 +399,13 @@ export const manifest = {
 				pattern: /^\/test02\/?$/,
 				params: [],
 				page: { layouts: [0,2,], errors: [1,3,], leaf: 23 },
+				endpoint: null
+			},
+			{
+				id: "/(tutorial)/tutorial",
+				pattern: /^\/tutorial\/?$/,
+				params: [],
+				page: { layouts: [0,], errors: [1,], leaf: 32 },
 				endpoint: null
 			}
 		],
