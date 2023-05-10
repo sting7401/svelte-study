@@ -1,6 +1,11 @@
 import type { PageServerLoad } from './$types';
+import { redirect, error } from '@sveltejs/kit';
 
-export const load = (async () => {
+export const load = (async ({ cookies, url }) => {
+	if (!cookies.get('username')) {
+		throw redirect(307, `/auth?redirectTo=${url.pathname}`);
+	}
+
 	const newsAPIKey = 'you key';
 
 	const news = [
