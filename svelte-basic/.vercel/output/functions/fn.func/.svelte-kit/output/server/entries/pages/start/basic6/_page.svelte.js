@@ -1,4 +1,4 @@
-import { c as create_ssr_component, a as escape, v as validate_component } from "../../../../chunks/index3.js";
+import { c as create_ssr_component, e as escape, v as validate_component } from "../../../../chunks/index3.js";
 const Child = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   let { number = 10 } = $$props;
   let { person = { name: "", age: 0 } } = $$props;

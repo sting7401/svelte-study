@@ -1,4 +1,4 @@
-import { c as create_ssr_component, p as createEventDispatcher, a as escape } from "./index3.js";
+import { c as create_ssr_component, p as createEventDispatcher, e as escape } from "./index3.js";
 const Button = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   createEventDispatcher();
   let { iconName } = $$props;

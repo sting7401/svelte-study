@@ -1,5 +1,8 @@
 <script>
 	import '$lib/css/input.css';
+
+	const basicList = new Array(12);
+	const stepList = new Array(2);
 </script>
 
 <style>
@@ -10,17 +13,17 @@
 </style>
 
 <nav class="flex hover:">
-	{#each Array(12) as _, index (index)}
+	{#each basicList as _, index (index)}
 		<li>
 			<a
-				href="/basic{index}"
+				href="/basic{index + 1}"
 				class="text-sm font-bold underline transition animate-bounce hover:text-lg"
 			>
-				{index}
+				{index + 1}
 			</a>
 		</li>
 	{/each}
-	{#each Array(2) as _, i (i)}
+	{#each stepList as _, i (i)}
 		<li>
 			<a
 				href="/step0{i + 1}"

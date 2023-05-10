@@ -1,4 +1,4 @@
-import { c as create_ssr_component, b as subscribe, d as add_attribute, e as each, a as escape } from "../../../../chunks/index3.js";
+import { c as create_ssr_component, a as subscribe, d as add_attribute, b as each, e as escape } from "../../../../chunks/index3.js";
 import { w as writable } from "../../../../chunks/index2.js";
 const hobbies = writable([]);
 const customStore = {

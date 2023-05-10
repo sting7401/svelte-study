@@ -1,4 +1,4 @@
-import { c as create_ssr_component, i as is_promise, n as noop, e as each, a as escape } from "../../../../chunks/index3.js";
+import { c as create_ssr_component, i as is_promise, n as noop, b as each, e as escape } from "../../../../chunks/index3.js";
 const Page = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   let list = [];
   return `<button type="button">가져오기 </button>

@@ -1,4 +1,4 @@
-import { c as create_ssr_component, a as escape } from "../../../chunks/index3.js";
+import { c as create_ssr_component, e as escape } from "../../../chunks/index3.js";
 import "../../../chunks/singletons.js";
 const Page = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   let { data } = $$props;

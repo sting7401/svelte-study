@@ -1,4 +1,4 @@
-import { c as create_ssr_component, d as add_attribute, a as escape } from "../../../../chunks/index3.js";
+import { c as create_ssr_component, d as add_attribute, e as escape } from "../../../../chunks/index3.js";
 const Product = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   let { product } = $$props;
   const { id = "", title = "", price = "" } = product;

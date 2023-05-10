@@ -1,4 +1,4 @@
-import { c as create_ssr_component, e as each, v as validate_component } from "../../../../chunks/index3.js";
+import { c as create_ssr_component, b as each, v as validate_component } from "../../../../chunks/index3.js";
 const _page_svelte_svelte_type_style_lang = "";
 const css = {
   code: ".product-item.svelte-1bmvdg6{min-height:1rem}",

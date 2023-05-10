@@ -1,4 +1,4 @@
-import { c as create_ssr_component, a as escape, e as each } from "../../../../chunks/index3.js";
+import { c as create_ssr_component, e as escape, b as each } from "../../../../chunks/index3.js";
 const Page = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   let number = 0;
   let arr = [1, 2, 3, 4, 5];
