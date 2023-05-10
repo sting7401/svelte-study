@@ -6,6 +6,6 @@ export const load = async ({ fetch }) => {
 	const addressList = postcodes.map(postcode => {
 		return `${postcode.buildingName}, ${postcode.line1}, ${postcode.line2}, ${postcode.line3}, ${postcode.town}, ${postcode.county}, ${postcode.postcode}`;
 	});
-
+	console.log(addressList);
 	return { addressList };
 };
