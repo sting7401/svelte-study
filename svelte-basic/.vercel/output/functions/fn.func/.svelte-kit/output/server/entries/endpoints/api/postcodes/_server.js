@@ -1,6 +1,6 @@
 import { j as json } from "../../../../chunks/index.js";
 const GET = async () => {
-  const res = await fetch("http://localhost:5000/postcodes");
+  const res = await fetch("api/postcodes");
   const postcodes = await res.json();
   const appPostcodes = postcodes.map((postcode) => {
     return {
