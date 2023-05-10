@@ -1,7 +1,7 @@
 
 
 export const index = 50;
-export const component = async () => (await import('../entries/pages/start/basic6/_page.svelte.js')).default;
-export const imports = ["_app/immutable/nodes/50.6a02468e.js","_app/immutable/chunks/index.50ff2779.js"];
-export const stylesheets = [];
+export const component = async () => (await import('../entries/pages/start/basic12/_page.svelte.js')).default;
+export const imports = ["_app/immutable/nodes/50.618f9be6.js","_app/immutable/chunks/index.5df5f97f.js"];
+export const stylesheets = ["_app/immutable/assets/14.eac23fc6.css"];
 export const fonts = [];

@@ -1,5 +1,5 @@
 <script>
-	import '$lib/css/output.css';
+	import '$lib/css/input.css';
 </script>
 
 <style>

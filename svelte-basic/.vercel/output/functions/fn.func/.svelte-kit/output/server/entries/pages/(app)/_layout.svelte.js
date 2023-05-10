@@ -1,6 +1,5 @@
 import { c as create_ssr_component, e as each, a as escape } from "../../../chunks/index3.js";
-const output = "";
-const _layout_svelte_svelte_type_style_lang = "";
+/* empty css                     */const _layout_svelte_svelte_type_style_lang = "";
 const css = {
   code: "li.svelte-1ahaeol{margin-right:1rem;list-style-type:none}",
   map: null

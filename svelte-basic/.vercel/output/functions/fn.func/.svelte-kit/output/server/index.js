@@ -1,5 +1,6 @@
 import { b as base, a as assets, r as reset, p as public_env, o as options, g as get_hooks, s as set_public_env } from "./chunks/internal.js";
 import { H as HttpError, j as json, t as text, R as Redirect, e as error, A as ActionFailure } from "./chunks/index.js";
+import { i as is_primitive, g as get_type, s as stringify_string, D as DevalueError, a as is_plain_object, e as escaped } from "./chunks/utils.js";
 import { r as readable, w as writable } from "./chunks/index2.js";
 const DEV = false;
 function negotiate(accept, types) {
@@ -284,67 +285,6 @@ function add_data_suffix(pathname) {
 }
 function strip_data_suffix(pathname) {
   return pathname.slice(0, -DATA_SUFFIX.length);
-}
-const escaped = {
-  "<": "\\u003C",
-  ">": "\\u003E",
-  "/": "\\u002F",
-  "\\": "\\\\",
-  "\b": "\\b",
-  "\f": "\\f",
-  "\n": "\\n",
-  "\r": "\\r",
-  "	": "\\t",
-  "\0": "\\u0000",
-  "\u2028": "\\u2028",
-  "\u2029": "\\u2029"
-};
-class DevalueError extends Error {
-  /**
-   * @param {string} message
-   * @param {string[]} keys
-   */
-  constructor(message, keys) {
-    super(message);
-    this.name = "DevalueError";
-    this.path = keys.join("");
-  }
-}
-function is_primitive(thing) {
-  return Object(thing) !== thing;
-}
-const object_proto_names = Object.getOwnPropertyNames(Object.prototype).sort().join("\0");
-function is_plain_object(thing) {
-  const proto = Object.getPrototypeOf(thing);
-  return proto === Object.prototype || proto === null || Object.getOwnPropertyNames(proto).sort().join("\0") === object_proto_names;
-}
-function get_type(thing) {
-  return Object.prototype.toString.call(thing).slice(8, -1);
-}
-function stringify_string(str) {
-  let result = '"';
-  for (let i = 0; i < str.length; i += 1) {
-    const char = str.charAt(i);
-    const code = char.charCodeAt(0);
-    if (char === '"') {
-      result += '\\"';
-    } else if (char in escaped) {
-      result += escaped[char];
-    } else if (code <= 31) {
-      result += `\\u${code.toString(16).toUpperCase().padStart(4, "0")}`;
-    } else if (code >= 55296 && code <= 57343) {
-      const next = str.charCodeAt(i + 1);
-      if (code <= 56319 && next >= 56320 && next <= 57343) {
-        result += char + str[++i];
-      } else {
-        result += `\\u${code.toString(16).toUpperCase()}`;
-      }
-    } else {
-      result += char;
-    }
-  }
-  result += '"';
-  return result;
 }
 const chars$1 = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_$";
 const unsafe_chars = /[<>\b\f\n\r\t\0\u2028\u2029]/g;

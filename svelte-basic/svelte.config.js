@@ -13,7 +13,9 @@ const config = {
 		adapter: adapter({
 			// see the 'Deployment configuration' section below
 		}),
-		prerender: { crawl: true },
+		prerender: {
+			crawl: true,
+		},
 		// prerender: { crawl: true, entries: ['/'] },
 		//prerender: { crawl: false, entries: ['/','json-list/1','json-list/2'] },
 	},

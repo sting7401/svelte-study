@@ -1,7 +1,7 @@
 const load = async ({ fetch }) => {
   console.log("Loading");
   const res = await fetch("/api/current-time");
-  const currentTime = await res.json();
+  const currentTime = await res.text();
   return { currentTime };
 };
 const prerender = false;

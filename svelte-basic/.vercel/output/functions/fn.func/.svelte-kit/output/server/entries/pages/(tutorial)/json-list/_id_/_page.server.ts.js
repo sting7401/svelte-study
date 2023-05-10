@@ -13,6 +13,8 @@ const load = async ({ fetch, params, url, route }) => {
     notification
   };
 };
+const prerender = "auto";
 export {
-  load
+  load,
+  prerender
 };
