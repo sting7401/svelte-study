@@ -1,5 +1,3 @@
-import { json } from '@sveltejs/kit';
-
 export async function load({ fetch, params }) {
 	const id = params.id;
 	const url = `https://pokeapi.co/api/v2/pokemon/${id}`;

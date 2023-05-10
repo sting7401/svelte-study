@@ -1,6 +1,12 @@
 <script lang="ts">
 	import { fade } from 'svelte/transition';
-	import { PokeTypeList } from '$lib/types/pokeTypeList.ts';
+	// import { PokeTypeList } from '$lib/types/pokeTypeList.ts';
+
+	export type PokeTypeList = {
+		id: number;
+		image: string;
+		name: string;
+	};
 
 	export let pokemon: PokeTypeList;
 	export let { id, image, name } = pokemon;
