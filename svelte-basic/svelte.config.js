@@ -16,6 +16,7 @@ const config = {
 		prerender: {
 			// default: true,
 			crawl: true,
+			entries: ['/'],
 		},
 		// prerender: { crawl: true, entries: ['/'] },
 		//prerender: { crawl: false, entries: ['/','json-list/1','json-list/2'] },

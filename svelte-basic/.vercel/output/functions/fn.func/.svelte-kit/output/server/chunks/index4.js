@@ -1,4 +1,4 @@
-import { j as assign, k as now, l as loop, o as identity } from "./index3.js";
+import { h as assign, j as now, l as loop, k as identity } from "./index3.js";
 import { w as writable } from "./index2.js";
 function cubicIn(t) {
   return t * t * t;

@@ -1,7 +1,7 @@
 
 
 export const index = 43;
-export const component = async () => (await import('../entries/pages/start/basic8/_page.svelte.js')).default;
-export const imports = ["_app/immutable/nodes/43.3a6a3f60.js","_app/immutable/chunks/index.204e011a.js"];
+export const component = async () => (await import('../entries/pages/(tutorial)/products/_page.svelte.js')).default;
+export const imports = ["_app/immutable/nodes/43.d9319432.js","_app/immutable/chunks/index.10dfffe8.js"];
 export const stylesheets = [];
 export const fonts = [];

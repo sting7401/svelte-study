@@ -1,7 +1,9 @@
-
+import * as universal from '../entries/pages/(form)/contact/_page.ts.js';
 
 export const index = 34;
-export const component = async () => (await import('../entries/pages/start/basic10/_page.svelte.js')).default;
-export const imports = ["_app/immutable/nodes/34.f8b6e8ed.js","_app/immutable/chunks/index.204e011a.js"];
+export const component = async () => (await import('../entries/pages/(form)/contact/_page.svelte.js')).default;
+export { universal };
+export const universal_id = "src/routes/(form)/contact/+page.ts";
+export const imports = ["_app/immutable/nodes/34.941ef220.js","_app/immutable/chunks/index.10dfffe8.js","_app/immutable/chunks/navigation.543403bd.js","_app/immutable/chunks/singletons.99188a43.js","_app/immutable/chunks/index.b2a7721a.js"];
 export const stylesheets = [];
 export const fonts = [];

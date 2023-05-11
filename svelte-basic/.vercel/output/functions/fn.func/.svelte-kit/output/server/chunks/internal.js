@@ -29,6 +29,7 @@ const Root = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   let { data_1 = null } = $$props;
   let { data_2 = null } = $$props;
   let { data_3 = null } = $$props;
+  let { data_4 = null } = $$props;
   {
     setContext("__svelte__", stores);
   }
@@ -51,6 +52,8 @@ const Root = create_ssr_component(($$result, $$props, $$bindings, slots) => {
     $$bindings.data_2(data_2);
   if ($$props.data_3 === void 0 && $$bindings.data_3 && data_3 !== void 0)
     $$bindings.data_3(data_3);
+  if ($$props.data_4 === void 0 && $$bindings.data_4 && data_4 !== void 0)
+    $$bindings.data_4(data_4);
   let $$settled;
   let $$rendered;
   do {
@@ -94,7 +97,31 @@ ${constructors[1] ? `${validate_component(constructors[0] || missing_component, 
                   },
                   {
                     default: () => {
-                      return `${validate_component(constructors[3] || missing_component, "svelte:component").$$render(
+                      return `${constructors[4] ? `${validate_component(constructors[3] || missing_component, "svelte:component").$$render(
+                        $$result,
+                        { data: data_3, this: components[3] },
+                        {
+                          this: ($$value) => {
+                            components[3] = $$value;
+                            $$settled = false;
+                          }
+                        },
+                        {
+                          default: () => {
+                            return `${validate_component(constructors[4] || missing_component, "svelte:component").$$render(
+                              $$result,
+                              { data: data_4, form, this: components[4] },
+                              {
+                                this: ($$value) => {
+                                  components[4] = $$value;
+                                  $$settled = false;
+                                }
+                              },
+                              {}
+                            )}`;
+                          }
+                        }
+                      )}` : `${validate_component(constructors[3] || missing_component, "svelte:component").$$render(
                         $$result,
                         { data: data_3, form, this: components[3] },
                         {
@@ -104,7 +131,7 @@ ${constructors[1] ? `${validate_component(constructors[0] || missing_component, 
                           }
                         },
                         {}
-                      )}`;
+                      )}`}`;
                     }
                   }
                 )}` : `${validate_component(constructors[2] || missing_component, "svelte:component").$$render(
@@ -161,7 +188,7 @@ const options = {
   root: Root,
   service_worker: false,
   templates: {
-    app: ({ head, body, assets: assets2, nonce, env }) => '<!DOCTYPE html>\n<html lang="en">\n	<head>\n		<meta charset="utf-8" />\n		<meta name="viewport" content="width=device-width" />\n		<link rel="icon" href="$lib/images/favicon.png" />\n		' + head + '\n	</head>\n	<body data-sveltekit-preload-data="hover">\n		<div>' + body + "</div>\n	</body>\n</html>\n",
+    app: ({ head, body, assets: assets2, nonce, env }) => '<!DOCTYPE html>\n<html lang="en">\n	<head>\n		<meta charset="utf-8" />\n		<meta name="viewport" content="width=device-width" />\n		' + head + '\n	</head>\n	<body data-sveltekit-preload-data="hover">\n		<div>' + body + "</div>\n	</body>\n</html>\n",
     error: ({ status, message }) => '<!DOCTYPE html>\n<html lang="en">\n	<head>\n		<meta charset="utf-8" />\n		<title>' + message + `</title>
 
 		<style>
@@ -222,7 +249,7 @@ const options = {
 		<div class="error">
 			<span class="status">` + status + '</span>\n			<div class="message">\n				<h1>' + message + "</h1>\n			</div>\n		</div>\n	</body>\n</html>\n"
   },
-  version_hash: "19j87ob"
+  version_hash: "weuk7y"
 };
 function get_hooks() {
   return {};
