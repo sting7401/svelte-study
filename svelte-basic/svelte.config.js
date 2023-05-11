@@ -14,6 +14,7 @@ const config = {
 			// see the 'Deployment configuration' section below
 		}),
 		prerender: {
+			// default: true,
 			crawl: true,
 		},
 		// prerender: { crawl: true, entries: ['/'] },

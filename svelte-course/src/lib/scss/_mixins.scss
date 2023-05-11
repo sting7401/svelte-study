@@ -1,0 +1,465 @@
+@charset "UTF-8";
+
+@mixin a11y-hidden {
+	overflow: hidden;
+	position: absolute;
+	clip: rect(0, 0, 0, 0);
+	clip-path: circle(0);
+	width: 1px;
+	height: 1px;
+	margin: -1px;
+	border: 0;
+	padding: 0;
+}
+
+@mixin a11y-visible {
+	position: static;
+	clip: auto;
+	clip-path: initial;
+	overflow: visible;
+	height: auto;
+	width: auto;
+	margin: 0;
+}
+
+// float 해제
+@mixin clearfix {
+	&::before {
+		content: '';
+		display: block;
+		clear: both;
+	}
+}
+
+// scroll y
+@mixin scrollY {
+	flex-grow: 1;
+	overflow-x: hidden;
+	overflow-y: auto;
+
+	&::-webkit-scrollbar {
+		width: rem(4);
+	}
+
+	&::-webkit-scrollbar-track {
+		background: $color-fff;
+	}
+
+	&::-webkit-scrollbar-thumb {
+		background: $color-e7e5fd;
+		border-radius: rem(4);
+	}
+}
+
+// scroll x
+@mixin scrollX {
+	overflow-x: auto;
+	overflow-y: hidden;
+}
+
+// flex
+$flex-map: (
+	start: flex-start,
+	end: flex-end,
+	between: space-between,
+	around: space-around,
+	stretch: stretch,
+	center: center,
+	base: baseline,
+	evenly: space-evenly,
+);
+
+$flex-direction-map: (
+	column: column,
+	column-reverse: column-reverse,
+	revert: revert,
+	row: row,
+	row-reverse: row-reverse,
+);
+
+@function _get-flex-value($key) {
+	@return map-get($flex-map, $key);
+}
+
+@function _get-flex-direction($key) {
+	@return map-get($flex-direction-map, $key);
+}
+
+@mixin flexbox($ds: flex, $jc: null, $ai: null, $fd: null, $fw: null, $gp: null) {
+	display: $ds;
+	align-items: _get-flex-value($ai);
+	justify-content: _get-flex-value($jc);
+	flex-direction: _get-flex-direction($fd);
+	flex-wrap: $fw;
+	gap: $gp;
+}
+
+@mixin gridTemplateColumns($columns: null) {
+	-ms-grid-columns: $columns;
+	grid-template-columns: $columns;
+}
+
+@mixin gridTemplateRows($rows: null) {
+	-ms-grid-rows: $rows;
+	grid-template-rows: $rows;
+}
+
+@mixin grid(
+	$ds: grid,
+	$ji: null,
+	$jc: null,
+	$ai: null,
+	$ac: null,
+	$gp: null,
+
+	$gtc: null,
+	$gac: null,
+	$gcs: null,
+	$gce: null,
+
+	$gtr: null,
+	$gar: null,
+	$grs: null,
+	$gre: null,
+
+	$gc: null,
+	$gr: null,
+	$ga: null
+) {
+	display: $ds;
+	display: -ms-#{$ds};
+	justify-content: _get-flex-value($jc);
+	justify-items: _get-flex-value($jc);
+	align-content: _get-flex-value($ai);
+	align-items: _get-flex-value($ai);
+	grid-gap: $gp;
+	gap: $gp;
+
+	@include gridTemplateColumns($gtc);
+
+	grid-auto-columns: $gac;
+	grid-column-start: $gcs;
+	grid-column-end: $gce;
+
+	@include gridTemplateRows($gtr);
+
+	grid-auto-rows: $gar;
+	grid-row-start: $grs;
+	grid-row-end: $gre;
+
+	grid-column: $gc;
+	grid-row: $gr;
+
+	grid-area: $ga;
+}
+
+@mixin marginAuto($dr: null) {
+	margin-#{$dr}: auto;
+}
+
+// 말줄임
+@mixin ellipsis($line: 1, $wd: null) {
+	width: $wd;
+
+	@if ($line == 1) {
+		overflow: hidden;
+		white-space: nowrap;
+		text-overflow: ellipsis;
+	} @else if ($line == 2) {
+		display: -webkit-box;
+		position: relative;
+		overflow: hidden;
+		white-space: inherit;
+		text-overflow: ellipsis;
+		-webkit-line-clamp: 2;
+		-webkit-box-orient: vertical;
+	} @else if ($line == 3) {
+		display: -webkit-box;
+		position: relative;
+		overflow: hidden;
+		white-space: inherit;
+		text-overflow: ellipsis;
+		-webkit-line-clamp: 3;
+		-webkit-box-orient: vertical;
+	} @else if ($line == 'none') {
+		overflow: visible;
+		white-space: inherit;
+		text-overflow: inherit;
+	}
+}
+
+@mixin ellipsisNone {
+	overflow: inherit;
+	white-space: inherit;
+	text-overflow: inherit;
+}
+
+@mixin wh100 {
+	width: 100%;
+	height: 100%;
+}
+
+// position
+@mixin pos($ps: absolute, $tp: null, $bt: null, $lt: null, $rt: null, $zi: null) {
+	position: $ps;
+	top: $tp;
+	bottom: $bt;
+	left: $lt;
+	right: $rt;
+	z-index: $zi;
+}
+
+@mixin beforePos(
+	$ct: '',
+	$ps: absolute,
+	$tp: null,
+	$lt: null,
+	$rt: null,
+	$bt: null,
+	$zi: null,
+	$wd: null,
+	$hi: null,
+	$bg: null
+) {
+	content: $ct;
+	position: $ps;
+	top: $tp;
+	left: $lt;
+	right: $rt;
+	bottom: $bt;
+	z-index: $zi;
+	width: $wd;
+	height: $hi;
+	background-color: $bg;
+}
+
+@mixin border($pd: null, $bw: 1px, $bs: solid, $bc: null, $br: null, $bg: null) {
+	padding: $pd;
+	border-radius: $br;
+	border: $bw $bs $bc;
+	background-color: $bg;
+}
+
+@mixin bgRadius($pd: null, $br: null, $bg: null, $of: null) {
+	padding: $pd;
+	border-radius: $br;
+	background-color: $bg;
+	overflow: $of;
+}
+
+@mixin gradient($ln: null, $tp: null, $bt: null) {
+	background: linear-gradient(to $ln, $tp, $bt);
+}
+
+@mixin linear-gradient($dr: null, $fr: null, $to: null) {
+	// Provide a fallback-color
+	background-color: $fr;
+	background-image: linear-gradient($dr, $fr, $to);
+}
+
+@mixin borderLine($pd: null, $dr: null, $bw: 1px, $bs: solid, $bc: null, $br: null, $bg: null) {
+	padding: $pd;
+	border-radius: $br;
+	border-#{$dr}: $bw $bs $bc;
+	background-color: $bg;
+}
+
+@mixin radius($br: null) {
+	@if ($br == 100%) {
+		border-radius: 100%;
+	} @else {
+		border-radius: rem($br);
+	}
+}
+
+// text
+@mixin font($fs: null, $lh: null, $co: null, $fw: null, $ls: null, $al: null) {
+	font-size: $fs;
+	line-height: $lh;
+	color: $co;
+	font-weight: $fw;
+	letter-spacing: $ls;
+	text-align: $al;
+}
+
+@mixin fontPercent($fs: 1rem, $lh: 1.5) {
+	font-size: $fs;
+	line-height: $lh;
+}
+
+@mixin bgImage(
+	$br: null,
+	$url: null,
+	$brp: no-repeat,
+	$bp: null,
+	$bs: null,
+	$bc: null,
+	$bg: null,
+	$svg: null
+) {
+	border-radius: $br;
+	background-color: $bc;
+	@if ($svg == data) {
+		background-image: $url;
+	} @else {
+		background-image: url($url);
+	}
+	background-repeat: $brp;
+	background-position: $bp;
+	background-size: $bs;
+	background-color: $bg;
+}
+
+// button
+@mixin linkType($ds: null, $jc: null, $fd: null, $wd: 100%, $pd: null) {
+	display: $ds;
+	justify-content: $jc;
+	flex-direction: $fd;
+	width: $wd;
+	padding: $pd;
+}
+
+@mixin buttonSet($bc: $color-00409702, $br: $radius03, $fs: 1rem, $lh: 1, $co: $color-00409702) {
+	padding: $padding;
+	border-radius: $br;
+	border: solid 1px $bc;
+	font-size: $fs;
+	line-height: $lh;
+	color: $co;
+}
+
+@mixin triangle(
+	$bt: null,
+	$bb: null,
+	$bl: null,
+	$br: null,
+	$btc: transparent,
+	$bbc: transparent,
+	$blc: transparent,
+	$brc: transparent
+) {
+	border-top: $bt solid $btc;
+	border-bottom: $bb solid $bbc;
+	border-left: $bl solid $blc;
+	border-right: $br solid $brc;
+}
+
+@mixin inputValid() {
+	&:disabled {
+		@include border($bc: $color-ddd, $bg: $color-ddd);
+	}
+
+	&::-webkit-input-placeholder {
+		color: $whiteOpacity6;
+	}
+
+	&:disabled {
+		@include border($bc: $color-ddd, $bg: $color-ddd);
+	}
+
+	// &:focus:valid {
+	// 	background-color: $color-fff;
+	// 	color: $color-000;
+	// }
+
+	&:focus {
+		border-color: $color-fff;
+	}
+
+	&:valid {
+		background-color: $whiteOpacity1;
+	}
+}
+
+// mixin
+@mixin prefix($property, $value, $prefixes: ()) {
+	@each $prefix in $prefixes {
+		-#{$prefix}-#{$property}: $value;
+	}
+
+	#{$property}: $value;
+}
+
+@mixin unify-parent($child) {
+	@at-root #{selector-unify(&, $child)} {
+		@content;
+	}
+}
+
+@mixin forRadius($elm: &, $min: 0, $max: 100) {
+	@for $radiusNum from $min through $max {
+		&--radius#{$radiusNum} {
+			@include radius($radiusNum);
+		}
+	}
+}
+
+@mixin forSpace($elm: &, $min: 0, $max: 100, $pd: null) {
+	@each $position-space in $position-spaces {
+		@if $max != null {
+			@for $elmSpace from $min through $max {
+				@if ($pd == null) {
+					&--#{$position-space}#{$elmSpace} {
+						margin-#{$position-space}: rem($elmSpace);
+					}
+				} @else {
+					&--pd--#{$position-space}#{$elmSpace} {
+						padding-#{$position-space}: rem($elmSpace);
+					}
+				}
+			}
+		}
+
+		&--auto {
+			&--#{$position-space} {
+				margin-#{$position-space}: auto;
+			}
+		}
+	}
+}
+
+$break-576: 576px;
+$break-768: 768px;
+$break-1280: 1280px;
+$break-1440: 1440px;
+$break-1600: 1600px;
+$break-1750: 1750px;
+$break-1850: 1850px;
+
+@mixin respond($breakpoint) {
+	@if ($breakpoint == break576) {
+		@media (max-width: $break-576) {
+			@content;
+		}
+	}
+	@if ($breakpoint == break768) {
+		@media (max-width: $break-768) {
+			@content;
+		}
+	}
+	@if ($breakpoint == break1280) {
+		@media (max-width: $break-1280) {
+			@content;
+		}
+	}
+	@if ($breakpoint == break1440) {
+		@media (max-width: $break-1440) {
+			@content;
+		}
+	}
+	@if ($breakpoint == break1600) {
+		@media (max-width: $break-1600) {
+			@content;
+		}
+	}
+	@if ($breakpoint == break1750) {
+		@media (max-width: $break-1750) {
+			@content;
+		}
+	}
+	@if ($breakpoint == break1850) {
+		@media (max-width: $break-1850) {
+			@content;
+		}
+	}
+}

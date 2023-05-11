@@ -1,0 +1,172 @@
+@charset "UTF-8";
+
+// 색상
+$color-fff: #ffffff;
+$color-000: #000000;
+$color-111: #111111;
+$color-222: #222222;
+$color-23222a: #23222a;
+$color-333: #333333;
+$color-444: #444444;
+$color-555: #555555;
+$color-666: #666666;
+$color-777: #777777;
+$color-888: #888888;
+$color-999: #999999;
+$color-aaa: #aaaaaa;
+$color-bbb: #bbbbbb;
+$color-ccc: #cccccc;
+$color-ddd: #dddddd;
+$color-eee: #eeeeee;
+$color-9199ba: #9199ba;
+$color-e9ecf5: #e9ecf5;
+$color-f9fafe: #f9fafe;
+
+// blue
+$color-e1e7ea: #e1e7ea;
+$color-e7e5fd: #e7e5fd;
+$color-f8fafb: #f8fafb;
+$color-f3f6f8: #f3f6f8;
+$color-0089ff: #0089ff;
+$color-1000ef: #1000ef;
+$color-0a00ff: #0a00ff;
+$color-2e009e: #2e009e;
+$color-000f8e: #000f8e;
+$color-05004d: #05004d;
+
+// green
+$color-00ce81: #00ce81;
+
+// red
+$color-f13712: #f13712;
+$color-ff6a00: #ff6a00;
+$color-ff0000: #ff0000;
+$color-d70000: #d70000;
+$color-dd1818: #dd1818;
+
+// yellow
+$color-ffae00: #ffae00;
+
+$whiteOpacity9: rgba($color-fff, 0.9);
+$whiteOpacity8: rgba($color-fff, 0.8);
+$whiteOpacity7: rgba($color-fff, 0.7);
+$whiteOpacity6: rgba($color-fff, 0.6);
+$whiteOpacity5: rgba($color-fff, 0.5);
+$whiteOpacity4: rgba($color-fff, 0.4);
+$whiteOpacity3: rgba($color-fff, 0.3);
+$whiteOpacity2: rgba($color-fff, 0.2);
+$whiteOpacity1: rgba($color-fff, 0.1);
+
+$blackOpacity9: rgba($color-000, 0.9);
+$blackOpacity8: rgba($color-000, 0.8);
+$blackOpacity7: rgba($color-000, 0.7);
+$blackOpacity6: rgba($color-000, 0.6);
+$blackOpacity5: rgba($color-000, 0.5);
+$blackOpacity4: rgba($color-000, 0.4);
+$blackOpacity3: rgba($color-000, 0.3);
+$blackOpacity2: rgba($color-000, 0.2);
+$blackOpacity1: rgba($color-000, 0.1);
+
+$blueOpacity9: rgba($color-1000ef, 0.9);
+$blueOpacity8: rgba($color-1000ef, 0.8);
+$blueOpacity7: rgba($color-1000ef, 0.7);
+$blueOpacity6: rgba($color-1000ef, 0.6);
+$blueOpacity5: rgba($color-1000ef, 0.5);
+$blueOpacity4: rgba($color-1000ef, 0.4);
+$blueOpacity3: rgba($color-1000ef, 0.3);
+$blueOpacity2: rgba($color-1000ef, 0.2);
+$blueOpacity1: rgba($color-1000ef, 0.1);
+
+:root {
+	--mode-000: #{$color-000};
+	--mode-fff: #{$color-fff};
+	--mode-fff-23222a: #{$color-fff};
+
+	--mode-fff-9: #{$whiteOpacity9};
+	--mode-fff-8: #{$whiteOpacity8};
+	--mode-fff-7: #{$whiteOpacity7};
+	--mode-fff-6: #{$whiteOpacity6};
+	--mode-fff-5: #{$whiteOpacity5};
+	--mode-fff-4: #{$whiteOpacity4};
+	--mode-fff-3: #{$whiteOpacity3};
+	--mode-fff-2: #{$whiteOpacity2};
+	--mode-fff-1: #{$whiteOpacity1};
+
+	--mode-000-9: #{$blackOpacity9};
+	--mode-000-8: #{$blackOpacity8};
+	--mode-000-7: #{$blackOpacity7};
+	--mode-000-6: #{$blackOpacity6};
+	--mode-000-5: #{$blackOpacity5};
+	--mode-000-4: #{$blackOpacity4};
+	--mode-000-3: #{$blackOpacity3};
+	--mode-000-2: #{$blackOpacity2};
+	--mode-000-1: #{$blackOpacity1};
+}
+
+$color-list: (
+	// white
+	--fff:
+		(
+			color: $color-fff,
+			opacity: true,
+		),
+	// black
+	--000:
+		(
+			color: $color-000,
+			opacity: true,
+		),
+	// grey
+	--333:
+		(
+			color: $color-333,
+		),
+	--555: (
+		color: $color-555,
+	),
+	--666: (
+		color: $color-666,
+	),
+	--999: (
+		color: $color-999,
+	),
+	--ddd: (
+		color: $color-ddd,
+	),
+	--f3f6f8: (
+		color: $color-f3f6f8,
+	),
+	--1000ef: (
+		color: $color-1000ef,
+		opacity: true,
+	),
+	--ffae00: (
+		color: $color-ffae00,
+	),
+	--ff6a00: (
+		color: $color-ff6a00,
+	),
+	--9199ba: (
+		color: $color-9199ba,
+	),
+	--e9ecf5: (
+		color: $color-e9ecf5,
+	),
+	--f13712: (
+		color: $color-f13712,
+	),
+	--ff0000: (
+		color: $color-ff0000,
+	),
+	--00ce81: (
+		color: $color-00ce81,
+	)
+);
+
+$button-gradient-list: (
+	gradient--0a00ff: (
+		from: $color-0a00ff,
+		to: $color-2e009e,
+		gradient: true,
+	),
+);

@@ -2,4 +2,4 @@ export async function GET() {
 	return new Response(new Date().toLocaleTimeString());
 }
 
-// export const prerender = true;
+export const prerender = 'auto';

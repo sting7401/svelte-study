@@ -1,0 +1,33 @@
+@charset "UTF-8";
+
+@use 'sass:math';
+@use 'variables';
+
+@function rem($pxSize) {
+	@return math.div($pxSize, variables.$base-font-size) * 1rem;
+}
+
+// @function rem($pxSize) {
+// 	$remValue: ($pxSize / $base-font-size) + rem;
+
+// 	@return $remValue;
+// }
+
+// @function rem($pxSize) {
+// 	@return math.div(#{$pxSize}px, #{$base-font-size}px) * 1rem;
+// }
+
+@function col-width($number: null, $columns: null) {
+	@return $max-width * ($number / $columns);
+}
+
+// ex: @include grid-template-columns(10px grid-repeat(4, 20px) 30px);
+@function grid-repeat($repeat, $stuff: 1fr) {
+	$list: ();
+
+	@for $i from 1 through $repeat {
+		$list: append($list, $stuff, space);
+	}
+
+	@return $list;
+}

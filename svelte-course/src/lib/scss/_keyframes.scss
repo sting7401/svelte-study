@@ -1,0 +1,179 @@
+@charset "UTF-8";
+
+@use 'color';
+@use 'function';
+
+@keyframes fadeIn {
+	0% {
+		opacity: 0;
+	}
+
+	100% {
+		opacity: 1;
+	}
+}
+
+@keyframes fadeInOut {
+	0%,
+	100% {
+		opacity: 0;
+	}
+
+	50% {
+		opacity: 1;
+	}
+}
+
+@keyframes ellipsis {
+	to {
+		width: 1.25em;
+		margin-right: 0;
+	}
+}
+
+@keyframes dot-move {
+	0% {
+		transform: translateY(0);
+	}
+
+	30% {
+		transform: translateY(-4px);
+	}
+
+	70% {
+		transform: translateY(0);
+	}
+
+	100% {
+		transform: translateY(0);
+	}
+}
+
+@keyframes pulse {
+	0% {
+		box-shadow: 0 0 0 0 color.$whiteOpacity5;
+	}
+
+	70% {
+		box-shadow: 0 0 0 20px rgba(255, 255, 255, 0);
+	}
+
+	100% {
+		box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+	}
+}
+
+@keyframes dot-move {
+	0% {
+		transform: translateY(0);
+	}
+
+	30% {
+		transform: translateY(-4px);
+	}
+
+	70% {
+		transform: translateY(0);
+	}
+
+	100% {
+		transform: translateY(0);
+	}
+}
+
+@keyframes dot-move2 {
+	0% {
+		transform: translateY(0);
+	}
+
+	30% {
+		transform: translateY(-4px);
+	}
+
+	70% {
+		transform: translateY(0);
+	}
+
+	100% {
+		transform: translateY(0);
+	}
+}
+
+// conferernce
+@keyframes loadCamera {
+	100% {
+		transform: rotate(360deg);
+	}
+}
+
+@keyframes blink {
+	0%,
+	50%,
+	100% {
+		opacity: 1;
+	}
+
+	25%,
+	75% {
+		opacity: 0;
+	}
+}
+
+@keyframes toast {
+	from {
+		opacity: 1;
+	}
+
+	to {
+		opacity: 0;
+	}
+}
+
+@keyframes loadingRound {
+	0% {
+		stroke-dashoffset: -170;
+		transform: rotate(0deg);
+	}
+	30% {
+		stroke-dashoffset: 0;
+	}
+	100% {
+		stroke-dashoffset: 170;
+		transform: rotate(360deg);
+	}
+}
+
+@keyframes bgProfileScaleUpDown {
+	0% {
+		transform: scale(0.8);
+		opacity: 0;
+	}
+	100% {
+		transform: scale(1);
+		opacity: 1;
+	}
+}
+
+@keyframes bgScaleUpDown {
+	0% {
+		transform: scale(1);
+	}
+	50% {
+		transform: scale(0.9);
+	}
+	100% {
+		transform: scale(1);
+	}
+}
+
+@keyframes transferMove {
+	0% {
+		transform: translateX(function.rem(-5));
+	}
+	50% {
+		transform: translateX(function.rem(5));
+	}
+	100% {
+		transform: translateX(function.rem(-5));
+	}
+}

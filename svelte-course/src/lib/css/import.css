@@ -1,4 +1,143 @@
-:root {
-	--buttonBgColor: #ff3e00;
-	--buttonTextColor: #fff;
+@charset "UTF-8";
+
+/* reset */
+body,
+html {
+	height: 100%;
+}
+
+body,
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+ul,
+ol,
+li,
+dl,
+dt,
+dd,
+table,
+th,
+td,
+form,
+fieldset,
+legend,
+input,
+textarea,
+button,
+select {
+	padding: 0;
+	margin: 0;
+	user-select: none;
+}
+
+body,
+input,
+textarea,
+select,
+button,
+table {
+	font-family: 'Noto Sans KR', -apple-system;
+	font-size: 100%;
+	color: #fff;
+}
+
+html {
+	height: 100%;
+}
+
+i {
+	font-style: normal;
+}
+
+img,
+fieldset {
+	border: 0;
+	-webkit-user-drag: none;
+}
+
+ul,
+ol {
+	list-style: none;
+}
+
+em,
+address {
+	font-style: normal;
+}
+
+img {
+	vertical-align: top;
+}
+
+a {
+	color: #fff;
+	text-decoration: none;
+}
+
+article,
+aside,
+dialog,
+footer,
+header,
+section,
+footer,
+nav,
+figure {
+	display: block;
+	padding: 0;
+	margin: 0;
+}
+
+button {
+	border: 0 none;
+	background: transparent;
+	cursor: pointer;
+}
+
+button::-moz-focus-inner {
+	padding: 0;
+	border: 0;
+}
+
+hr {
+	display: none;
+}
+
+textarea {
+	resize: none;
+}
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+*,
+:after,
+:before {
+	box-sizing: border-box;
+}
+
+a:hover {
+	text-decoration: none;
+}
+
+.hidden,
+.blind,
+.a11y {
+	overflow: hidden;
+	position: absolute;
+	clip: rect(0, 0, 0, 0);
+	clip-path: circle(0);
+	width: 1px;
+	height: 1px;
+	margin: -1px;
+	border: 0;
+	padding: 0;
+	white-space: nowrap;
 }
