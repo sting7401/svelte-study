@@ -1,36 +1,13 @@
 <script lang="ts">
 	import Button from '$lib/components/Button.svelte';
 	import type { TodoType } from '$lib/types/Todo';
-	import {
-		createEventDispatcher,
-		onMount,
-		onDestroy,
-		beforeUpdate,
-		afterUpdate,
-		tick
-	} from 'svelte';
+	import { createEventDispatcher, afterUpdate } from 'svelte';
 
-	onMount(() => {
-		console.log('onMount');
+	import FaRegTrashAlt from 'svelte-icons/fa/FaRegTrashAlt.svelte';
 
-		return () => {
-			console.log('onMount2');
-		};
-	});
-
-	onDestroy(() => {
-		console.log('onDestroy');
-	});
-
-	beforeUpdate(() => {
-		if (listDiv) {
-			console.log(listDiv.offsetHeight);
-		}
-	});
 	afterUpdate(() => {
 		if (autoScroll) {
-			console.log(listDivOffsetHeight);
-			listDiv.scrollTo(0, listDivOffsetHeight);
+			listDivRef.scrollTo(0, listDivOffsetHeight);
 			autoScroll = false;
 		}
 	});
@@ -38,46 +15,23 @@
 	export let todoWrap: TodoType[] = [];
 	export const readonly = 'only';
 	let inputText = '';
-	let inputFocused: HTMLInputElement;
-	let listDiv: HTMLDivElement;
+	let inputFocusedRef: HTMLInputElement;
+	let listDivRef: HTMLDivElement;
 	let autoScroll: boolean;
 	let listDivOffsetHeight: number;
 
-	let prevTodos = todoWrap;
+	let prevTodoList = todoWrap;
 
 	$: {
-		autoScroll = todoWrap.length > prevTodos.length;
-		prevTodos = todoWrap;
+		autoScroll = todoWrap.length > prevTodoList.length;
+		prevTodoList = todoWrap;
 	}
 
 	export const clearInput = () => {
 		inputText = '';
-		inputFocused.focus();
+		inputFocusedRef.focus();
 	};
 
-	// export const clearInput = (event : Event): Event => {
-	// 	if(!inputText) return;
-	// 	inputText = '';
-	// 	inputFocused.focus() : event as FocusEvent;
-	// };
-
-	// function handleAddTodo() {
-	// 	if (!inputText) return;
-
-	// 	const newTodo: TodoType = {
-	// 		id: uuidv4(),
-	// 		title: inputText,
-	// 		completed: false,
-	// 	};
-
-	// 	// todoWrap.push(newTodo);
-	// 	// todoWrap = todoWrap;
-
-	// 	todoWrap = [...todoWrap, newTodo];
-	// 	inputText = '';
-	// }
-
-	//2.
 	const dispatch = createEventDispatcher();
 
 	function handleAddTodo() {
@@ -102,47 +56,102 @@
 </script>
 
 <div class="todos-list-wrap">
-	<div class="todo-list" bind:this={listDiv}>
+	<div class="todo-list" bind:this={listDivRef}>
 		<div bind:offsetHeight={listDivOffsetHeight}>
+			{#if todoWrap.length === 0}
+				<p class="no-item">리스트가 없습니다.</p>
+			{/if}
 			<ul>
 				{#each todoWrap as { id = '', title = '', completed }, index (id)}
 					{@const number = index + 1}
 					<!-- {@debug id, title, completed, index} -->
-					<li>
-						<input
-							type="checkbox"
-							id="label-id{index}"
-							bind:group={id}
-							on:input={(event) => {
-								event.currentTarget.checked = completed;
-
-								let value = !completed;
-								handleToggleTodo({ id, value });
-								console.dir(event.currentTarget);
-							}}
-							checked={completed}
-						/>
+					<!-- {console.log(id, title, completed)} -->
+					<li class:completed>
 						<label for="label-id{index}">
-							{completed}
+							<input
+								type="checkbox"
+								id="label-id{index}"
+								on:input={(event) => {
+									let completed = event.currentTarget.checked;
+
+									handleToggleTodo({ id, completed });
+								}}
+								checked={completed}
+							/>
 							{number}
 							{title}
 						</label>
-						<Button on:click={() => handleRemoveTodo({ id })}>remove</Button>
+						<Button
+							class="remove-todo-button"
+							aria-label="remove todo"
+							on:click={() => handleRemoveTodo({ id })}
+						>
+							<span style:display="inline-block" style:width="10px">
+								<FaRegTrashAlt />
+							</span>
+							remove
+						</Button>
 					</li>
 				{/each}
 			</ul>
 		</div>
 	</div>
 	<p>{inputText}</p>
-	<form class="add-todo-form" on:submit|preventDefault={handleAddTodo}>
-		<input type="text" bind:this={inputFocused} bind:value={inputText} />
+	<form class="add-todo-form" style:display="flex" on:submit|preventDefault={handleAddTodo}>
+		<input type="text" bind:this={inputFocusedRef} bind:value={inputText} placeholder="NEW" />
 		<Button type="submit" disabled={!inputText}>add</Button>
 	</form>
 </div>
 
 <style lang="scss">
+	:global(body) {
+		margin: 0;
+		padding: 0;
+	}
+	.todos-list-wrap {
+		background-color: rgb(207, 208, 248);
+	}
+
+	.no-item {
+		margin: 0;
+		padding: function.rem(15);
+		text-align: center;
+	}
+
 	.todo-list {
-		max-height: function.rem(150);
-		overflow: auto;
+		ul {
+			margin: 0;
+			padding: function.rem(10);
+			list-style: false;
+
+			li {
+				display: flex;
+				align-items: center;
+				position: relative;
+				border-radius: function.rem(5);
+				margin-bottom: function.rem(5);
+				padding: function.rem(10);
+				background-color: #303030;
+				color: #fff;
+
+				label {
+					cursor: pointer;
+				}
+
+				input[type='checkbox'] {
+					margin: 0 function.rem(10) 0 0;
+					cursor: pointer;
+				}
+
+				.remove-todo-button {
+					margin-left: auto;
+				}
+
+				&.completed > label {
+					opacity: 0.5;
+					text-decoration: line-through;
+				}
+			}
+		}
 	}
 </style>

@@ -4,55 +4,17 @@
 	import { tick } from 'svelte';
 	import type { TodoType, InputInit } from '$lib/types/Todo';
 	import TodoList from '$lib/components/TodoList.svelte';
+	import Button from '$lib/components/Button.svelte';
 	import { v4 as uuidv4 } from 'uuid';
+	import { loadData } from '$lib/utils/fetch';
 
 	let todoItem: InputInit;
 	let showList = true;
+	let todoWrap: TodoType[] = [];
+	let loadingData = loadData('https://jsonplaceholder.typicode.com/todos?_limit=10');
+	let promise = loadingData;
 
-	let todoWrap: TodoType[] = [
-		{
-			id: uuidv4(),
-			title: '1',
-			completed: false
-		},
-		{
-			id: uuidv4(),
-			title: '1',
-			completed: false
-		},
-		{
-			id: uuidv4(),
-			title: '1',
-			completed: false
-		},
-		{
-			id: uuidv4(),
-			title: '1',
-			completed: false
-		},
-		{
-			id: uuidv4(),
-			title: '1',
-			completed: false
-		},
-		{
-			id: uuidv4(),
-			title: '1',
-			completed: false
-		},
-		{
-			id: uuidv4(),
-			title: '1',
-			completed: false
-		},
-		{
-			id: uuidv4(),
-			title: '1',
-			completed: false
-		}
-	];
-
-	const handleAddTodo = async (event: CustomEvent): void => {
+	const handleAddTodo = async (event: CustomEvent) => {
 		event.preventDefault();
 
 		todoWrap = [
@@ -73,11 +35,11 @@
 	};
 
 	const handleToggleTodo = (event: CustomEvent): void => {
+		console.log(todoWrap);
 		todoWrap = todoWrap.map((item) => {
 			if (item.id === event.detail.id) {
 				return { ...item, completed: event.detail.value };
 			}
-			console.log(event.detail.value);
 
 			return { ...item };
 		});
@@ -91,15 +53,27 @@
 	<span>show check-list</span>
 </label>
 {#if showList}
-	<div style:max-width="200px;">
-		<TodoList
-			{todoWrap}
-			bind:this={todoItem}
-			on:addTodo={handleAddTodo}
-			on:removeTodo={handleRemoveTodo}
-			on:toggleTodo={handleToggleTodo}
-		/>
-	</div>
+	{#await promise}
+		<p>loading</p>
+	{:then todoWrap}
+		<div style:max-width="200px;">
+			<TodoList
+				{todoWrap}
+				bind:this={todoItem}
+				on:addTodo={handleAddTodo}
+				on:removeTodo={handleRemoveTodo}
+				on:toggleTodo={handleToggleTodo}
+			/>
+		</div>
+	{:catch error}
+		<p>에러 페이지</p>
+	{/await}
+
+	<Button
+		on:click={() => {
+			promise = loadingData;
+		}}>새로고침</Button
+	>
 {/if}
 
 <style>
