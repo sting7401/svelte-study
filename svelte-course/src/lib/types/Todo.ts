@@ -1,7 +1,13 @@
-export type TodoType = {
-	id: string;
-	title: string;
-	completed: boolean;
+type TodoType = {
+	id?: string;
+	title?: string;
+	completed?: boolean;
+	value?: boolean;
+	checked?: boolean;
 };
 
-export default TodoType;
+interface InputInit {
+	clearInput: () => void;
+}
+
+export { TodoType, InputInit };

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { onMount, createEventDispatcher } from 'svelte';
+	import { createEventDispatcher } from 'svelte';
 
 	export let type = '';
 	export let text = '버튼';
@@ -12,7 +12,7 @@
 	$: bColor = bgColor || '';
 	$: tColor = textColor || '';
 
-	let isLeftHover;
+	let isLeftHover: boolean;
 
 	// console.log($$restProps)
 
@@ -20,10 +20,39 @@
 
 	const hov = () => {
 		dispatch('hov', {
-			check: true,
+			check: true
 		});
 	};
 </script>
+
+<button
+	on:click
+	on:submit
+	type={type ? 'submit' || 'reset' : 'button'}
+	{disabled}
+	class:size-lg={size === 'large'}
+	class:size-sm={size === 'small'}
+	style:--buttonBgColor={bgColor}
+	style:--buttonTextColor={textColor}
+	class:has-left={$$slots.leftContent}
+	class:shadow
+	{...$$restProps}
+>
+	{#if $$slots.leftContent}
+		<div
+			class="left-content"
+			on:mouseenter={() => {
+				isLeftHover = true;
+			}}
+			on:mouseleave={() => {
+				isLeftHover = false;
+			}}
+		>
+			<slot name="leftContent"><!-- optional fallback --></slot>
+		</div>
+	{/if}
+	<slot {isLeftHover}>{text}</slot>
+</button>
 
 <style lang="scss">
 	button {
@@ -65,32 +94,3 @@
 		}
 	}
 </style>
-
-<button
-	on:click
-	on:submit
-	type="{type ? 'submit' || 'reset' : 'button'}"
-	disabled="{disabled}"
-	class:size-lg="{size === 'large'}"
-	class:size-sm="{size === 'small'}"
-	style:--buttonBgColor="{bgColor}"
-	style:--buttonTextColor="{textColor}"
-	class:has-left="{$$slots.leftContent}"
-	class:shadow="{shadow}"
-	{...$$restProps}
->
-	{#if $$slots.leftContent}
-		<div
-			class="left-content"
-			on:mouseenter="{() => {
-				isLeftHover = true;
-			}}"
-			on:mouseleave="{() => {
-				isLeftHover = false;
-			}}"
-		>
-			<slot name="leftContent"><!-- optional fallback --></slot>
-		</div>
-	{/if}
-	<slot isLeftHover="{isLeftHover}">{text}</slot>
-</button>
