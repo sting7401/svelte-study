@@ -35,7 +35,6 @@
 	};
 
 	const handleToggleTodo = (event: CustomEvent): void => {
-		console.log(todoWrap);
 		todoWrap = todoWrap.map((item) => {
 			if (item.id === event.detail.id) {
 				return { ...item, completed: event.detail.value };
