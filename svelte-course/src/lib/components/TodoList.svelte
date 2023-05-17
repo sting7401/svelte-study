@@ -21,9 +21,11 @@
 	let listDivOffsetHeight: number;
 
 	let prevTodoList = todoWrap;
+	export let error = null;
+	export let isLoading = false;
 
 	$: {
-		autoScroll = todoWrap.length > prevTodoList.length;
+		autoScroll = todoWrap && prevTodoList && todoWrap.length > prevTodoList.length;
 		prevTodoList = todoWrap;
 	}
 
@@ -56,46 +58,54 @@
 </script>
 
 <div class="todos-list-wrap">
-	<div class="todo-list" bind:this={listDivRef}>
-		<div bind:offsetHeight={listDivOffsetHeight}>
-			{#if todoWrap.length === 0}
-				<p class="no-item">리스트가 없습니다.</p>
-			{/if}
-			<ul>
-				{#each todoWrap as { id = '', title = '', completed }, index (id)}
-					{@const number = index + 1}
-					<!-- {@debug id, title, completed, index} -->
-					<!-- {console.log(id, title, completed)} -->
-					<li class:completed>
-						<label for="label-id{index}">
-							<input
-								type="checkbox"
-								id="label-id{index}"
-								on:input={(event) => {
-									let completed = event.currentTarget.checked;
+	{#if isLoading}
+		<p class="state-text">loading</p>
+	{:else if error}
+		<p class="state-text">{error}</p>
+	{/if}
+	{#if todoWrap}
+		<div class="todo-list" bind:this={listDivRef}>
+			<div bind:offsetHeight={listDivOffsetHeight}>
+				{#if todoWrap.length === 0}
+					<p class="no-item">리스트가 없습니다.</p>
+				{:else}
+					<ul>
+						{#each todoWrap as { id, title, completed }, index (id)}
+							{@const number = index + 1}
+							<!-- {@debug id, title, completed, index} -->
+							<!-- {console.log(id, title, completed)} -->
+							<li class:completed>
+								<label for="labelTodo{index}">
+									<input
+										on:input={(event) => {
+											event.currentTarget.checked = !completed;
 
-									handleToggleTodo({ id, completed });
-								}}
-								checked={completed}
-							/>
-							{number}
-							{title}
-						</label>
-						<Button
-							class="remove-todo-button"
-							aria-label="remove todo"
-							on:click={() => handleRemoveTodo({ id })}
-						>
-							<span style:display="inline-block" style:width="10px">
-								<FaRegTrashAlt />
-							</span>
-							remove
-						</Button>
-					</li>
-				{/each}
-			</ul>
+											handleToggleTodo({ id, completed });
+										}}
+										type="checkbox"
+										id="labelTodo{index}"
+										checked={completed}
+									/>
+									{number}
+									{title}
+								</label>
+								<Button
+									class="remove-todo-button"
+									aria-label="remove todo"
+									on:click={() => handleRemoveTodo({ id })}
+								>
+									<span style:display="inline-block" style:width="10px">
+										<FaRegTrashAlt />
+									</span>
+									remove
+								</Button>
+							</li>
+						{/each}
+					</ul>
+				{/if}
+			</div>
 		</div>
-	</div>
+	{/if}
 	<p>{inputText}</p>
 	<form class="add-todo-form" style:display="flex" on:submit|preventDefault={handleAddTodo}>
 		<input type="text" bind:this={inputFocusedRef} bind:value={inputText} placeholder="NEW" />
