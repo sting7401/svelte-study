@@ -10,7 +10,6 @@ const tippyUse = (node, options) => {
 			instance.setProps(newOptions);
 		},
 		destroy() {
-			// @ts-ignore
 			instance.destroy();
 		}
 	};
