@@ -79,7 +79,7 @@
 		disableItemList = disableItemList.filter((item) => item.id !== id);
 	};
 
-	const handleToggleTodo = async (event: CustomEvent): void => {
+	const handleToggleTodo = async (event: CustomEvent) => {
 		const id = event.detail.id;
 		const value = event.detail.value;
 		if (disableItemList.includes(id)) return;
