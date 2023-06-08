@@ -1,5 +1,5 @@
 import type { PageServerLoad } from './$types';
-import { json } from '@sveltejs/kit';
+import { json, error } from '@sveltejs/kit';
 
 export const load: PageServerLoad = async ({
 	parent,
@@ -14,14 +14,22 @@ export const load: PageServerLoad = async ({
 	platform,
 	setHeaders
 }) => {
-	const parentUser = await parent();
-
-	const urls = import('$lib/dummy-products.json');
-	const products = await (await urls).default;
-
+	// const parentUser = await parent();
+	// const urls = import('$lib/dummy-products.json');
+	// const products = await (await urls).default;
 	// const url = '$lib/dummy-products.json';
 	// const res = await fetch(url);
 	// const products = json(res);
+	// return { products, parentUser };
 
-	return { products, parentUser };
+	const response = await fetch('/api/products');
+	const products = await response.json();
+
+	depends('app:productsServerLoad');
+
+	if (!response.ok) {
+		throw error(response.status, products.message);
+	}
+
+	return { products };
 };

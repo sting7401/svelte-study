@@ -1,22 +1,33 @@
 <script lang="ts">
+	import { invalidate, invalidateAll } from '$app/navigation';
 	import type { PageData } from './$types';
 
 	export let data: PageData;
 
 	$: products = data.products.products;
-
-	$: console.log(products);
 </script>
 
 <h2 class="mt-5 mb-5">
 	{data.title}
 </h2>
 
+<button
+	on:click={() => {
+		// invalidate('http://dummyjson.com/products');
+		// invalidate('app:products');
+		// invalidateAll();
+
+		// invalidate('/api/products');
+
+		invalidate('app:productsServerLoad');
+	}}>다시 시작 function</button
+>
+
 {#if products.length > 0}
 	<ul class="grid grid-cols-2 grid-cols-fr gap-7">
 		{#each products as item}
 			<li class="mb-10">
-				<a href="/products/{item.id}">
+				<a href="/product/{item.id}">
 					<picture>
 						<img src={item.thumbnail} alt={item.title} loading="lazy" class="w-full" />
 					</picture>

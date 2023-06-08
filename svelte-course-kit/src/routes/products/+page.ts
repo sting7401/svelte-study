@@ -15,6 +15,11 @@ export const load: PageLoad = async ({
 	const urls = import('$lib/dummy-products.json');
 	const products = await (await urls).default;
 
+	fetch('http://dummyjson.com/products');
+	fetch('http://dummyjson.com/users');
+
+	depends('app:products');
+
 	// const url = '$lib/dummy-products.json';
 	// const res = await fetch(url);
 	// const products = json(res);

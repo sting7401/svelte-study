@@ -8,9 +8,11 @@ export const load: LayoutServerLoad = async ({
 	session,
 	stuff,
 	status,
-	error
+	error,
+	cookies
 }) => {
+	const token = cookies.get('token');
 	const user = { name: 'song', id: 1 };
 
-	return { user };
+	return { user: token ? user : null };
 };
