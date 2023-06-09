@@ -13,7 +13,7 @@ export const load: PageServerLoad = async ({ params, fetch, url }) => {
 		return res.json();
 	});
 
-	console.log(comments);
+	// console.log(comments);
 
 	return {
 		product,

@@ -9,10 +9,10 @@ export const load: LayoutServerLoad = async ({
 	stuff,
 	status,
 	error,
-	cookies
+	cookies,
+	locals
 }) => {
-	const token = cookies.get('token');
-	const user = { name: 'song', id: 1 };
+	const user = locals.user;
 
-	return { user: token ? user : null };
+	return { user };
 };

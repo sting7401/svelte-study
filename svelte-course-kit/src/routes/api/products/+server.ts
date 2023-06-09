@@ -1,12 +1,14 @@
 import type { RequestHandler } from './$types';
 import { json, error } from '@sveltejs/kit';
 
-export const GET: RequestHandler = async ({ url, params, cookies, fetch }) => {
+export const GET: RequestHandler = async ({ url, params, cookies, fetch, locals }) => {
 	const response = await fetch('https://dummyjson.com/products');
 
 	if (!response.ok) {
 		throw error(response.status, response.statusText);
 	}
+
+	// console.log(`api`, locals);
 
 	const products = await response.json();
 	return json(products, { status: 200 });
