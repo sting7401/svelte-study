@@ -6,7 +6,7 @@ export const load: PageServerLoad = async ({ params, fetch, url }) => {
 	const product = response.json();
 
 	if (!response.ok) {
-		throw error(response.status, `failed to fetch product`);
+		throw error(404, { message: `failed to fetch product [id]`, code: 'notFound' });
 	}
 
 	const comments = fetch(`https://dummyjson.com/comments`).then((res) => {
