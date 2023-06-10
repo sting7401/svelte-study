@@ -1,5 +1,5 @@
 import type { PageLoad } from './$types';
-import { json } from '@sveltejs/kit';
+import { json, error } from '@sveltejs/kit';
 
 export const load: PageLoad = async ({
 	data,

@@ -12,7 +12,7 @@ export const load: LayoutServerLoad = async ({
 	cookies,
 	locals
 }) => {
-	throw error(401, { message: 'not authorized' });
+	// throw error(401, { message: 'not authorized' });
 
 	const user = locals.user;
 

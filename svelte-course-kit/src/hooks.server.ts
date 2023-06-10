@@ -1,4 +1,4 @@
-import type { Handle, HandleFetch } from '@sveltejs/kit';
+import type { Handle, HandleFetch, HandleServerError } from '@sveltejs/kit';
 import { sequence } from '@sveltejs/kit/hooks';
 
 export const handle1: Handle = async ({ event, resolve }) => {
@@ -35,4 +35,14 @@ export const handleFetch: HandleFetch = async ({ request, fetch, event }) => {
 	}
 
 	return fetch(request);
+};
+
+export const handleError: HandleServerError = async ({ error, event }) => {
+	console.log('this is not responding');
+	console.log(error, event);
+
+	return {
+		message: error.message,
+		code: 'error code 훅'
+	};
 };
