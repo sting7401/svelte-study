@@ -1,5 +1,10 @@
 import type { PageLoad } from './$types';
 import { json, error } from '@sveltejs/kit';
+// import { env as publicEnv } from '$env/dynamic/public';
+// import { PUBLIC_KEY, PUBLIC_TEST } from '$env/static/public';
+
+// console.log('public', publicEnv.PUBLIC_TEST, publicEnv.PUBLIC_KEY);
+// console.log(PUBLIC_KEY, PUBLIC_TEST);
 
 export const load: PageLoad = async ({
 	data,

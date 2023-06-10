@@ -16,7 +16,7 @@ const config = {
 		// 	routes: './src/pages'
 		// }
 		alias: {$components: 'src/lib/components'}
-	}
+	},
 };
 
 export default config;
