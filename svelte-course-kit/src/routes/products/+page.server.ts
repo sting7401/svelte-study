@@ -45,3 +45,4 @@ export const load: PageServerLoad = async ({
 
 	return { products };
 };
+export const prerender = 'auto';

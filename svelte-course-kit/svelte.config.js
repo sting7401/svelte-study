@@ -15,7 +15,11 @@ const config = {
 		// files: {
 		// 	routes: './src/pages'
 		// }
-		alias: {$components: 'src/lib/components'}
+		alias: {$components: 'src/lib/components'},
+		prerender: {
+			crawl: true,
+			entries: ['*']
+		}
 	},
 };
 

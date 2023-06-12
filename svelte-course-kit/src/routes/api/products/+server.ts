@@ -2,7 +2,7 @@ import type { RequestHandler } from './$types';
 import { json, error } from '@sveltejs/kit';
 
 export const GET: RequestHandler = async ({ url, params, cookies, fetch, locals }) => {
-	const response = await fetch('https://dummyjson.com/products');
+	const response = await fetch('https://dummyjson.com/products?limit=6');
 
 	if (!response.ok) {
 		throw error(response.status, response.statusText);
@@ -14,12 +14,14 @@ export const GET: RequestHandler = async ({ url, params, cookies, fetch, locals 
 	return json(products, { status: 200 });
 };
 
-export const POST: RequestHandler = async ({ request }) => {
-	const product = await request.json();
+// export const POST: RequestHandler = async ({ request }) => {
+// 	const product = await request.json();
 
-	if (product.title) {
-		throw error(404, `${product.title} 없음`);
-	}
+// 	if (product.title) {
+// 		throw error(404, `${product.title} 없음`);
+// 	}
 
-	return json({ id: 1313, title: product.title }, { status: 200 });
-};
+// 	return json({ id: 1313, title: product.title }, { status: 200 });
+// };
+
+export const trailingSlash = 'never';

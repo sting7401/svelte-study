@@ -24,3 +24,5 @@ export const load: PageServerLoad = async ({ params, fetch, url }) => {
 		}
 	};
 };
+
+export const prerender = 'auto';

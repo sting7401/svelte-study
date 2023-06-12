@@ -11,7 +11,7 @@ export const handle1: Handle = async ({ event, resolve }) => {
 	if (!isDataRequest && url.pathname.startsWith('/api')) {
 		const token = cookies.get('token');
 
-		locals.user = token ? { name: 'song', id: 1 } : undefined;
+		locals.user = token ? { name: 'John', id: 1 } : undefined;
 	} else if (url.pathname.startsWith('/hook')) {
 		return new Response('custom response');
 	}
