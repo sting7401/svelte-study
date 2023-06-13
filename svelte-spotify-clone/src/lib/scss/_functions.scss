@@ -1,0 +1,7 @@
+@use 'sass:math';
+
+$fontBasic: 16;
+
+@function rem($value) {
+	@return #{math.div($value, $fontBasic)}rem;
+}
