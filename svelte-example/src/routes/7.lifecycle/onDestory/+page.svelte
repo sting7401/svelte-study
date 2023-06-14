@@ -1,7 +1,7 @@
-<script>
+<script lang="ts">
 	import { onDestroy } from 'svelte';
 
-	const onInterval = (call, time) => {
+	const onInterval = (call: number, time: number) => {
 		const interval = setInterval(call, time);
 
 		onDestroy(() => {
