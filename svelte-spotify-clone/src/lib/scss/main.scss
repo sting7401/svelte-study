@@ -1,4 +1,5 @@
 @use 'functions';
+@use 'mixins';
 @import '@fontsource/metropolis';
 @import '@fontsource/metropolis/300';
 @import '@fontsource/metropolis/500';
@@ -32,6 +33,8 @@
 	--color-777: #777;
 	--color-888: #888;
 	--color-999: #999;
+
+	--logo-width: 6.25rem;
 }
 
 body {

@@ -1,7 +1,23 @@
+@charset "UTF-8";
 @use 'sass:math';
 
 $fontBasic: 16;
 
 @function rem($value) {
 	@return #{math.div($value, $fontBasic)}rem;
+}
+
+@function col-width($number: null, $columns: null) {
+	@return $max-width * ($number / $columns);
+}
+
+// ex: @include grid-template-columns(10px grid-repeat(4, 20px) 30px);
+@function grid-repeat($repeat, $stuff: 1fr) {
+	$list: ();
+
+	@for $i from 1 through $repeat {
+		$list: append($list, $stuff, space);
+	}
+
+	@return $list;
 }
