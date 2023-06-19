@@ -44,6 +44,7 @@
 		"lucide-svelte": "^0.244.0",
 		"modern-normalize": "^2.0.0",
 		"pkce-gen": "^1.1.0",
-		"svelte-preprocess": "^5.0.4"
+		"svelte-preprocess": "^5.0.4",
+		"tippy.js": "^6.3.7"
 	}
 }
