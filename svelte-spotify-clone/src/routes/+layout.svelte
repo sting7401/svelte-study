@@ -27,15 +27,17 @@
 		</div>
 	{/if}
 	<div id="content" class="content">
-		<div id="topbar" class="top-bar" bind:this={topBar}>
-			<div
-				class="top-bar__bg"
-				style="background-color: var(--header-color)"
-				style:opacity={`${headerOpacity}`}
-			>
-				<Header />
+		{#if user}
+			<div id="topbar" class="top-bar" bind:this={topBar}>
+				<div
+					class="top-bar__bg"
+					style="background-color: var(--header-color)"
+					style:opacity={`${headerOpacity}`}
+				>
+					<Header />
+				</div>
 			</div>
-		</div>
+		{/if}
 
 		<main id="mainContent" class="main__content" class:logged-in={user}>
 			<slot />
