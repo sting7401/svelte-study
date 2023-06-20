@@ -73,6 +73,8 @@
 	beforeNavigate(() => {
 		isMobileMenuOpen = false;
 	});
+
+	console.log(desktop);
 </script>
 
 <svelte:head>
@@ -86,7 +88,7 @@
 </svelte:head>
 
 <div class="nav-content" class:desktop class:mobile={!desktop}>
-	{#if !desktop && isMobileMenuOpen === true}
+	{#if !desktop && isMobileMenuOpen}
 		<div
 			class="overlay"
 			on:click={openMenu}
@@ -177,6 +179,15 @@
 			height: 100vh;
 			padding: functions.rem(20);
 			background-color: var(--sidebar-color);
+
+			:global(html.no-js) {
+				& {
+					@include breakpoint.down('md') {
+						display: block;
+						height: auto;
+					}
+				}
+			}
 
 			ul {
 				margin: functions.rem(20) 0 0;

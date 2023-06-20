@@ -7,7 +7,7 @@
 @import '@fontsource/metropolis/700';
 @import 'tippy-theme';
 
-:root  {
+:root {
 	--bg-color: #191414;
 	--sidebar-color: #000;
 	--header-color: #000;
@@ -101,7 +101,8 @@ a {
 	}
 }
 
-.visually-hidden {
+.visually-hidden,
+.skip-link:not(:focus) {
 	clip: rect(0 0 0 0);
 	clip-path: inset(100%);
 	width: 1px;
@@ -109,4 +110,19 @@ a {
 	overflow: hidden;
 	position: absolute;
 	white-space: nowrap;
+}
+
+.skip-link {
+	&:focus {
+		@include mixins.pos($tp: functions.rem(10), $lt: functions.rem(10), $zi: 200);
+		@include mixins.bgImage($bg: var(--accent-color));
+
+		outline: 2px solid;
+		color: var(--text-color);
+		font-weight: 500;
+	}
+}
+
+#nprogress .bar {
+	background: var(--accent-color);
 }

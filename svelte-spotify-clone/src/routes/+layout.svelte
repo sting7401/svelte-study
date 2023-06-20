@@ -1,10 +1,16 @@
 <script lang="ts">
-	import { invalidateAll } from '$app/navigation';
+	import { afterNavigate, beforeNavigate, invalidateAll } from '$app/navigation';
+	import { page } from '$app/stores';
+	import NProgress from 'nprogress';
+	import { hideAll } from 'tippy.js';
 	import 'modern-normalize/modern-normalize.css';
+	import 'nprogress/nprogress.css';
 	import '$lib/css/app.css';
 	import '$lib/scss/main.scss';
 	import type { LayoutData } from './$types';
 	import { LogoutButton, Navigation, Header } from '$components';
+
+	NProgress.configure({ showSpinner: false });
 
 	export let data: LayoutData;
 
@@ -16,14 +22,31 @@
 		headerOpacity = scrollY / topBar.offsetHeight < 1 ? scrollY / topBar.offsetHeight : 1;
 	}
 	$: user = data.user;
+
+	beforeNavigate(() => {
+		NProgress.start();
+	});
+
+	afterNavigate(() => {
+		NProgress.done();
+		hideAll();
+	});
 </script>
 
 <svelte:window bind="scrollY" />
 
+<svelte:head>
+	<title>Spotify {$page.data.title ? `- ${$page.data.title}` : ''}</title>
+</svelte:head>
+
+{#if user}
+	<a href="#mainContent" class="skip-link"> Skip to content</a>
+{/if}
+
 <div id="main" class="main">
 	{#if user}
 		<div id="sideBar" class="side-bar">
-			<Navigation dasktop={false} />
+			<Navigation desktop={true} />
 		</div>
 	{/if}
 	<div id="content" class="content">
@@ -49,7 +72,14 @@
 	.main {
 		display: flex;
 
+		:global(html.no-js) {
+			@include breakpoint.down('md') {
+				display: block;
+			}
+		}
+
 		.content {
+			width: 100%;
 		}
 
 		&__content {
@@ -61,6 +91,14 @@
 
 			&.logged-in {
 				padding-top: calc(functions.rem(30) + var(--header-height));
+
+				:global(html.no-js) {
+					& {
+						@include breakpoint.down('md') {
+							padding-top: functions.rem(30);
+						}
+					}
+				}
 			}
 		}
 	}
@@ -71,6 +109,7 @@
 
 		@include breakpoint.up('md') {
 			display: block;
+			width: var(--sidebar-width);
 		}
 	}
 
@@ -81,6 +120,22 @@
 		width: 100%;
 		height: var(--header-height);
 		padding: 0 functions.rem(15);
+
+		:global(html.no-js) {
+			& {
+				position: sticky;
+				top: 0;
+				height: auto;
+				padding: functions.rem(10) functions.rem(20);
+				background-color: var(--header-color);
+
+				:global(html.no-js) {
+					@include breakpoint.down('md') {
+						position: fixed;
+					}
+				}
+			}
+		}
 
 		&__bg {
 			@include mixins.flex($ai: center);

@@ -30,7 +30,8 @@
 					trigger: 'click',
 					placement: 'bottom-end',
 					interactive: true,
-					theme: 'menu'
+					theme: 'menu',
+					hideOnPopperBlur: true
 				}}
 			>
 				{#if user?.images && user.images.length > 0}
@@ -67,6 +68,12 @@
 		@include mixins.flex($jc: between, $ai: center);
 
 		width: 100%;
+
+		:global(html.no-js) {
+			@include breakpoint.down('md') {
+				justify-content: flex-start;
+			}
+		}
 	}
 
 	.profile {
@@ -78,6 +85,10 @@
 			background: none;
 			border: functions.rem(1) solid var(--border);
 			color: var(--text-color);
+
+			:global(html.no-js) {
+				display: none;
+			}
 
 			&:hover {
 				background-color: var(--accent-color);
@@ -116,6 +127,20 @@
 						svg {
 							margin-left: functions.rem(5);
 						}
+					}
+				}
+			}
+		}
+	}
+
+	:global(html.no-js) {
+		.profile-menu {
+			display: block;
+
+			&__content {
+				ul {
+					li {
+						display: inline-block;
 					}
 				}
 			}
