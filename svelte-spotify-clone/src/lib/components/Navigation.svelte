@@ -4,9 +4,9 @@
 	import type { ComponentType } from 'svelte';
 	import logo from '$images/Spotify_Logo_RGB_White.png';
 	import { page } from '$app/stores';
-	import { fade } from 'svelte/transition';
 	import { tick } from 'svelte';
 	import { beforeNavigate } from '$app/navigation';
+	import { fade } from 'svelte/transition';
 
 	export let desktop: boolean;
 
@@ -73,8 +73,6 @@
 	beforeNavigate(() => {
 		isMobileMenuOpen = false;
 	});
-
-	console.log(desktop);
 </script>
 
 <svelte:head>
