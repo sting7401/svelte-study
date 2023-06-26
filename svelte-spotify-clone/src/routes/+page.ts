@@ -1,11 +1,12 @@
 import type { PageLoad } from './$types';
+import { fetchRefresh } from '$helpers';
 
-export const load: PageLoad = async ({ fetch, parent }) => {
+export const load: PageLoad = async ({ fetch: _fetch, parent }) => {
+	const fetch = (path: string) => fetchRefresh(_fetch, path);
 	const { user } = await parent();
 	const newReleases = fetch('/api/spotify/browse/new-releases?limit=6');
 	const featuredPlaylists = fetch('/api/spotify/browse/featured-playlists?limit=6');
 	const userPlaylists = fetch(`/api/spotify/users/${user?.id}/playlists?limit=6`);
-
 	const catsRes = await fetch('api/spotify/browse/categories');
 	const catsResJSON: SpotifyApi.MultipleCategoriesResponse | undefined = catsRes.ok
 		? await catsRes.json()
