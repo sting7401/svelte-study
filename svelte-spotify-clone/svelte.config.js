@@ -24,6 +24,7 @@ const config = {
 			'$assets': 'src/lib/assets',
 			'$images': 'src/lib/images',
 			'$actions' : 'src/lib/actions'
+			'$helpers' : 'src/lib/helpers'
 
 		},
 	}

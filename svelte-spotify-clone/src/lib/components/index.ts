@@ -1,3 +1,4 @@
+export { default as Title } from './Title.svelte';
 export { default as LogoutButton } from './LogoutButton.svelte';
 export { default as Button } from './Button.svelte';
 export { default as IconButton } from './IconButton.svelte';
