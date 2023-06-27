@@ -17,7 +17,7 @@
 </script>
 
 <ItemPage title={albumName} type={albumType} color={null} image={albumImages}>
-	<p class="meta text-s13 font-w6" slot="meta">
+	<p class="meta text-13 font-w6" slot="meta">
 		<span class="artists mr-1">
 			{albumArtists.map((artist) => artist.name).join(', ')}
 		</span>

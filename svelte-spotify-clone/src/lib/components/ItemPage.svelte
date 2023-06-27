@@ -33,9 +33,9 @@
 
 	<div class="info z-10">
 		{#if type}
-			<p class="type m-0 text-s12 font-w6 uppercase">{type}</p>
+			<p class="type m-0 text-12 font-w6 uppercase">{type}</p>
 		{/if}
-		<h3 class="title mt-1 text-s12 md:text-s36 lg:text-s54">
+		<h3 class="title mt-1 text-12 md:text-36 lg:text-54">
 			{title}
 		</h3>
 		<slot name="meta" />
