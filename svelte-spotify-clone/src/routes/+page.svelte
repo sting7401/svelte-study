@@ -1,5 +1,6 @@
 <script lang="ts">
 	import Button from '$components/Button.svelte';
+	import Card from '$components/Card.svelte';
 	import type { PageData } from './$types';
 
 	export let data: PageData;
@@ -58,8 +59,13 @@
 </script>
 
 {#each sections as section}
-	<sections class="content-row">
-		<div class="content-row__header">
+	<sections class="content-row mb-10">
+		<div class="content-row__header flex items-center justify-between mb-5">
+			<div class="right">
+				<h2 class="section__title text-s22 font-w6">
+					{section.title}
+				</h2>
+			</div>
 			<div class="left">
 				<Button element="a" href={section.path} variant="outline"
 					>See All
@@ -69,22 +75,17 @@
 					</span></Button
 				>
 			</div>
-			<div class="right">
-				<h2 class="section__title">
-					{section.title}
-				</h2>
+		</div>
+		{#if section.items.length > 0}
+			<div class="grid-items">
+				{#each section.items as item}
+					<div class="grid-item">
+						<Card {item} />
+					</div>
+				{/each}
 			</div>
-		</div>
-		<div class="grid-items">
-			{#each section.items as item}
-				<div class="grid-item" style="background-color: black">
-					<h5>{item.type}</h5>
-					<h3>{item.name}</h3>
-				</div>
-			{/each}
-		</div>
+		{:else}
+			<p>none</p>
+		{/if}
 	</sections>
 {/each}
-
-<style lang="scss">
-</style>
