@@ -26,7 +26,7 @@
 		</div>
 	{/if}
 
-	<h4 class="mb-5 text-s16/4 font-w6 truncate" title={item.name}>
+	<h4 class="mb-5 text-16/4 font-w6 truncate" title={item.name}>
 		<a
 			href="/{item.type}/{item.id}"
 			class="text-[--text-color] after:content-[''] after:absolute after:top-0 after:left-0 after:bottom-0 after:right-0 after:rounded focus:outline-none after:focus:outline after:focus:outline-2 after:focus:outline-[--accent-color]"
@@ -36,7 +36,7 @@
 	</h4>
 
 	{#if item.type === 'album'}
-		<p class="m-0 text-s14/4 text-[--light-gray]">
+		<p class="m-0 text-14/4 text-[--light-gray]">
 			{item.artists.map((item) => item.name).join(', ')}
 		</p>
 	{/if}

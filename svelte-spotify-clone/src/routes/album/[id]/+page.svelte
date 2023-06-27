@@ -36,8 +36,8 @@
 		</ul>
 	</div>
 
-	<div class="creadit mt-10 text-s11 text-[--light-gray]">
-		<p class="date m-0 text-s13 text-[--light-gray]">
+	<div class="creadit mt-10 text-11 text-[--light-gray]">
+		<p class="date m-0 text-13 text-[--light-gray]">
 			{new Date(albumReleaseDate).toLocaleDateString('ko', { dateStyle: 'medium' })}
 		</p>
 		{#each albumCopyrights as copyright}

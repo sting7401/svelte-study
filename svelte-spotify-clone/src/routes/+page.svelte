@@ -62,7 +62,7 @@
 	<sections class="content-row mb-10">
 		<div class="content-row__header flex items-center justify-between mb-5">
 			<div class="right">
-				<h2 class="section__title text-s22 font-w6">
+				<h2 class="section__title text-22 font-w6">
 					{section.title}
 				</h2>
 			</div>

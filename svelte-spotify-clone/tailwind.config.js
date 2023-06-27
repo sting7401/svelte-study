@@ -1,50 +1,15 @@
 /** @type {import('tailwindcss').Config} */
+
+const px0_60 = { ...Array.from(Array(61)).map((_, i) => `${i/16}rem`) };
+const px0_300 = { ...Array.from(Array(301)).map((_, i) => `${i/16}rem`) };
+
 export default {
   content: ['./src/**/*.{html,js,svelte,ts}'],
   theme: {
-    extend: {},
-    fontSize: {
-      's1' : '.0625rem',
-      's2' : '.125rem',
-      's3' : '.1875rem',
-      's4' : '.25rem',
-      's5' : '.3125rem',
-      's6' : '.375rem',
-      's7' : '.4375rem',
-      's8' : '.5rem',
-      's9' : '.5625rem',
-      's10' : '.625rem',
-      's11' : '.6875rem',
-      's12' : '.75rem',
-      's13' : '.8125rem',
-      's14' : '.875rem',
-      's15' : '.9375rem',
-      's16' : '1rem',
-      's17' : '1.0625rem',
-      's18' : '1.125rem',
-      's19' : '1.1875rem',
-      's20' : '1.25rem',
-      's21' : '1.3125rem',
-      's22' : '1.375rem',
-      's23' : '1.4375rem',
-      's24' : '1.5rem',
-      's25' : '1.5625rem',
-      's26' : '1.625rem',
-      's27' : '1.6875rem',
-      's28' : '1.75rem',
-      's29' : '1.8125rem',
-      's30' : '1.875rem',
-      's31' : '1.9375rem',
-      's32' : '2rem',
-      's33' : '2.0625rem',
-      's34' : '2.125rem',
-      's35' : '2.1875rem',
-      's36' : '2.25rem',
-      's37' : '2.3125rem',
-      's38' : '2.375rem',
-      's39' : '2.4375rem',
-      's54' : '3.375rem',
+    extend: { 
+      spacing: px0_300
     },
+    fontSize: px0_60,
     fontWeight: {
       'w3' : '300',
       'w4' : '400',

@@ -8,13 +8,13 @@
 </script>
 
 <div
-	class="banner flex flex-col relative mt-[calc(-1*(30px+var(--header-height)))] mx-[-30px] p-[calc((30px+var(--header-height)))_30px_20px] sm:flex-row sm:items-end"
+	class="banner flex flex-col gap-20 sm:gap-x-40 relative mt-[calc(-1*(30px+var(--header-height)))] mx-[-30px] p-[calc((30px+var(--header-height)))_30px_20px] sm:flex-row sm:items-end"
 >
 	<div
 		class="banner-gradient absolute top-0 left-0 w-full h-full"
 		style:background-image="linear-gradient(0deg, transparent, {color || 'var(--light-gray)'})"
 	/>
-	<div class="cover z-10 mr-10 sm:ml-0 sm:mr-8">
+	<div class="cover z-10">
 		{#if image}
 			<img
 				loading="lazy"
