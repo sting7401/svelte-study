@@ -2,6 +2,7 @@
 	import { getCopyrightsSymbol } from '$helpers';
 	import { ItemPage } from '$components';
 	import type { PageData } from './$types';
+	import { fade } from 'svelte/transition';
 
 	export let data: PageData;
 
@@ -14,9 +15,10 @@
 	$: albumTotalTracks = album.total_tracks;
 	$: albumTracks = album.tracks;
 	$: albumCopyrights = album.copyrights;
+	$: color = data.color;
 </script>
 
-<ItemPage title={albumName} type={albumType} color={'orange'} image={albumImages}>
+<ItemPage title={albumName} type={albumType} {color} image={albumImages}>
 	<p class="meta text-s13 font-w6" slot="meta">
 		<span class="artists mr-1">
 			{albumArtists.map((artist) => artist.name).join(', ')}
@@ -36,7 +38,7 @@
 		</ul>
 	</div>
 
-	<div class="creadit mt-10 text-11 text-[--light-gray]">
+	<div class="creadit mt-10 text-11 text-[--light-gray]" transition:fade>
 		<p class="date m-0 text-13 text-[--light-gray]">
 			{new Date(albumReleaseDate).toLocaleDateString('ko', { dateStyle: 'medium' })}
 		</p>
