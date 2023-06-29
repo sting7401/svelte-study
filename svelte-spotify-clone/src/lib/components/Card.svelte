@@ -9,7 +9,7 @@
 </script>
 
 <div
-	class="card group {item.type} relative p-2 bg-[--dark-gray] shadow-[0_0_40px_0_rgba(0,0,0,0.4)] rounded transition duration-300 hover:bg-[--medium-gray]"
+	class="card group {item.type} relative p-2 bg-[--dark-gray] shadow-[0_0_40px_0_black] rounded transition duration-300 hover:bg-[--medium-gray]"
 >
 	{#if item.images.length > 0}
 		<img

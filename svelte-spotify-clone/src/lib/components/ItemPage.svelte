@@ -8,7 +8,7 @@
 </script>
 
 <div
-	class="banner flex flex-col gap-20 sm:gap-x-40 relative mt-[calc(-1*(30px+var(--header-height)))] mx-[-30px] p-[calc((30px+var(--header-height)))_30px_20px] sm:flex-row sm:items-end"
+	class="banner flex flex-col gap-20 sm:gap-x-40 relative mt-[calc(-1*(30px+var(--header-height)))] -mx-30 p-[calc((30px+var(--header-height)))_30px_20px] sm:flex-row sm:items-end"
 >
 	<div
 		class="banner-gradient absolute top-0 left-0 w-full h-full"
@@ -20,11 +20,11 @@
 				loading="lazy"
 				src={image}
 				alt={title}
-				class="w-full aspect-square object-cover shadow-[0_0_50px_0_rgba(0,0,0,0.5)] sm:w-[230px] md:w-[200px] lg:w-[230px]"
+				class="w-full aspect-square object-cover shadow-[0_0_50px_0_rgba(0,0,0,0.5)] sm:w-230 md:w-200 lg:w-230"
 			/>
 		{:else}
 			<div
-				class="cover-placeholder flex items-center justify-center w-2/5 bg-[--medium-gray] sm:w-[230px] md:w-[200px] lg:w-[230px]"
+				class="cover-placeholder flex items-center justify-center w-2/5 bg-[--medium-gray] sm:w-230 md:w-200 lg:w-230"
 			>
 				<Music focusable="false" aria-hidden color="var(--light-gray)" />
 			</div>
@@ -43,7 +43,7 @@
 </div>
 
 <div
-	class="content relative z-10 min-h-[300px] mx-[-30px] px-[30px] bg-gradient-to-t from-[--bg-color] to-[rgba(0,0,0,1)]"
+	class="content relative z-10 min-h-300 mx-[-30px] px-30 bg-gradient-to-b from-[--bg-color] to-[rgba(0,0,0,1)]"
 >
 	<slot><!-- optional fallback --></slot>
 </div>

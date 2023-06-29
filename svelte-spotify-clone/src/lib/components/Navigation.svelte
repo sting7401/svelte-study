@@ -90,7 +90,7 @@
 		<div
 			class="overlay"
 			on:click={openMenu}
-			transition:fade={{ duration: 300 }}
+			transition:fade|global={{ duration: 300 }}
 			aria-hidden={!isOpen}
 		/>
 	{/if}

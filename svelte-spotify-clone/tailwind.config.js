@@ -1,7 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 
 // const px0_60 = { ...Array.from(Array(61)).map((_, i) => `${i/16}rem`) };
-const px0_300 = { ...Array.from(Array(301)).map((_, i) => `${i/16}rem`) };
 const remLog = (props) => {
   const rem = Array(props)
     .fill()
@@ -14,7 +13,7 @@ export default {
   content: ['./src/**/*.{html,js,svelte,ts}'],
   theme: {
     extend: { 
-      spacing: remLog(300)
+      spacing: remLog(400)
     },
     fontSize: remLog(100),
     fontWeight: {
