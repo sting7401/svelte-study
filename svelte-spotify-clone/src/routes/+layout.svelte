@@ -51,10 +51,10 @@
 	{/if}
 	<div id="content" class="content">
 		{#if user}
-			<div id="topbar" class="top-bar" bind:this={topBar}>
+			<div id="topbar" class="top-bar bg-gradient-to-t from-black/20" bind:this={topBar}>
 				<div
 					class="top-bar__bg"
-					style="background-color: var(--header-color)"
+					style:background-color={$page.data.color ? $page.data.color : 'var(--header-color)'}
 					style:opacity={`${headerOpacity}`}
 				>
 					<Header />

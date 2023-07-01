@@ -1,6 +1,7 @@
 <script lang="ts">
+	import TrackLIst from './../../../lib/components/TrackLIst.svelte';
 	import { getCopyrightsSymbol } from '$helpers';
-	import { ItemPage } from '$components';
+	import { ItemPage, TrackList } from '$components';
 	import type { PageData } from './$types';
 	import { fade } from 'svelte/transition';
 
@@ -30,13 +31,8 @@
 			{`${albumTotalTracks} Track${albumTotalTracks > 1 ? 's' : ''}`}
 		</span>
 	</p>
-	<div class="track">
-		<ul>
-			{#each albumTracks.items as track}
-				<li>{track.name}</li>
-			{/each}
-		</ul>
-	</div>
+
+	<TrackList tracks={album.tracks.items} />
 
 	<div class="creadit mt-10 text-11 text-[--light-gray]" transition:fade>
 		<p class="date m-0 text-13 text-[--light-gray]">

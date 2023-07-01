@@ -6,3 +6,5 @@ export { default as Navigation } from './Navigation.svelte';
 export { default as Header } from './Header.svelte';
 export { default as Card } from './Card.svelte';
 export { default as ItemPage } from './ItemPage.svelte';
+export { default as TrackList } from './TrackLIst.svelte';
+export { default as Player } from './Player.svelte';
