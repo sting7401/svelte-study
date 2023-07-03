@@ -20,7 +20,7 @@
 
 <svelte:element
 	this={element}
-	class="button button--{variant} {className}"
+	class="button {!variant ? '' : `button--${variant}`} {className}"
 	on:click
 	{...$$restProps}
 >
@@ -53,6 +53,10 @@
 			background-color: var(--error);
 			color: var(--color-fff);
 			border: functions.rem(2) solid var(--error);
+		}
+
+		&--transparent {
+			color: var(--color-fff);
 		}
 
 		&:disabled {

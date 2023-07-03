@@ -16,5 +16,3 @@ declare global {
 declare interface Window {
 	refreshPromise: Promise<Response> | null;
 }
-
-export {};

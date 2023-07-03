@@ -55,7 +55,7 @@
 						<a href="/profile"> View Profile </a>
 					</li>
 					<li>
-						<LogoutButton />
+						<LogoutButton variant="transparent" />
 					</li>
 				</ul>
 			</div>
@@ -119,9 +119,13 @@
 						:global(button) {
 							@include mixins.flex($ai: center);
 							@include mixins.wh100;
-							@include mixins.font($fs: functions.rem(14));
+							@include mixins.font($fs: functions.rem(14), $fw: 400, $co: var(--text-color));
 
 							padding: functions.rem(10) functions.rem(15);
+
+							&:hover {
+								background-image: none;
+							}
 						}
 
 						svg {

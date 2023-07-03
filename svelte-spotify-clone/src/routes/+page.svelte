@@ -77,23 +77,23 @@
 
 {#each sections as section}
 	<sections class="content-row mb-10">
-		<div class="content-row__header flex items-center justify-between mb-5">
-			<div class="right">
-				<h2 class="section__title text-s22 font-w6">
-					{section.title}
-				</h2>
-			</div>
-			<div class="left">
-				<Button element="a" href={section.path} variant="outline"
-					>See All
-
-					<span class="visually-hidden">
-						{section.title}
-					</span></Button
-				>
-			</div>
-		</div>
 		{#if section.items.length > 0}
+			<div class="content-row__header flex items-center justify-between mb-5">
+				<div class="right">
+					<h2 class="section__title text-s22 font-w6">
+						{section.title}
+					</h2>
+				</div>
+				<div class="left">
+					<Button element="a" href={section.path} variant="outline"
+						>See All
+
+						<span class="visually-hidden">
+							{section.title}
+						</span></Button
+					>
+				</div>
+			</div>
 			<div class="grid-items">
 				{#each section.items as item}
 					<div class="grid-item">

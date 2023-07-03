@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { afterNavigate, beforeNavigate, invalidateAll } from '$app/navigation';
+	import { afterNavigate, beforeNavigate } from '$app/navigation';
 	import { page } from '$app/stores';
 	import NProgress from 'nprogress';
 	import { hideAll } from 'tippy.js';
@@ -8,7 +8,7 @@
 	import '$lib/css/app.css';
 	import '$lib/scss/main.scss';
 	import type { LayoutData } from './$types';
-	import { LogoutButton, Navigation, Header } from '$components';
+	import { Navigation, Header } from '$components';
 
 	NProgress.configure({ showSpinner: false });
 

@@ -3,9 +3,9 @@
 </script>
 
 <script lang="ts">
-	import { Pause, Play } from 'lucide-svelte';
-	import { createEventDispatcher } from 'svelte';
 	type Track = SpotifyApi.TrackObjectFull | SpotifyApi.TrackObjectSimplified;
+	import { createEventDispatcher } from 'svelte';
+	import { Pause, Play } from 'lucide-svelte';
 	export let track: Track;
 
 	const dispatch = createEventDispatcher<{
@@ -72,3 +72,16 @@
 		{/if}
 	</button>
 </div>
+
+<style lang="scss">
+	:global(html.no-js) {
+		audio {
+			display: block;
+			width: 100%;
+		}
+
+		button {
+			display: none;
+		}
+	}
+</style>

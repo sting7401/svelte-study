@@ -92,5 +92,49 @@
 	{/each}
 </div>
 
-<style>
+<style lang="scss">
+	:global(html.no-js) {
+		.row {
+			@include breakpoint.down('md') {
+				flex-direction: column;
+				background-color: rgba(255, 255, 255, 0.03);
+				margin-bottom: functions.rem(20);
+				padding: functions.rem(20);
+			}
+
+			&.header {
+				display: none;
+			}
+		}
+		.number-column {
+			@include mixins.flex($ai: center);
+
+			width: functions.rem(200);
+
+			@include breakpoint.down('md') {
+				width: 100%;
+				margin-right: 0;
+				margin-left: functions.rem(15);
+			}
+
+			.player {
+				display: block;
+				width: functions.rem(100);
+				margin-left: functions.rem(10);
+			}
+		}
+
+		.info-column {
+			@include breakpoint.down('md') {
+				width: 100%;
+			}
+		}
+
+		.duration-column {
+			@include breakpoint.down('md') {
+				width: 100%;
+				margin: functions.rem(10) 0;
+			}
+		}
+	}
 </style>
