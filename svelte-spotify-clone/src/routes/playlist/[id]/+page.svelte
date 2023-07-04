@@ -4,7 +4,7 @@
 	import type { PageData } from './$types';
 	export let data: PageData;
 
-	$: console.log(data);
+	let isLoading = false;
 
 	$: color = data.color;
 	$: playlist = data.playlist;
@@ -20,6 +20,23 @@
 	}
 
 	const followersFormat = Intl.NumberFormat('en', { notation: 'compact' });
+
+	const loadMoreTracks = async () => {
+		if (!tracks.next) return;
+		isLoading = true;
+		const res = await fetch(tracks.next.replace('http://api.spotify.com/v1/', '/api/spotify'));
+		const resJSON = await res.json();
+
+		if (resJSON.ok) {
+			tracks = {
+				...resJSON,
+				items: [...tracks.items, ...resJSON.items]
+			};
+		} else {
+			alert(resJSON.error.message || 'Could not load data');
+		}
+		isLoading = false;
+	};
 </script>
 
 <ItemPage
@@ -39,6 +56,12 @@
 
 	{#if playlist.tracks.items.length > 0}
 		<TrackList tracks={filteredTracks} />
+		{#if tracks.next}
+			<div class="load-more">
+				<Button element="button" variant="outline" disabled={isLoading} on:click={loadMoreTracks}
+					>More</Button
+				>
+			</div>{/if}
 	{:else}
 		<div class="empty-playlist">
 			<p>No items added to this playlist yet.</p>
