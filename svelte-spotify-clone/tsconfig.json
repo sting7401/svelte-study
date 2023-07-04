@@ -9,6 +9,7 @@
 		"skipLibCheck": true,
 		"sourceMap": true,
 		"strict": true,
+		"typeRoots": ["./node_modules/@types", "$types"],
 		"lib": ["ES2015", "ES2016", "dom"]
 	}
 	// Path aliases are handled by https://kit.svelte.dev/docs/configuration#alias

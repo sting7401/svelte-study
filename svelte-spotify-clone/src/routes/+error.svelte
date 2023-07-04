@@ -4,7 +4,7 @@
 	import { invalidate } from '$app/navigation';
 
 	let isRetrying = false;
-	const retRoutes = ['/album/[id]'];
+	const retRoutes = ['/album/[id]', '/playlist/[id]'];
 </script>
 
 <svelte:head>

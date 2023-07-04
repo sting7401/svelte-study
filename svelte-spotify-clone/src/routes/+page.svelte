@@ -34,22 +34,6 @@
 			];
 		}
 
-		// data.homeCategories.forEach((category, index) => {
-		// 	const categoryPlaylists = data.categoriesPlaylists[index];
-		// 	console.log(categoryPlaylists);
-
-		// 	if (categoryPlaylists) {
-		// 		sections = [
-		// 			...sections,
-		// 			{
-		// 				title: category.name,
-		// 				path: `/category/${category.id}`,
-		// 				items: categoryPlaylists.playlists.items
-		// 			}
-		// 		];
-		// 	}
-		// });
-
 		for (const [index, category] of data.homeCategories.entries()) {
 			const categoryPlaylists = data.categoriesPlaylists[index];
 
@@ -77,32 +61,28 @@
 
 {#each sections as section}
 	<sections class="content-row mb-10">
-		{#if section.items.length > 0}
-			<div class="content-row__header flex items-center justify-between mb-5">
-				<div class="right">
-					<h2 class="section__title text-s22 font-w6">
-						{section.title}
-					</h2>
-				</div>
-				<div class="left">
-					<Button element="a" href={section.path} variant="outline"
-						>See All
+		<div class="content-row__header flex items-center justify-between mb-5">
+			<div class="right">
+				<h2 class="section__title text-s22 font-w6">
+					{section.title}
+				</h2>
+			</div>
+			<div class="left">
+				<Button element="a" href={section.path} variant="outline"
+					>See All
 
-						<span class="visually-hidden">
-							{section.title}
-						</span></Button
-					>
+					<span class="visually-hidden">
+						{section.title}
+					</span></Button
+				>
+			</div>
+		</div>
+		<div class="grid-items">
+			{#each section.items as item}
+				<div class="grid-item">
+					<Card {item} />
 				</div>
-			</div>
-			<div class="grid-items">
-				{#each section.items as item}
-					<div class="grid-item">
-						<Card {item} />
-					</div>
-				{/each}
-			</div>
-		{:else}
-			<p>none</p>
-		{/if}
+			{/each}
+		</div>
 	</sections>
 {/each}
