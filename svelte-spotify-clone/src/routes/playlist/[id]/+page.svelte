@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { page } from '$app/stores';
 	import { Button, ItemPage } from '$components';
 	import TrackList from '$components/TrackList.svelte';
 	import type { PageData } from './$types';
@@ -9,6 +10,8 @@
 	$: color = data.color;
 	$: playlist = data.playlist;
 	$: tracks = data.playlist.tracks;
+	$: isFollowing = data.isFollowing;
+	$: currentPage = $page.url.searchParams.get('page') || 1;
 
 	let filteredTracks: SpotifyApi.TrackObjectFull[];
 
@@ -39,32 +42,60 @@
 	};
 </script>
 
+{isFollowing}
+
 <ItemPage
 	title={playlist.name}
 	image={playlist.images.length > 0 ? playlist.images[0].url : undefined}
 	{color}
 	type={playlist.type}
 >
-	<div slot="meta">
-		<p class="playlist-description">{@html playlist.description}</p>
+	<div slot="meta" class="mt-10 text-13">
+		<p class="playlist-description text-18 text-[--light-gray]">{@html playlist.description}</p>
 		<p class="meta">
-			<span>{playlist.owner.display_name}</span>
-			<span>{followersFormat.format(playlist.followers.total)}</span>
-			<span>{playlist.tracks.total} Tracks</span>
+			<span class="mr-5 font-w6">{playlist.owner.display_name}</span>
+			<span class="mr-5">{followersFormat.format(playlist.followers.total)}</span>
+			<span class="mr-5">{playlist.tracks.total} Tracks</span>
 		</p>
 	</div>
 
 	{#if playlist.tracks.items.length > 0}
 		<TrackList tracks={filteredTracks} />
 		{#if tracks.next}
-			<div class="load-more">
+			<div class="load-more text-center">
 				<Button element="button" variant="outline" disabled={isLoading} on:click={loadMoreTracks}
 					>More</Button
 				>
-			</div>{/if}
+			</div>
+		{/if}
+
+		<div class="pagination hidden">
+			<div class="prev">
+				{#if tracks.previous}
+					<Button
+						element="a"
+						variant="outline"
+						href="{$page.url.pathname}? {new URLSearchParams({
+							page: `${Number(currentPage) - 1}`
+						}).toString()}">prev page</Button
+					>
+				{/if}
+			</div>
+			<div class="next">
+				{#if tracks.next}
+					<Button
+						element="a"
+						variant="outline"
+						href="{$page.url.pathname}? {new URLSearchParams({
+							page: `${Number(currentPage) + 1}`
+						}).toString()}">next page</Button
+					>
+				{/if}
+			</div>
+		</div>
 	{:else}
-		<div class="empty-playlist">
-			<p>No items added to this playlist yet.</p>
+		<div class="empty-playlist mt-40 text-center">
+			<p class="text-22 font-w6">No items added to this playlist yet.</p>
 			<Button element="a" href="/search">Search for Content</Button>
 			<Button element="a" href="/playlists">View all Playlists</Button>
 		</div>
@@ -73,29 +104,20 @@
 
 <style lang="scss">
 	.empty-playlist {
-		text-align: center;
-		margin-top: 40px;
-		p {
-			font-size: functions.rem(22);
-			font-weight: 600;
-		}
 		:global(a) {
 			margin: 0 10px;
 		}
 	}
-	.playlist-description {
-		color: var(--light-gray);
-		font-size: functions.rem(18);
-		margin-bottom: 0;
+
+	.load-more {
+		:global(html.no-js) {
+			display: none;
+		}
 	}
-	.meta {
-		font-size: functions.rem(13);
-		margin-top: 10px;
-		span {
-			margin-right: 5px;
-			&:first-child {
-				font-weight: 600;
-			}
+
+	:global(html.no-js) {
+		.pagination {
+			@include mixins.flex($ai: center);
 		}
 	}
 </style>
