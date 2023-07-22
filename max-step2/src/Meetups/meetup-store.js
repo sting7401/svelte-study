@@ -1,4 +1,5 @@
-import { writable } from 'svelte/store';
+import { writable, readable, set, get } from 'svelte/store';
+
 
 // [
 //     {

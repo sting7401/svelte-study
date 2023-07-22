@@ -2,7 +2,11 @@
 	import '../input.css';
 </script>
 
-<slot />
+<main class="m-2">
+	<h1>Todo list</h1>
+
+	<slot />
+</main>
 
 <style lang="postcss">
 	:global(html) {

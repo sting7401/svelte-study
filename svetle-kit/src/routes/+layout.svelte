@@ -1,10 +1,20 @@
-<script>
+<script lang="ts">
+	import '$lib/css/app.css';
+	import { page } from '$app/stores';
+
+	import { Header } from '$components';
 </script>
 
-<a href="/about">about</a>
+<svelte:head>
+	<title>{$page.data.title}</title>
+</svelte:head>
 
 <main>
-	<slot><!-- optional fallback --></slot>
+	<Header />
+
+	<div class="main-container">
+		<slot><!-- optional fallback --></slot>
+	</div>
 </main>
 
 <style>

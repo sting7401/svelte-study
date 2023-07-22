@@ -24,8 +24,8 @@ const config = {
 			'$assets': 'src/lib/assets',
 			'$images': 'src/lib/images',
 			'$actions' : 'src/lib/actions',
-			'$helpers' : 'src/lib/helpers'
-
+			'$helpers' : 'src/lib/helpers',
+			'$toast' : 'src/lib/toast'
 		},
 	}
 };

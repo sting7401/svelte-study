@@ -20,7 +20,8 @@ const config = {
 			$components: path.resolve('./src/lib/components'),
 			$assets: path.resolve('./src/assets')
 		}
-	}
+	},
+	preprocess: vitePreprocess()
 };
 
 export default config;

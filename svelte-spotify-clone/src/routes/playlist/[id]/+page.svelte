@@ -2,10 +2,16 @@
 	import { page } from '$app/stores';
 	import { Button, ItemPage } from '$components';
 	import TrackList from '$components/TrackList.svelte';
-	import type { PageData } from './$types';
+	import { Heart } from 'lucide-svelte';
+	import type { ActionData, PageData } from './$types';
+	import { applyAction, enhance } from '$app/forms';
+
 	export let data: PageData;
+	export let form: ActionData;
 
 	let isLoading = false;
+	let isLoadingFollow = false;
+	let followButton: Button<'button'>;
 
 	$: color = data.color;
 	$: playlist = data.playlist;
@@ -57,6 +63,52 @@
 			<span class="mr-5">{followersFormat.format(playlist.followers.total)}</span>
 			<span class="mr-5">{playlist.tracks.total} Tracks</span>
 		</p>
+	</div>
+
+	<div class="playlist-actions flex justify-end mt-10 mb-30">
+		{#if data.user?.id === playlist.owner.id}
+			<Button element="a" variant="outline">Edit Playlist</Button>
+		{:else if isFollowing !== null}
+			<form
+				class="follow"
+				method="post"
+				action={`?/${isFollowing ? 'unFollowPlaylist' : 'followPlaylist'}`}
+				use:enhance={() => {
+					isLoadingFollow = true;
+
+					return async ({ result }) => {
+						isLoadingFollow = false;
+						await applyAction(result);
+						followButton.focus();
+
+						if (result.type === 'success') {
+							isFollowing = !isFollowing;
+						}
+					};
+				}}
+			>
+				<Button
+					bind:this={followButton}
+					element="button"
+					type="submit"
+					class="flex item-center"
+					disabled={isLoadingFollow}
+				>
+					<Heart
+						aria-hidden
+						focusable="false"
+						fill={isFollowing ? `var(--text-color)` : 'none'}
+						class="mr-10 w-22 h-22"
+					/>
+					{isFollowing ? 'unFollow' : 'follow'}
+					<span class="a11y-hidden">{playlist.name} playlist</span></Button
+				>
+
+				{#if form?.followError}
+					<p class="error text-14 text-right color-[var(--error)]">{form.followError}</p>
+				{/if}
+			</form>
+		{/if}
 	</div>
 
 	{#if playlist.tracks.items.length > 0}
