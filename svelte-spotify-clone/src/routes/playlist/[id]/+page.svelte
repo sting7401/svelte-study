@@ -32,7 +32,9 @@
 
 	const loadMoreTracks = async () => {
 		if (!tracks.next) return;
+
 		isLoading = true;
+
 		const res = await fetch(tracks.next.replace('http://api.spotify.com/v1/', '/api/spotify'));
 		const resJSON = await res.json();
 
@@ -71,6 +73,27 @@
 		{:else if isFollowing !== null}
 			<form
 				class="follow"
+				method="POST"
+				action={`?/${isFollowing ? 'unFollowPlaylist' : 'followPlaylist'}`}
+			>
+				<Button element="button" type="submit" class="flex item-center" variant="outline">
+					<Heart
+						aria-hidden
+						focusable="false"
+						fill={isFollowing ? 'var(--text-color)' : 'none'}
+						class="mr-10 w-22 h-22"
+					/>
+					{isFollowing ? 'UnFollow' : 'Follow'}
+					<span class="hidden">{playlist.name} playlist</span>
+				</Button>
+
+				{#if form?.followError}
+					<p class="error">{form.followError}</p>
+				{/if}
+			</form>
+
+			<!-- <form
+				class="follow"
 				method="post"
 				action={`?/${isFollowing ? 'unFollowPlaylist' : 'followPlaylist'}`}
 				use:enhance={() => {
@@ -107,7 +130,7 @@
 				{#if form?.followError}
 					<p class="error text-14 text-right color-[var(--error)]">{form.followError}</p>
 				{/if}
-			</form>
+			</form> -->
 		{/if}
 	</div>
 

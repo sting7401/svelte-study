@@ -66,7 +66,7 @@
 <svelte:head>
 	<title>{currentTitle}</title>
 </svelte:head>
-<svelte:body on:mouseenter />
+<svelte:body on:mouseenter > </svelte:body>
 
 <button on:click="{changeTitle}">change title</button>
 

@@ -6,8 +6,11 @@ export default async function fetchRefresh(
 	path: string
 ) {
 	const req = fetch(path);
+
 	if (!browser) return req;
+
 	const res = await req;
+
 	if (res.status === 401) {
 		if (!window.refreshPromise) {
 			window.refreshPromise = fetch('/api/auth/refresh').finally(() => {

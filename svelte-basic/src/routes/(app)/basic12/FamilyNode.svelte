@@ -1,7 +1,7 @@
-<script context="module">
+<script context="module" lang="ts">
 	console.log('한번만');
 
-	let degree;
+	let degree: boolean = true;
 </script>
 
 <script>
@@ -24,6 +24,16 @@
 	};
 </script>
 
+<div on:click={setActive} class:active={isActive}>
+	<h1>{member?.name}</h1>
+
+	{#if member?.isParent}
+		{#each member?.children as child}
+			<svelte:self member={child} />
+		{/each}
+	{/if}
+</div>
+
 <style>
 	div {
 		margin-left: 2rem;
@@ -33,14 +43,3 @@
 		color: red;
 	}
 </style>
-
-
-<div on:click="{setActive}" class:active="{isActive}">
-	<h1>{member.name}</h1>
-
-	{#if member.isParent}
-		{#each member.children as child}
-			<svelte:self member="{child}" />
-		{/each}
-	{/if}
-</div>

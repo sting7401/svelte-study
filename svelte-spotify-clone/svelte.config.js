@@ -25,7 +25,7 @@ const config = {
 			'$images': 'src/lib/images',
 			'$actions' : 'src/lib/actions',
 			'$helpers' : 'src/lib/helpers',
-			'$toast' : 'src/lib/toast'
+			'$stores' : 'src/lib/stores'
 		},
 	}
 };

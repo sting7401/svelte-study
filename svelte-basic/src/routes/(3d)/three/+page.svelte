@@ -6,6 +6,7 @@
 
 <style>
 	.warpper {
+		overflow: hidden;
 		min-width: 100vw;
 		min-height: 100vh;
 	}

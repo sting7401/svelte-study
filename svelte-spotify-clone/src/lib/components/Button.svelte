@@ -29,6 +29,7 @@
 	class="button {!variant ? '' : `button--${variant}`} {className}"
 	on:click
 	{...$$restProps}
+	role="element"
 >
 	<slot><!-- optional fallback --></slot>
 </svelte:element>

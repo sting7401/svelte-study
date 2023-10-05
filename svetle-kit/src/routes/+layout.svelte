@@ -9,10 +9,9 @@
 	<title>{$page.data.title}</title>
 </svelte:head>
 
-<main>
-	<Header />
-
-	<div class="main-container">
+<Header />
+<main class="flex flex-col justify-center w-full">
+	<div class="main-container w-full max-w-[1240px]">
 		<slot><!-- optional fallback --></slot>
 	</div>
 </main>

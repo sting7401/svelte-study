@@ -10,13 +10,20 @@
 </script>
 
 <div class="pt-40">
-	<h2 class="text-18 font-w7 text-black">공지사항</h2>
+	<div class="flex justify-between p-20">
+		<h2 class="text-18 font-w7 text-black">공지사항</h2>
+		<a href="/notice">전체보기</a>
+	</div>
 
-	<ul class="w-full">
-		{#each list as { link, badge, text, date }, id}
-			{#if id < 3}
-				<Notice {link} {badge} {text} {date} />
-			{/if}
-		{/each}
-	</ul>
+	{#if list.length}
+		<ul class="w-full">
+			{#each list as { link, badge, text, date }, id}
+				{#if id < 3}
+					<Notice {link} {badge} {text} {date} />
+				{/if}
+			{/each}
+		</ul>
+	{:else}
+		<p>게시글이 없습니다.</p>
+	{/if}
 </div>
