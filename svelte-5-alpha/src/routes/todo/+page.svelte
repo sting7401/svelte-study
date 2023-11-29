@@ -27,10 +27,26 @@
 		if (event.key !== 'Enter') return;
 
 		const todoEl = event.target as HTMLInputElement;
-		const text = todoEl.value;
-		const done = false;
+		let text = $state(todoEl.value);
+		let done = $state(false);
 
-		todos = [...todos, { text, done }];
+		todos = [
+			...todos,
+			{
+				get text() {
+					return text;
+				},
+				set text(value) {
+					text = value;
+				},
+				get done() {
+					return done;
+				},
+				set done(value) {
+					done = value;
+				}
+			}
+		];
 
 		todoEl.value = '';
 	}
