@@ -85,43 +85,56 @@
 	}
 </script>
 
-<form action="">
-	<input type="text" placeholder="add todo" onkeydown={addTodo} />
-</form>
+<div class="flex justify-center items-center flex-col p-3">
+	<form action="">
+		<input
+			type="text"
+			placeholder="add todo"
+			class="p-2 border border-[#666]"
+			onkeydown={addTodo}
+		/>
+	</form>
 
-<div class="todos grid gap-[1rem] mt-[1rem]">
-	{#each filteredTodos as todo, i}
-		<div
-			class="todo relative flex justify-between items-center rounded-sm transition-opacity"
-			class:opacity-50={todo.done}
-		>
-			<input
-				type="text"
-				name=""
-				id="textInput{i}"
-				value={todo.text}
-				class="w-full padding-[1rem]"
-				data-index={i}
-				oninput={editTodo}
-			/>
-			<input
-				type="checkbox"
-				name=""
-				id="checkInput{i}"
-				value={todo.done}
-				data-index={i}
-				onchange={toggleTodo}
-			/>
-		</div>
-	{/each}
+	<div class="todos grid gap-[1rem] mt-[1rem]">
+		{#each filteredTodos as todo, i}
+			<div
+				class="todo relative flex justify-between items-center p-2 border border-[#000] rounded-sm transition-opacity"
+				class:opacity-50={todo.done}
+				class:line-through={todo.done}
+			>
+				<input
+					type="text"
+					name=""
+					id="textInput{i}"
+					value={todo.text}
+					class="w-full padding-[1rem]"
+					data-index={i}
+					oninput={editTodo}
+				/>
+				<input
+					type="checkbox"
+					name=""
+					id="checkInput{i}"
+					value={todo.done}
+					data-index={i}
+					class="ml-2"
+					onchange={toggleTodo}
+				/>
+			</div>
+		{/each}
+	</div>
+
+	<div class="filters m-[1rem]">
+		{#each ['all', 'active', 'completed'] as filterButton}
+			<button
+				type="button"
+				class="border rounded px-5 h-10"
+				onclick={() => setFilter(filterButton)}
+			>
+				{filterButton}</button
+			>
+		{/each}
+	</div>
+
+	<p>{remaining()} remaining</p>
 </div>
-
-<div class="filters m-[1rem]">
-	<button type="button" class="border px-5 h-10" onclick={() => setFilter('all')}>All</button>
-	<button type="button" class="border px-5 h-10" onclick={() => setFilter('active')}>active</button>
-	<button type="button" class="border px-5 h-10" onclick={() => setFilter('completed')}
-		>completed</button
-	>
-</div>
-
-<p>{remaining()} remaining</p>
