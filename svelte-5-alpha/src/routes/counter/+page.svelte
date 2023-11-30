@@ -1,4 +1,6 @@
 <script>
+	import { countStore } from './store.js';
+
 	let count = $state(0);
 	let derivedClick = $derived(derivedEvent());
 	let numberValue = $state(false);
@@ -9,27 +11,28 @@
 		} else {
 			numberValue = false;
 		}
-
-		console.log(numberValue);
 	});
 
 	function derivedEvent() {
 		return count * 2;
 	}
 
-	function handleClick() {
+	function handleClick(event) {
+		event.preventDefault();
 		count += 1;
 	}
 
-	function handleMinusClick() {
+	function handleMinusClick(event) {
+		event.preventDefault();
 		count -= 1;
 	}
 </script>
 
-<button onclick={handleClick}>+</button>
-<button onclick={handleMinusClick}> - </button>
+<button type="button" onclick={handleClick}>+</button>
+<button type="button" onclick={handleMinusClick}> - </button>
 
 <p>{count}</p>
+<p>{$countStore}</p>
 
 {#if numberValue}
 	<p>derived : {derivedClick}</p>
