@@ -77,6 +77,7 @@
 	];
 
 	const response = useFetchUsers();
+	const { isLoading, error, users } = response;
 </script>
 
 <svelte:head>
