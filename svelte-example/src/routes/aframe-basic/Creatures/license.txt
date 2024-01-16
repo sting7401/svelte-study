@@ -1,0 +1,11 @@
+Model Information:
+* title:	Base Meshes Creatures - Pack Lowpoly
+* source:	https://sketchfab.com/3d-models/base-meshes-creatures-pack-lowpoly-cfeb116b2fe34afc96a08238a703d377
+* author:	DuNguyn - Assets store (https://sketchfab.com/nguyenvuduc2000)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Base Meshes Creatures - Pack Lowpoly" (https://sketchfab.com/3d-models/base-meshes-creatures-pack-lowpoly-cfeb116b2fe34afc96a08238a703d377) by DuNguyn - Assets store (https://sketchfab.com/nguyenvuduc2000) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

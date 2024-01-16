@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+	.padding-x {
+		@apply px-10 md:px-20 xl:px-28;
+	}
+
+	.scale-image {
+		@apply transition duration-300 ease-in-out hover:scale-110;
+	}
+}
