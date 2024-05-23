@@ -16,6 +16,9 @@
 		>
 			글쓰기
 		</a>
+
+
+		
 		<div
 			class="flex-1 flex justify-center align-middle w-full p-3 border rounded-sm hover:bg-slate-400"
 		>
