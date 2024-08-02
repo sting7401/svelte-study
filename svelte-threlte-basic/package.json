@@ -9,8 +9,7 @@
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
 		"lint": "prettier --plugin-search-dir . --check . && eslint .",
-		"format": "prettier --plugin-search-dir . --write .",
-		"preinstall": "npx only-allow pnpm"
+		"format": "prettier --plugin-search-dir . --write ."
 	},
 	"devDependencies": {
 		"@sveltejs/adapter-auto": "^2.1.1",
@@ -25,6 +24,7 @@
 		"prettier": "^3.1.1",
 		"prettier-plugin-svelte": "^3.1.2",
 		"svelte": "^4.2.8",
+		"svelte-adapter-bun": "^0.5.2",
 		"svelte-check": "^3.6.2",
 		"tailwindcss": "^3.3.6",
 		"tslib": "^2.6.2",
@@ -33,14 +33,17 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"@dimforge/rapier3d-compat": "^0.11.2",
-		"@theatre/core": "^0.7.0",
-		"@theatre/studio": "^0.7.0",
-		"@threlte/core": "^7.0.10",
-		"@threlte/extras": "^8.0.8",
-		"@threlte/rapier": "^1.1.4",
-		"@threlte/theatre": "^2.1.5",
-		"@types/three": "^0.159.0",
-		"three": "^0.159.0"
+		"@dimforge/rapier3d-compat": "^0.14.0",
+		"@theatre/core": "^0.7.2",
+		"@theatre/studio": "^0.7.2",
+		"@threlte/core": "^7.3.1",
+		"@threlte/extras": "^8.11.5",
+		"@threlte/flex": "^1.0.3",
+		"@threlte/rapier": "^2.0.1",
+		"@threlte/theatre": "^2.1.8",
+		"@threlte/xr": "^0.1.4",
+		"@types/three": "^0.167.1",
+		"install": "^0.13.0",
+		"three": "^0.167.0"
 	}
 }

@@ -1,80 +1,101 @@
 <script lang="ts">
 	import type { PageData } from './$types';
+	import { onDestroy, onMount } from 'svelte';
 	import Modal from '$lib/components/Modal.svelte';
+	import Movies from '$lib/components/Movies.svelte';
+	import Event from '$lib/components/Event.svelte';
+	import SearchBar from '$lib/components/SearchBar.svelte';
 
 	export let data: PageData;
 	let { list } = data;
 
-	const handleLike = (i) => {
-		list[i].likeCount += 1;
+	let eventText = ['1', '2', '3'];
+	let eventIndex = 0;
+
+	let data_temp = [...list];
+	let likeCount = 0; // 좋아요 수를 저장할 변수
+
+	const handleLike = (id) => {
+		list = list.map((movie) => {
+			if (movie.id === id) {
+				movie.likeCount += 1;
+			}
+			return movie;
+		});
+		data_temp = list.filter((movie) => {
+			return data_temp.includes(movie);
+		});
 	};
 
 	let isModal: boolean = false;
 	let selectedMovie: number = 0;
-	let { title, story } = list[selectedMovie];
 
 	const closeModal = () => {
 		isModal = false;
 	};
+
+	const handleMovieNumber = (i) => {
+		selectedMovie = i;
+	};
+
+	let alertText = '';
+
+	let isEvent = true;
+	let intervalEventText;
+
+	$: {
+		clearInterval(intervalEventText);
+
+		intervalEventText = setInterval(() => {
+			eventIndex += 1;
+
+			if (eventIndex >= eventText.length) {
+				eventIndex = 0;
+			}
+		}, 3000);
+	}
+
+	// onMount(() => {
+	// 	intervalEventText = setInterval(() => {
+	// 		if (eventIndex >= eventText.length) {
+	// 			eventIndex = 0;
+	// 		} else {
+	// 			eventIndex += 1;
+	// 		}
+	// 	}, 3000);
+	// });
+
+	// onDestroy(() => {
+	// 	clearInterval(intervalEventText);
+	// });
 </script>
 
-<main class="container">
-	<h1>영화정보</h1>
-	{#each list as movie, i}
-		<div class="item">
-			<figure>
-				<img src={movie.imgUrl} alt={movie.title} />
-			</figure>
-			<div class="info">
-				<h3 class="bg-yellow">{movie.title}</h3>
-				<p>개봉: {movie.year}</p>
-				<p>장르: {movie.category}</p>
-				<button
-					onclick={() => {
-						handleLike(i);
-					}}>좋아요 {list[i].likeCount}</button
-				>
-				<button
-					onclick={() => {
-						isModal = true;
-						selectedMovie = i;
-					}}
-					class="btn btn-primary">상세보기</button
-				>
-			</div>
-		</div>
-	{/each}
-</main>
+{#if isEvent}
+	<Event bind:isEvent {eventText} {eventIndex} />
+{/if}
+
+<button type="button" onclick={(e) => (isEvent = true)}>on</button>
+
+<SearchBar {list} bind:data_temp bind:alertText />
+
+<div class="container">
+	<button
+		type="button"
+		onclick={(e) => {
+			data_temp = [...list];
+			alertText = '';
+		}}>전체보기</button
+	>
+</div>
+
+<Movies {data_temp} bind:isModal {handleMovieNumber} {handleLike} />
 
 {#if isModal}
-	<Modal {title} {story} {closeModal}></Modal>
+	<Modal {list} {selectedMovie} {closeModal}></Modal>
 {/if}
 
 <style>
-	.bg-yellow {
-		background: gold;
-		padding: 10px;
-		color: #333;
-	}
-
-	.item {
-		width: 100%;
-		border: 1px solid #ccc;
-		display: flex;
-		margin-bottom: 20px;
-		padding: 1rem;
-	}
-
-	.item figure {
-		width: 30%;
-		margin-right: 1rem;
-	}
-
-	.item img {
-		width: 100%;
-	}
-
-	.item .info {
-		width: 100%;
+	.container {
+		text-align: center;
 	}
 </style>

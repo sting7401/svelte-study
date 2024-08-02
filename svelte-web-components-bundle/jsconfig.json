@@ -1,0 +1,39 @@
+{
+  "compilerOptions": {
+    "moduleResolution": "bundler",
+    "target": "ESNext",
+    "module": "ESNext",
+    "verbatimModuleSyntax": true,
+    "isolatedModules": true,
+    "resolveJsonModule": true,
+    "sourceMap": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "checkJs": true,
+    "baseUrl": ".",
+    "paths": {
+      "$lib/*": ["src/lib/*"],
+      "$edit/*": ["src/lib/js/edit/*"],
+      "$images/*": ["src/dist/static/images/*"],
+      "$style/*": ["src/lib/css/*"],
+      "$common/*": ["src/lib/js/common/*"],
+      "$components/*": ["src/lib/components/*"],
+      "$state/*": ["src/lib/state/*"],
+      "$context/*": ["src/lib/context/*"],
+      "$controller/*": ["src/lib/controller/*"],
+      "$store/*": ["src/lib/store/*"],
+      "$i18n/*": ["src/lib/i18n/*"],
+      "$ui/*": ["src/lib/js/ui/*"],
+      "$utils/*": ["src/lib/utils.js"],
+      "$app/*": ["src/app/*"]
+    }
+  },
+  "include": [
+    "src/**/*.js",
+    "src/**/*.svelte",
+    "src/**/*.jsx",
+    "src/**/*.tsx",
+    "src/**/*.ts",
+    "src/**/*.html"
+  ]
+}

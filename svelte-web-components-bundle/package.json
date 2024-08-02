@@ -1,0 +1,44 @@
+{
+  "name": "my-svelte-component",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "@sveltejs/vite-plugin-svelte": "^3.1.1",
+    "@tailwindcss/typography": "^0.5.13",
+    "autoprefixer": "^10.4.19",
+    "esbuild": "^0.23.0",
+    "eslint": "^8.2.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-html": "^8.1.1",
+    "eslint-plugin-import": "^2.29.1",
+    "eslint-plugin-lit": "^1.14.0",
+    "eslint-plugin-prettier": "^5.2.1",
+    "eslint-plugin-wc": "^2.1.0",
+    "glob": "^11.0.0",
+    "npm-run-all": "^4.1.5",
+    "postcss": "^8.4.38",
+    "prettier": "^3.3.3",
+    "prettier-plugin-tailwindcss": "^0.6.4",
+    "svelte": "^4.2.18",
+    "tailwind-scrollbar": "^3.1.0",
+    "tailwind-vector-effect": "^1.0.2",
+    "tailwindcss": "^3.4.4",
+    "vite": "^5.3.4"
+  },
+  "dependencies": {
+    "bits-ui": "^0.21.13",
+    "clsx": "^2.1.1",
+    "gsap": "^3.12.5",
+    "lucide-svelte": "^0.419.0",
+    "smooth-scrollbar": "^8.8.4",
+    "tailwind-merge": "^2.4.0",
+    "tailwind-variants": "^0.2.1"
+  }
+}

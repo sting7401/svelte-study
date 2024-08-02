@@ -1,0 +1,64 @@
+<script>
+	export let list = [];
+	export let isModal = false;
+	// export let selectedMovie = 0;
+	export let handleLike;
+	export let handleMovieNumber;
+	export let data_temp = [];
+</script>
+
+<main class="container">
+	<h1>영화정보</h1>
+	{#each data_temp as movie, i}
+		<div class="item">
+			<figure>
+				<img src={movie.imgUrl} alt={movie.title} />
+			</figure>
+			<div class="info">
+				<h3 class="bg-yellow">{movie.title}</h3>
+				<p>개봉: {movie.year}</p>
+				<p>장르: {movie.category}</p>
+				<button onclick={() => handleLike(movie.id)}>좋아요 {movie.likeCount}</button>
+				<button
+					onclick={() => {
+						isModal = true;
+						// selectedMovie = i;
+						handleMovieNumber(movie.id);
+					}}
+					class="btn btn-primary"
+				>
+					{i}상세보기</button
+				>
+			</div>
+		</div>
+	{/each}
+</main>
+
+<style>
+	.bg-yellow {
+		background: gold;
+		padding: 10px;
+		color: #333;
+	}
+
+	.item {
+		width: 100%;
+		border: 1px solid #ccc;
+		display: flex;
+		margin-bottom: 20px;
+		padding: 1rem;
+	}
+
+	.item figure {
+		width: 30%;
+		margin-right: 1rem;
+	}
+
+	.item img {
+		width: 100%;
+	}
+
+	.item .info {
+		width: 100%;
+	}
+</style>

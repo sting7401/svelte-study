@@ -1,15 +1,14 @@
 <script lang="ts">
-	export let title: string = '';
-	export let story: string = '';
+	export let list: [{ title: string; story: string }] = [];
+	export let selectedMovie = 0; // 선택한 영화의 번호 받는다(props 변수 선언)
 	export let closeModal;
 </script>
 
 <div class="modal">
 	<div class="inner">
-		<h2>영화 상세정보</h2>
-		<p>개봉: {title}</p>
-		<p>장르: {@html story}</p>
-		<button class="" onclick={closeModal}>닫기</button>
+		<h3>{list[selectedMovie].title}</h3>
+		<p>{@html list[selectedMovie].story}</p>
+		<button on:click={closeModal} class="btn-close">닫기</button>
 	</div>
 </div>
 
