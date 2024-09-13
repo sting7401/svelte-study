@@ -1,0 +1,48 @@
+{
+    "compilerOptions": {
+        "moduleResolution": "bundler",
+        "target": "ESNext",
+        "module": "ESNext",
+        "allowJs": true, // JavaScript 파일 포함 여부
+        /**
+         * svelte-preprocess cannot figure out whether you have
+         * a value or a type, so tell TypeScript to enforce using
+         * `import type` instead of `import` for Types.
+         */
+        "verbatimModuleSyntax": true,
+        "isolatedModules": true,
+        "resolveJsonModule": true,
+        /**
+         * To have warnings / errors of the Svelte compiler at the
+         * correct position, enable source maps by default.
+         */
+        "sourceMap": true,
+        "esModuleInterop": true,
+        "skipLibCheck": true,
+        /**
+         * Typecheck JS in `.svelte` and `.js` files by default.
+         * Disable this if you'd like to use dynamic types.
+         */
+        "checkJs": true,
+        "allowSyntheticDefaultImports": true,
+        "paths": {
+            "$edit/*": ["./src/lib/js/edit/*"],
+            "$images/*": ["./dist/static/images/*"],
+            "$style/*": ["./src/lib/css/*"],
+            "$common/*": ["./src/lib/js/common/*"],
+            "$components/*": ["./src/lib/components/*"],
+            "$state/*": ["./src/lib/state/*"],
+            "$context/*": ["./src/lib/context/*"],
+            "$controller/*": ["./src/lib/controller/*"],
+            "$store/*": ["./src/lib/store/*"],
+            "$i18n/*": ["./src/lib/i18n/*"],
+            "$ui/*": ["./src/lib/js/ui/*"],
+            "$app/*": ["./app/*"]
+        }
+    },
+    /**
+     * Use global.d.ts instead of compilerOptions.types
+     * to avoid limiting type declarations.
+     */
+    "include": ["src/**/*.d.ts", "src/**/*.js", "src/**/*.svelte"]
+}

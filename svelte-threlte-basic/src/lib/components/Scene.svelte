@@ -1,11 +1,14 @@
-<script>
-	import { GLTF } from '@threlte/extras';
+<script lang="ts">
+	import { T } from '@threlte/core';
 </script>
 
-<!-- <GLTF
-	castShadow
-	receiveShadow
-	url={'/static/models/African-Tree-S9.fbx'}
-	position={{ y: 1 }}
-	scale={3}
-/> -->
+<T.PerspectiveCamera
+	position={[10, 10, 10]}
+	on:create={({ ref }) => {
+		ref.lookAt(0, 0, 0);
+	}}
+/>
+<T.Mesh>
+	<T.BoxGeometry args={[1, 1, 1]} />
+	<T.MeshBasicMaterial color="red" />
+</T.Mesh>

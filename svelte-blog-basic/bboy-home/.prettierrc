@@ -1,0 +1,19 @@
+{
+    "printWidth": 120,
+    "tabWidth": 4,
+    "useTabs": false,
+    "semi": true,
+    "singleQuote": true,
+    "trailingComma": "all",
+    "bracketSpacing": true,
+    "arrowParens": "always",
+    "proseWrap": "never",
+    "endOfLine": "auto",
+    "jsxBracketSameLine": false,
+    "jsxSingleQuote": false,
+    "vueIndentScriptAndStyle": false,
+    "requirePragma": false,
+    "insertPragma": false,
+    "plugins": ["prettier-plugin-tailwindcss", "prettier-plugin-svelte"],
+    "overrides": [{ "files": "*.svelte", "options": { "parser": "svelte" } }]
+}
