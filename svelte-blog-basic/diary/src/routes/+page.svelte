@@ -18,7 +18,9 @@
 		class="mb-[15px] grid grid-cols-1 gap-2.5 rounded-[1rem] bg-[var(--bg-light)] px-[.9375rem] py-[1rem]"
 	>
 		<a href={`/read/${id}`}>
-			<p class="line-clamp-2">{content.length > 50 ? `${content.slice(0, 50)}...` : content}</p>
+			<p class="line-clamp-2 whitespace-pre-wrap">
+				{content.length > 50 ? `${content.slice(0, 50)}...` : content}
+			</p>
 		</a>
 		<div class="flex justify-between">
 			<span class="color-[var(--text-mid)] text-[14px]">{date}</span>

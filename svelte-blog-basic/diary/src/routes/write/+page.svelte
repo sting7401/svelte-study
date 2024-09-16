@@ -1,18 +1,13 @@
 <script>
 	import TextAreaAutosize from '$lib/components/TextAreaAutosize.svelte';
+	import { writing } from '$lib/store/store'; // 스토어 가져오기
+	import { formatDate } from '$lib/utils/formatDate';
 
-	// Function to format date
-	const formatDate = () => {
-		return new Date().toLocaleDateString('ko-KR', {
-			year: 'numeric',
-			month: 'long',
-			day: 'numeric',
-			weekday: 'long'
-		});
-	};
-
-	// Initialize value for two-way binding with TextAreaAutosize
 	let value = $state('');
+
+	$effect(() => {
+		writing.set(value);
+	});
 </script>
 
 <main>

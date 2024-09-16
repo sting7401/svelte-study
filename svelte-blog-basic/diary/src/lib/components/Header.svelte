@@ -1,12 +1,16 @@
 <script>
 	import { page, navigating, updated } from '$app/stores';
 	import { goto } from '$app/navigation';
+	import { writing, addDiary } from '$lib/store/store';
 
 	const clickHandler = () => {
 		switch ($page.url.pathname) {
 			case '/read':
 				break;
 			case '/write':
+				if ($writing) {
+					addDiary();
+				}
 				break;
 			case '/edit':
 				break;

@@ -17,7 +17,7 @@
 {#snippet diarySnippet(id, content, date)}
 	<div class="mb-[15px] rounded-[1rem] bg-[var(--bg-light)] px-[.9375rem] py-[1rem]">
 		<a href={`/read/${id}`}>
-			<p>{content}</p>
+			<p class="whitespace-pre-wrap">{content}</p>
 		</a>
 		<div class="flex justify-between">
 			<span class="color-[var(--text-mid)] text-[14px]">{date}</span>
