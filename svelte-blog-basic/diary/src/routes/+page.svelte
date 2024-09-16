@@ -26,7 +26,15 @@
 			<span class="color-[var(--text-mid)] text-[14px]">{date}</span>
 			<div class="flex items-center justify-between gap-2">
 				<button class="btn"
-					><Icon icon="uil:pen" width="24" height="24" class="text-[#444]" /></button
+					><Icon
+						icon="uil:pen"
+						width="24"
+						height="24"
+						class="text-[#444]"
+						onclick={() => {
+							goto(`/edit/${id}`);
+						}}
+					/></button
 				>
 				<button class="btn"
 					><Icon icon="mdi:trash-can-outline" width="24" height="24" class="text-[#f80]" /></button

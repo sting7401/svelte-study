@@ -1,24 +1,26 @@
 <script>
 	import { page, navigating, updated } from '$app/stores';
 	import { goto } from '$app/navigation';
-	import { writing, addDiary } from '$lib/store/store';
+	import { writing, addDiary, editDir, editId } from '$lib/store/store';
 
 	const clickHandler = () => {
-		switch ($page.url.pathname) {
-			case '/read':
-				break;
-			case '/write':
-				if ($writing) {
-					addDiary();
-				}
-				break;
-			case '/edit':
-				break;
-			default:
-				break;
+		if ($page.url.pathname.startsWith('/read')) {
+			goto('/'); // home으로 이동한다.
+		} else if ($page.url.pathname.startsWith('/write')) {
+			// 글쓰기 로직
+			if ($writing) {
+				addDiary(); // 글을 작성한 후 addDiary 함수를 호출한다.
+			}
+			goto('/');
+		} else if ($page.url.pathname.startsWith('/edit')) {
+			console.log($writing);
+			// 수정 로직
+			if ($writing) {
+				console.log(1);
+				editDir($editId); // 글을 수정한 후 editDiary 함수를 호출한다.
+			}
+			goto('/');
 		}
-
-		goto('/');
 	};
 </script>
 
