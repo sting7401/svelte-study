@@ -3,25 +3,23 @@
 	import { goto } from '$app/navigation';
 	import { writing, addDiary, editDir, editId } from '$lib/store/store';
 
-	const clickHandler = () => {
+	async function clickHandler() {
 		if ($page.url.pathname.startsWith('/read')) {
-			goto('/'); // home으로 이동한다.
+			goto('/read'); // home으로 이동한다.
 		} else if ($page.url.pathname.startsWith('/write')) {
 			// 글쓰기 로직
 			if ($writing) {
-				addDiary(); // 글을 작성한 후 addDiary 함수를 호출한다.
+				await addDiary(); // 글을 작성한 후 addDiary 함수를 호출한다.
 			}
 			goto('/');
 		} else if ($page.url.pathname.startsWith('/edit')) {
-			console.log($writing);
 			// 수정 로직
 			if ($writing) {
-				console.log(1);
-				editDir($editId); // 글을 수정한 후 editDiary 함수를 호출한다.
+				await editDir($editId); // 글을 수정한 후 editDiary 함수를 호출한다.
 			}
 			goto('/');
 		}
-	};
+	}
 </script>
 
 <header>

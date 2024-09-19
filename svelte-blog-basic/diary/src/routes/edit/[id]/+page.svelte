@@ -4,17 +4,24 @@
 	import { writing, diaries, editId } from '$lib/store/store'; // 스토어 가져오기
 	import Icon from '@iconify/svelte';
 	import { derived } from 'svelte/store';
+	import Btns from '$lib/components/Btns.svelte';
+	import { formatDate } from '$lib/utils/formatDate';
+
+	export let data;
 
 	let id = $page.params.id;
-	let editDiary = $diaries.find((diary) => diary.id === Number(id));
+	//	let editDiary = $diaries.find((diary) => diary.id === Number(id));
+	// let editValue = editDiary?.content;
+	// let editDate = editDiary?.date;
+
+	let editDiary = data?.diary[0];
 	let editValue = editDiary?.content;
-	let editDate = editDiary?.date;
+	let editDate = editDiary?.created_at;
 
 	$editId = Number(id);
 
-	// 작성 중인 내용을 스토어에서 가져와서 변수에 할당
 	$: {
-		$writing = String(editValue);
+		$writing = editValue;
 	}
 </script>
 
@@ -30,10 +37,8 @@
 
 		<!-- Display the formatted date -->
 		<div class="flex items-center justify-between">
-			<span>{editDate}</span>
-			<button class="btn"
-				><Icon icon="mdi:trash-can-outline" width="24" height="24" class="text-[#f80]" /></button
-			>
+			<span>{formatDate(editDiary?.created_at)}</span>
+			<Btns {id} />
 		</div>
 	</div>
 </main>
