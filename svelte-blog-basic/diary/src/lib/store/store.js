@@ -10,7 +10,7 @@ export const addDiary = async () => {
 	const content = get(writing);
 
 	if (!content) return;
-	const res = await fetch('/api', {
+	const res = await fetch('/api/diary', {
 		method: 'POST',
 		headers: { 'Content-Type': 'application/json' },
 		body: JSON.stringify({ content })
@@ -37,7 +37,7 @@ export const editDir = async (id = 0) => {
 	const content = get(writing);
 
 	if (!content) return;
-	const res = await fetch('/api', {
+	const res = await fetch('/api/diary', {
 		method: 'PATCH',
 		headers: { 'Content-Type': 'application/json' },
 		body: JSON.stringify({ id, content })
@@ -63,7 +63,7 @@ export const editDir = async (id = 0) => {
 };
 
 export const delDir = async (id = 0) => {
-	const res = await fetch('/api', {
+	const res = await fetch('/api/diary', {
 		method: 'DELETE',
 		headers: { 'Content-Type': 'application/json' },
 		body: JSON.stringify({ id })

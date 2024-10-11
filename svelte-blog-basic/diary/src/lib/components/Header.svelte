@@ -11,13 +11,15 @@
 			if ($writing) {
 				await addDiary(); // 글을 작성한 후 addDiary 함수를 호출한다.
 			}
-			goto('/');
+			goto('/read');
 		} else if ($page.url.pathname.startsWith('/edit')) {
 			// 수정 로직
 			if ($writing) {
 				await editDir($editId); // 글을 수정한 후 editDiary 함수를 호출한다.
 			}
-			goto('/');
+			// goto('/read');
+
+			location.href = '/read';
 		}
 	}
 </script>

@@ -8,7 +8,6 @@
 	export let data;
 
 	const { diaries: dataDiaries } = data;
-	
 </script>
 
 <!-- 스니펫 정의하기 -->
@@ -17,7 +16,7 @@
 		class="mb-[15px] grid grid-cols-1 gap-2.5 rounded-[1rem] bg-[var(--bg-light)] px-[.9375rem] py-[1rem]"
 	>
 		<a href={`/read/${id}`}>
-			<p class="whitespace-pre-wrap line-clamp-2">
+			<p class="line-clamp-2 whitespace-pre-wrap">
 				{content.length > 50 ? `${content.slice(0, 50)}...` : content}
 			</p>
 		</a>

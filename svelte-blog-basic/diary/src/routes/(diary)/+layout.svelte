@@ -1,9 +1,12 @@
 <script>
-	import '../app.css';
+	import '$lib/css/app.css';
 	import Header from '$lib/components/Header.svelte';
+	import { page } from '$app/stores';
 </script>
 
-<Header />
+{#if $page.url.pathname !== '/'}
+	<Header />
+{/if}
 
 <slot></slot>
 
