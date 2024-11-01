@@ -15,8 +15,19 @@
 	"requirePragma": false,
 	"insertPragma": false,
 	"htmlWhitespaceSensitivity": "ignore",
-	"plugins": ["esbenp.prettier-vscode"],
-	"pluginSearchDirs": ["."],
-	"overrides": [{ "files": "*.svelte", "options": { "parser": "svelte" } }]
+	"plugins": [
+		"prettier-plugin-svelte",
+		"prettier-plugin-tailwindcss"
+	],
+	"pluginSearchDirs": [
+		"."
+	],
+	"overrides": [
+		{
+			"files": "*.svelte",
+			"options": {
+				"parser": "svelte"
+			}
+		}
+	]
 }
-
