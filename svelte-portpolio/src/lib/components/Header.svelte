@@ -1,23 +1,24 @@
-<script>
-    export let y;
+<script lang="ts">
+	let y: number = $props();
 
-    let tabs =[
-        {name: 'Project', link: '#'},
-        {name: 'About', link: '#about'},
-      //  {name: 'Bloog', link: '#project'},
-    ]
+	let tabs = $state([
+		{ name: 'Project', link: 'project' },
+		{ name: 'About', link: 'about' }
+	]);
 </script>
 
-<header class={'sticky z-[10] top-0 duration-200 px-6 flelx items-center justify-between border-solid' + (y > 0 ? 'py-4 bg-slate-950' : 'py-6 bg-transparent border-transparent')}>
-
-    <h1 class="font-medium">
-        <strong class="font-bold poppins">song</strong>
-    </h1>
-    <div class="sm:flex items-center gap-4 hidden">
-        {#each tabs as tab, index}
-            <a href="{tab.link}">
-                <p>{tab.name}</p>
-            </a>
-        {/each}
-    </div>
+<header
+	class={'sticky top-0 z-[10] flex items-center justify-between border-solid px-6 duration-200' +
+		(y > 0 ? 'bg-slate-950 py-4' : 'border-transparent bg-transparent py-6')}
+>
+	<h1 class="font-medium">
+		<strong class="poppins font-bold">song</strong>
+	</h1>
+	<div class="hidden items-center gap-4 sm:flex">
+		{#each tabs as tab, index}
+			<a href={tab.link}>
+				<p>{tab.name}</p>
+			</a>
+		{/each}
+	</div>
 </header>
