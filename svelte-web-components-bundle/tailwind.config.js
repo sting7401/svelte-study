@@ -1,11 +1,15 @@
+import aspectRatio from "@tailwindcss/aspect-ratio";
+import containerQueries from "@tailwindcss/container-queries";
+import forms from "@tailwindcss/forms";
+import typography from "@tailwindcss/typography";
 import { fontFamily } from "tailwindcss/defaultTheme";
 
 /** @type {import('tailwindcss').Config} */
 const config = {
-	darkMode: ["class"],
-	content: ["./src/**/*.{html,js,svelte,ts}"],
-	safelist: ["dark"],
-	theme: {
+    darkMode: ["class"],
+    content: ["./src/**/*.{html,js,svelte,ts}"],
+    safelist: ["dark"],
+    theme: {
 		container: {
 			center: true,
 			padding: "2rem",
@@ -59,6 +63,9 @@ const config = {
 			}
 		}
 	},
+
+    plugins: [typography, forms, containerQueries, aspectRatio]
 };
 
+/** @type {import('tailwindcss').Config} */
 export default config;
