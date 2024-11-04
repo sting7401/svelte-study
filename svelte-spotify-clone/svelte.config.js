@@ -1,18 +1,17 @@
 import adapter from '@sveltejs/adapter-auto';
-import { vitePreprocess } from '@sveltejs/kit/vite';
+import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
 import preprocess from 'svelte-preprocess';
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
 	// Consult https://kit.svelte.dev/docs/integrations#preprocessors
 	// for more information about preprocessors
-	preprocess: preprocess(
-		{
-			scss: {
-				prependData: '@use "./src/lib/scss/functions";  @use "@unsass/breakpoint"; @use "./src/lib/scss/mixins"; '
-			}
+	preprocess: vitePreprocess({
+		scss: {
+			prependData:
+				'@use "./src/lib/scss/functions";  @use "@unsass/breakpoint"; @use "./src/lib/scss/mixins"; '
 		}
-	),
+	}),
 
 	kit: {
 		// adapter-auto only supports some environments, see https://kit.svelte.dev/docs/adapter-auto for a list.
@@ -20,13 +19,13 @@ const config = {
 		// See https://kit.svelte.dev/docs/adapters for more information about adapters.
 		adapter: adapter(),
 		alias: {
-			'$components': 'src/lib/components',
-			'$assets': 'src/lib/assets',
-			'$images': 'src/lib/images',
-			'$actions' : 'src/lib/actions',
-			'$helpers' : 'src/lib/helpers',
-			'$stores' : 'src/lib/stores'
-		},
+			$components: 'src/lib/components',
+			$assets: 'src/lib/assets',
+			$images: 'src/lib/images',
+			$actions: 'src/lib/actions',
+			$helpers: 'src/lib/helpers',
+			$stores: 'src/lib/stores'
+		}
 	}
 };
 

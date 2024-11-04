@@ -1,4 +1,5 @@
 <script lang="ts">
+	import '../app.css';
 	import { afterNavigate, beforeNavigate } from '$app/navigation';
 	import { page } from '$app/stores';
 	import NProgress from 'nprogress';

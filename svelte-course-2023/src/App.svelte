@@ -1,17 +1,19 @@
 <script>
 	import svelteLogo from './assets/svelte.svg';
 
-	let name = 'bob';
-	let favoriteColor = 'red';
-	let favoriteNumber = 20;
-	let fontSize = 20;
+	let name = $state('bob');
+	let favoriteColor = $state('red');
+	let favoriteNumber = $state(20);
+	let fontSize = $state(20);
 
 	import Counter from './lib/Counter.svelte';
 
+$effect(()=> {
 	setTimeout(() => {
 		favoriteColor = 'blue';
 		fontSize = 100;
 	}, 1000);
+})
 </script>
 
 <main>
