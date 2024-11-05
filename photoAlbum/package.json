@@ -13,7 +13,7 @@
 	},
 	"devDependencies": {
 		"@sveltejs/adapter-auto": "^3.3.1",
-		"@sveltejs/kit": "^2.7.4",
+		"@sveltejs/kit": "^2.7.5",
 		"@sveltejs/vite-plugin-svelte": "^4.0.0",
 		"@types/eslint": "9.6.1",
 		"@typescript-eslint/eslint-plugin": "^8.13.0",
@@ -36,12 +36,11 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"_bits-ui": "^0.21.16",
-		"_cloudinary": "^2.5.1",
+		"bits-ui": "^0.21.16",
+		"cloudinary": "^2.5.1",
 		"clsx": "^2.1.1",
 		"lucide-svelte": "^0.454.0",
 		"radix-icons-svelte": "^1.2.1",
-		"svelte-cloudinary": "^2.2.0",
 		"tailwind-merge": "^2.5.4",
 		"tailwind-variants": "^0.2.1"
 	},
