@@ -12,7 +12,7 @@
 		if (count > 3) {
 			highValue = true;
 		} else {
-			highValue = false;
+			highValue = false
 		}
 	});
 </script>
