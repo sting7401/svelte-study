@@ -20,12 +20,12 @@
 					name: 'son2',
 					children: [
 						{ isParent: false, name: 'son3' },
-						{ isParent: false, name: 'son4' },
-					],
-				},
-			],
+						{ isParent: false, name: 'son4' }
+					]
+				}
+			]
 		},
-		{ isParent: false, name: 'son' },
+		{ isParent: false, name: 'son' }
 	];
 
 	let showProduct = true;
@@ -39,13 +39,13 @@
 			renderComponent.cmp = {
 				cmp: CartItem,
 				title: 'test',
-				id: 'p2',
+				id: 'p2'
 			};
 		} else {
 			renderComponent.cmp = {
 				cmp: Product,
 				title: 'text',
-				id: 'p1',
+				id: 'p1'
 			};
 		}
 	};
@@ -55,28 +55,22 @@
 	};
 </script>
 
-<style>
-	div {
-		height: 3000px;
-	}
-</style>
-
-<svelte:window bind:scrollY="{y}" />
+<svelte:window bind:scrollY={y} />
 
 <svelte:head>
 	<title>{currentTitle}</title>
 </svelte:head>
-<svelte:body on:mouseenter > </svelte:body>
+<svelte:body on:mouseenter />
 
-<button on:click="{changeTitle}">change title</button>
+<button on:click={changeTitle}>change title</button>
 
 <div>
-	<button on:click="{toggle}">toggle</button>
+	<button on:click={toggle}>toggle</button>
 
 	<svelte:component
-		this="{renderComponent.cmp}"
-		title="{renderComponent.title}"
-		id="{renderComponent.id}"
+		this={renderComponent.cmp}
+		title={renderComponent.title}
+		id={renderComponent.id}
 	/>
 
 	<!-- {#if showProduct}
@@ -86,6 +80,12 @@
     {/if} -->
 
 	{#each familyStructure as item}
-		<FamilyNode member="{item}" />
+		<FamilyNode member={item} />
 	{/each}
 </div>
+
+<svelte:window>
+	div {
+		height: 3000px;
+	}
+</svelte:window>

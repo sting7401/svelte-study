@@ -1,11 +1,9 @@
+<!-- @migration-task Error while migrating Svelte code: This migration would change the name of a slot making the component unusable -->
 <script>
 	export let slotText;
 
 	console.log(slotText);
 </script>
-
-<style>
-</style>
 
 <div class="bg-slate-400">
 	<slot><!-- optional fallback --></slot>

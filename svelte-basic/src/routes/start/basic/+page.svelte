@@ -1,14 +1,9 @@
 <script>
-import Child from './Child.svelte';
+	import Child from './Child.svelte';
 
-let name = 'child';
-
-
+	let name = 'child';
 </script>
 
 {name}
 
-<Child name="{name}" />
-
-<style>
-</style>
+<Child {name} />

@@ -1,5 +1,5 @@
 <script lang="ts">
-	export let data;
+	let { data } = $props();
 
 	type prod = {
 		id: number;
@@ -11,9 +11,6 @@
 	const { pageTitle, products } = data;
 	const { title = '', price = 0, description = '' } = products;
 </script>
-
-<style>
-</style>
 
 <h1>{pageTitle}</h1>
 <div class="border rounded-sm m-3">

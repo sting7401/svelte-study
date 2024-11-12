@@ -1,14 +1,15 @@
-<script context="module">
+<script module>
 	console.log('한번만');
 
 	let degree;
 </script>
 
-<script>
-	export let member;
+<script lang="ts">
+	import FamilyNode from './FamilyNode.svelte';
+	let { member } = $props();
 	console.log('실행');
 
-	let isActive;
+	let isActive = $state();
 
 	const degreeActive = () => {
 		isActive = false;
@@ -35,12 +36,12 @@
 </style>
 
 
-<div on:click="{setActive}" class:active="{isActive}">
+<div onclick={setActive} class:active="{isActive}">
 	<h1>{member.name}</h1>
 
 	{#if member.isParent}
 		{#each member.children as child}
-			<svelte:self member="{child}" />
+			<FamilyNode member="{child}" />
 		{/each}
 	{/if}
 </div>

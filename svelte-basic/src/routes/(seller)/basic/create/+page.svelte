@@ -1,5 +1,5 @@
-<script>
-	export let form;
+<script lang="ts">
+	let { form } = $props();
 </script>
 
 <form method="post" class="p-2">

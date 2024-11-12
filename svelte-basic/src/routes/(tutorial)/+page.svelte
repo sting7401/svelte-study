@@ -1,26 +1,23 @@
-<script>
+<script lang="ts">
 	import { goto, preloadData, preloadCode } from '$app/navigation';
 
-	export let data;
+	let { data } = $props();
 </script>
-
-<style>
-</style>
 
 <p>
 	{data.currentTime}
 </p>
 <button
 	type="button"
-	on:focus="{async () => {
+	onfocus={async () => {
 		await preloadData('/products');
-	}}"
-	on:mouseover="{async () => {
+	}}
+	onmouseover={async () => {
 		await preloadCode('/products');
-	}}"
-	on:click="{() => {
+	}}
+	onclick={() => {
 		goto('/products/');
-	}}"
+	}}
 	class="border rounded-sm m-3 p-2"
 	>go to Product
 </button>

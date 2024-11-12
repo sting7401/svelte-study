@@ -1,8 +1,9 @@
-<script>
-export let name = null | undefined;
+<script lang="ts">
+	let { name = '' } = $props();
 </script>
 
 <p>{name}</p>
 
-<style>
-</style>
+<ul>
+	<li>1</li>
+</ul>

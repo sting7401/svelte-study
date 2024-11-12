@@ -1,5 +1,5 @@
 <script>
-	let textareaRef;
+	let textareaRef = $state();
 
 	const click = () => {
 		textareaRef.focus();
@@ -11,15 +11,6 @@
 	};
 </script>
 
-<style>
-</style>
+<button onclick={click}>click</button>
 
-<button on:click="{click}">click</button>
-
-<textarea
-	name=""
-	id=""
-	cols="30"
-	rows="10"
-	bind:this="{textareaRef}"
-	on:click="{handle}"></textarea>
+<textarea name="" id="" cols="30" rows="10" bind:this={textareaRef} onclick={handle}></textarea>

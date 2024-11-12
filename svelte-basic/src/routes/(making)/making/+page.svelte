@@ -1,3 +1,5 @@
+<!-- @migration-task Error while migrating Svelte code: can't migrate `let state: State = '시작';` to `$state` because there's a variable named state.
+     Rename the variable and try again or migrate by hand. -->
 <script lang="ts">
 	import { tick } from 'svelte';
 	import { emoji } from './emoji';
@@ -5,12 +7,12 @@
 
 	type State = '시작' | '놀이' | '일시 중지' | '승리' | '실패';
 
-	let state: State = '시작';
-	let size = 20;
-	let time = 60;
-	let selected: number[] = [];
-	let matches: string[] = [];
-	let timerId: number | null = null;
+	let state: State = $state('시작');
+	let size = $state(20);
+	let time = $state(60);
+	let selected: number[] = $state([]);
+	let matches: string[] = $state([]);
+	let timerId: number | null = $state(null);
 
 	const createGrid = () => {
 		let cards = new Set<string>();

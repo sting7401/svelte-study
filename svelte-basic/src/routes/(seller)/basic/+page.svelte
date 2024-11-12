@@ -1,9 +1,6 @@
-<script>
-	export let data;
+<script lang="ts">
+	let { data } = $props();
 </script>
-
-<style>
-</style>
 
 <h2>{data.user.name}</h2>
 <ul class="mt-5 divide-y divide-blue-200">

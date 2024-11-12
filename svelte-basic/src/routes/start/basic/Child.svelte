@@ -1,8 +1,5 @@
-<script>
-export let name = null | undefined;
+<script lang="ts">
+	let { name = null | undefined } = $props();
 </script>
 
 <p>{name}</p>
-
-<style>
-</style>

@@ -6,9 +6,6 @@
 	const slugArr: string[] = $page.params.slug.split('/');
 </script>
 
-<style>
-</style>
-
 <p>Docs page</p>
 <p>Catch All Routesd</p>
 <p>params.slug로 url 체크</p>

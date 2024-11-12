@@ -1,16 +1,16 @@
-<script>
+<script lang="ts">
 	import Button from '../../components/Button.svelte';
 	import ContactCard from '../../components/ContactCard.svelte';
 
-	let inputList = [
+	let inputList = $state([
 		{ name: 'inputList1', label: 'User Name', type: 'input', value: 'song' },
 		{ name: 'inputList2', label: 'Job Title', type: 'input', value: '' },
 		{ name: 'inputList3', label: 'Image URL', type: 'input', value: '' },
 		{ name: 'inputList4', label: 'Description', type: 'textarea', value: '' }
-	];
-	let done = false;
+	]);
+	let done = $state(false);
 	let formState = 'empty';
-	export let createContacts = [];
+	let { createContacts = $bindable([]) } = $props();
 
 	const addContact = () => {
 		createContacts = [
@@ -44,7 +44,7 @@
 	<div>
 		<label for={name}>{label}</label>
 		{#if type === 'textarea'}s
-			<textarea {name} id={name} bind:value cols="30" rows="10" />
+			<textarea {name} id={name} bind:value cols="30" rows="10"></textarea>
 		{:else if type === 'input'}
 			<input id={name} bind:value type="text" />
 		{/if}

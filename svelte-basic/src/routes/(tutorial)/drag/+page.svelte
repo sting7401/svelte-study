@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { run } from 'svelte/legacy';
+
 	import Task, { type TaskItem } from './Task.svelte';
 
 	let taskTodo: TaskItem[] = [
@@ -27,9 +29,12 @@
 		}
 	];
 	let drag = false;
-	let taskTodoEnd: TaskItem[] = [];
+	let taskTodoEnd: TaskItem[] = $state([]);
 	let taskDragging: TaskItem;
-	$: dragCheck = drag;
+	let dragCheck;
+	run(() => {
+		dragCheck = drag;
+	});
 
 	const dragEnter = (e: DragEvent) => {
 		dragCheck = true;
@@ -65,10 +70,10 @@
 
 	<div
 		class="drag"
-		on:drop={todoDrop}
-		on:dragenter={dragEnter}
-		on:dragleave={dragLeave}
-		on:dragover={dragOver}
+		ondrop={todoDrop}
+		ondragenter={dragEnter}
+		ondragleave={dragLeave}
+		ondragover={dragOver}
 		style={dragCheck ? 'border: 2px solid blue' : ''}
 	>
 		{#each taskTodoEnd as todo (todo.id)}

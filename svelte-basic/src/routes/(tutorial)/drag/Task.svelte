@@ -1,4 +1,4 @@
-<script context="module" lang="ts">
+<script module lang="ts">
 	export interface TaskItem {
 		id: string;
 		title: string;
@@ -9,10 +9,17 @@
 </script>
 
 <script lang="ts">
-	export let todo: TaskItem;
+	import { createBubbler } from 'svelte/legacy';
+
+	const bubble = createBubbler();
+	interface Props {
+		todo: TaskItem;
+	}
+
+	let { todo }: Props = $props();
 </script>
 
-<div id={todo.id} class="drag__item" draggable="true" on:drag>
+<div id={todo.id} class="drag__item" draggable="true" ondrag={bubble('drag')}>
 	<p>{todo.title}</p>
 	<p>{todo.description}</p>
 	<p>{todo.points}</p>

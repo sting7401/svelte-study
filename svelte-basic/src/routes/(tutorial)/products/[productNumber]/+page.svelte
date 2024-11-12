@@ -5,7 +5,4 @@
 	let productNumber: string = $page.params.productNumber;
 </script>
 
-<style>
-</style>
-
 <p>product page {productNumber}</p>

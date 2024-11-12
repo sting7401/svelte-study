@@ -1,13 +1,18 @@
 <script>
+	import { run, createBubbler } from 'svelte/legacy';
+
+	const bubble = createBubbler();
 	import Product from './Product.svelte';
 	import CartItem from './CartItem.svelte';
 	import FamilyNode from './FamilyNode.svelte';
 
-	let y;
+	let y = $state();
 
-	$: console.log(y);
+	run(() => {
+		console.log(y);
+	});
 
-	let currentTitle = 'my app';
+	let currentTitle = $state('my app');
 
 	let familyStructure = [
 		{
@@ -30,7 +35,7 @@
 
 	let showProduct = true;
 
-	let renderComponent = { cmp: Product, title: 'text', id: 'p1' };
+	let renderComponent = $state({ cmp: Product, title: 'text', id: 'p1' });
 
 	const toggle = () => {
 		showProduct = !showProduct;
@@ -66,15 +71,14 @@
 <svelte:head>
 	<title>{currentTitle}</title>
 </svelte:head>
-<svelte:body on:mouseenter />
+<svelte:body onmouseenter={bubble('mouseenter')} />
 
-<button on:click="{changeTitle}">change title</button>
+<button onclick={changeTitle}>change title</button>
 
 <div>
-	<button on:click="{toggle}">toggle</button>
+	<button onclick={toggle}>toggle</button>
 
-	<svelte:component
-		this="{renderComponent.cmp}"
+	<renderComponent.cmp"
 		title="{renderComponent.title}"
 		id="{renderComponent.id}"
 	/>

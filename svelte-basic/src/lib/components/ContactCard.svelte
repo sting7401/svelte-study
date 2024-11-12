@@ -1,8 +1,10 @@
-<script>
-	export let inputList1;
-	export let inputList2;
-	export let inputList3;
-	export let inputList4;
+<script lang="ts">
+	let {
+		inputList1,
+		inputList2,
+		inputList3,
+		inputList4
+	} = $props();
 
 	const initName = inputList1;
 </script>

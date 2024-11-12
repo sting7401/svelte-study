@@ -8,7 +8,7 @@
 	const scale = spring(1);
 	let color = '#008800';
 
-	let rotation = 0;
+	let rotation = $state(0);
 	useFrame((_, delta) => {
 		rotation += delta * 0.5;
 	});

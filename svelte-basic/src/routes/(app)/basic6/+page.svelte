@@ -1,27 +1,24 @@
 <script>
 	import Child from './Child.svelte';
 	import ChildBind from './ChildBind.svelte';
-	let number = 0;
+	let number = $state(0);
 
 	let person = {
 		name: 'song',
-		age: 20,
+		age: 20
 	};
 
-	let pValue = 1;
-	let cValue = 1;
+	let pValue = $state(1);
+	let cValue = $state(1);
 </script>
 
-<style>
-</style>
-
 <div>
-	<button on:click="{() => (number += 1)}">+</button>
-	<button on:click="{() => (number -= 1)}">-</button>
+	<button onclick={() => (number += 1)}>+</button>
+	<button onclick={() => (number -= 1)}>-</button>
 
-	<Child number="{number}" person="{person.name} {person.age}" />
+	<Child {number} person="{person.name} {person.age}" />
 	<Child {...person} />
 
-	<ChildBind bind:cValue="{pValue}" />
-	<ChildBind bind:cValue="{cValue}" />
+	<ChildBind bind:cValue={pValue} />
+	<ChildBind bind:cValue />
 </div>

@@ -2,15 +2,19 @@
 	import type { PageData } from './$types';
 	import { onMount } from 'svelte';
 
-	export let data: PageData;
 
 	console.log(data);
 
-	export let title: string = data.slug || '';
-	export let notices: string = data.list || '';
+	interface Props {
+		data: PageData;
+		title?: string;
+		notices?: string;
+	}
+
+	let { data, title = data.slug || '', notices = data.list || '' }: Props = $props();
 
 	const endpoint = 'https://jsonplaceholder.typicode.com/posts';
-	let posts = [];
+	let posts = $state([]);
 
 	onMount(async () => {
 		const response = await fetch(endpoint);

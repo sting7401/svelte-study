@@ -1,5 +1,7 @@
 <script>
-	let number = 0;
+	import { preventDefault } from 'svelte/legacy';
+
+	let number = $state(0);
 
 	let arr = [1, 2, 3, 4, 5];
 	let list = [{ name: 'list1' }, { name: 'list12' }, { name: 'list13' }];
@@ -17,11 +19,8 @@
 	};
 </script>
 
-<style>
-</style>
-
-<button type="button" on:click|preventDefault="{() => (number += 1)}">+</button>
-<button type="button" on:click|preventDefault="{() => (number -= 1)}">-</button>
+<button type="button" onclick={preventDefault(() => (number += 1))}>+</button>
+<button type="button" onclick={preventDefault(() => (number -= 1))}>-</button>
 
 {#if number === 0}
 	<p>{number}</p>

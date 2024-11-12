@@ -1,5 +1,5 @@
-<script>
-	export let data;
+<script lang="ts">
+	let { data } = $props();
 	const products = data.products;
 	console.log(products);
 	const Component = data.Component;

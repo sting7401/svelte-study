@@ -1,7 +1,12 @@
 <script lang="ts">
 	import type { PageData } from './$types';
 
-	export let data: PageData;
+	interface Props {
+		data: PageData;
+		children?: import('svelte').Snippet;
+	}
+
+	let { data, children }: Props = $props();
 
 	console.log(data);
 </script>
@@ -12,4 +17,4 @@
 	<p class="m-2">losing: {data.result3.symbol}</p>
 </div>
 
-<slot><!-- optional fallback --></slot>
+{#if children}{@render children()}{:else}<!-- optional fallback -->{/if}

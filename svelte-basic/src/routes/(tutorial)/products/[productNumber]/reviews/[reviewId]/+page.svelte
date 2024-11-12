@@ -3,7 +3,4 @@
 	const { productNumber, reviewId } = $page.params;
 </script>
 
-<style>
-</style>
-
 <p>{productNumber} {reviewId}</p>

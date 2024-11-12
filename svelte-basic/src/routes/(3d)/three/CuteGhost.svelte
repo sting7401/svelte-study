@@ -12,6 +12,12 @@ Title: Cute ghost
 	import { Group } from 'three';
 	import { T, type Props, type Events, type Slots } from '@threlte/core';
 	import { useGltf } from '@threlte/extras';
+	interface Props_1 {
+		children?: import('svelte').Snippet<[any]>;
+		[key: string]: any
+	}
+
+	let { children, ...rest }: Props_1 = $props();
 
 	type $$Props = Props<THREE.Group>;
 	type $$Events = Events<THREE.Group>;
@@ -37,7 +43,7 @@ Title: Cute ghost
 </script>
 
 {#if $gltf}
-	<Three type="{ref}" {...$$restProps}>
+	<Three type="{ref}" {...rest}>
 		<T.Group scale="{0.01}">
 			<T.Mesh
 				geometry="{$gltf.nodes.Ground_M_Ground_0.geometry}"
@@ -66,6 +72,6 @@ Title: Cute ghost
 			/>
 		</T.Group>
 
-		<slot ref="{ref}" />
+		{@render children?.({ ref, })}
 	</Three>
 {/if}

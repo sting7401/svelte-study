@@ -2,7 +2,11 @@
 	import type { PageData } from './$types';
 	import { invalidate, invalidateAll } from '$app/navigation';
 
-	export let data: PageData;
+	interface Props {
+		data: PageData;
+	}
+
+	let { data }: Props = $props();
 
 	const refresh = (): void => {
 		console.log('refresh');
@@ -19,4 +23,4 @@
 	<p>{stock.symbol} - {stock.price}</p>
 {/each}
 
-<button type="button" on:click="{refresh}">새로고침</button>
+<button type="button" onclick={refresh}>새로고침</button>

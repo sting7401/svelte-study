@@ -1,10 +1,10 @@
+<!-- @migration-task Error while migrating Svelte code: Unexpected token -->
 <script lang="ts">
-	import { readable } from 'svelte/store';
 	import type { Album } from './types';
     export let albums: Album[];
-    export hideText = false;
-    export preloadBehavior = 'tap'| 'hover' = 'tap';
-    export loading = false;
+    let hideText = $state(false);
+    let preloadBehavior = 'tap'| 'hover' = $state('tap');
+    let loading = $state(false);
 </script>
 
 {#if loading}

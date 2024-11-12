@@ -1,11 +1,8 @@
-<script>
-	export let data;
+<script lang="ts">
+	let { data } = $props();
 
 	console.log(data);
 </script>
-
-<style>
-</style>
 
 <div>
 	<h2>{data.post.title}</h2>

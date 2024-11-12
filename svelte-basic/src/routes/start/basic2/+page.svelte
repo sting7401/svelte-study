@@ -1,25 +1,24 @@
 <script>
-let number = 0;
+	import { preventDefault } from 'svelte/legacy';
 
-$: numberCalc = number < 0 ? 0 : number;
+	let number = $state(0);
 
-const increment = () => {
-	number += 1;
-};
+	let numberCalc = $derived(number < 0 ? 0 : number);
 
-const decrement = () => {
-	number -= 1;
-};
+	const increment = () => {
+		number += 1;
+	};
+
+	const decrement = () => {
+		number -= 1;
+	};
 </script>
-
-<style>
-</style>
 
 <p>{number}</p>
 <p>{numberCalc}</p>
 
-<button type="button" on:click|preventDefault="{increment}">+</button>
-<button type="button" on:click|preventDefault="{decrement}">-</button>
+<button type="button" onclick={preventDefault(increment)}>+</button>
+<button type="button" onclick={preventDefault(decrement)}>-</button>
 
-<button type="button" on:click|preventDefault="{() => (number += 1)}">+</button>
-<button type="button" on:click|preventDefault="{() => (number -= 1)}">-</button>
+<button type="button" onclick={preventDefault(() => (number += 1))}>+</button>
+<button type="button" onclick={preventDefault(() => (number -= 1))}>-</button>

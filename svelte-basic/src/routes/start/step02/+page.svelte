@@ -2,7 +2,7 @@
 	import Button from '$lib/components/Button.svelte';
 	import ContactCard from '$lib/components/ContactCard.svelte';
 
-	let inputList = [
+	let inputList = $state([
 		{
 			name: 'inputList1',
 			label: 'User Name',
@@ -17,10 +17,10 @@
 			type: 'textarea',
 			value: '',
 		},
-	];
-	let done = false;
+	]);
+	let done = $state(false);
 	let formState = 'empty';
-	let createContacts = [];
+	let createContacts = $state([]);
 
 	const addContact = () => {
 		createContacts = [

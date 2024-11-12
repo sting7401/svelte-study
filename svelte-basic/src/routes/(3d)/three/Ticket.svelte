@@ -5,10 +5,7 @@
 	import { Environment } from '@threlte/extras';
 </script>
 
-<style>
-</style>
-
-<T.PerspectiveCamera makeDefault fov="{10}" position="{[0, 0, 40]}" />
+<T.PerspectiveCamera makeDefault fov={10} position={[0, 0, 40]} />
 
 <!-- <T.Mesh>
 	<T.BoxGeometry />

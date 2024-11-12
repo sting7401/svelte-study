@@ -2,7 +2,11 @@
 	import { enhance } from '$app/forms';
 	import type { PageData } from './$types';
 
-	export let data: PageData;
+	interface Props {
+		data: PageData;
+	}
+
+	let { data }: Props = $props();
 </script>
 
 <form method="POST" action="?/login" use:enhance class="flex items-center">

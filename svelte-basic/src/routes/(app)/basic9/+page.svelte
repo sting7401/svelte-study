@@ -17,8 +17,8 @@
 		progress.set(0.5);
 	});
 
-	let boxInput;
-	let boxs = [];
+	let boxInput = $state();
+	let boxs = $state([]);
 
 	const addBox = () => {
 		boxs = [...boxs, boxInput.value];
@@ -43,7 +43,7 @@
 <progress value="{$progress}"></progress>
 
 <input type="text" name="" id="" bind:this="{boxInput}" />
-<button type="button" on:click="{addBox}">box 추가</button>
+<button type="button" onclick={addBox}>box 추가</button>
 
 {#each boxs as box (box)}
 	<div
@@ -54,7 +54,7 @@
 			x: 0,
 			y: 200,
 		}}"
-		on:click="{discard.bind(this, box)}"
+		onclick={discard.bind(this, box)}
 		animate:flip="{{ duration: 300 }}"
 		class="box"
 	>

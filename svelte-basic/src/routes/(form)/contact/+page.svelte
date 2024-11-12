@@ -4,9 +4,9 @@
 
 	// export let data: PageData;
 
-	let name = '';
-	let email = '';
-	let message = '';
+	let name = $state('');
+	let email = $state('');
+	let message = $state('');
 
 	const home = () => {
 		goto('/');
@@ -63,5 +63,5 @@
 	</div>
 	<button type="submit" class="border p-2">로그인</button>
 
-	<button type="button" class="border p-2" on:click="{home}">취소</button>
+	<button type="button" class="border p-2" onclick={home}>취소</button>
 </form>

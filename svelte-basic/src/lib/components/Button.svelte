@@ -1,9 +1,11 @@
-<script>
+<script lang="ts">
+	import { preventDefault } from 'svelte/legacy';
+
 	import { createEventDispatcher } from 'svelte';
 
 	const dispatch = createEventDispatcher();
 
-	export let iconName;
+	let { iconName, children } = $props();
 
 	const iconNames = `icon-${iconName}`;
 
@@ -12,12 +14,12 @@
 	};
 </script>
 
-<button type="button" class="button" on:click|preventDefault={eventType}>
+<button type="button" class="button" onclick={preventDefault(eventType)}>
 	{#if !iconName}
-		<i class="icon {iconNames}" />
+		<i class="icon {iconNames}"></i>
 	{/if}
 
-	<slot><!-- optional fallback --></slot>
+	{#if children}{@render children()}{:else}<!-- optional fallback -->{/if}
 </button>
 
 <style>

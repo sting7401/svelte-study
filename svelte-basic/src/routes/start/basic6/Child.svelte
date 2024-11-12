@@ -1,15 +1,21 @@
-<script>
-	export let number = 10;
-	export let person = {
-		name: '',
-		age: 0,
-	};
-	export let name = '';
-	export let age = 0;
-</script>
+<script lang="ts">
+	interface Props {
+		number?: number;
+		person?: any;
+		name?: string;
+		age?: number;
+	}
 
-<style>
-</style>
+	let {
+		number = 10,
+		person = {
+			name: '',
+			age: 0
+		},
+		name = '',
+		age = 0
+	}: Props = $props();
+</script>
 
 <h1>{number}</h1>
 

@@ -3,21 +3,19 @@
 	import storeHobs from './store.js';
 
 	let hobs = [];
-	let hobInput;
-	let isLoading = false;
+	let hobInput = $state();
+	let isLoading = $state(false);
 
 	isLoading = true;
-	let getHobs = fetch(
-		'https://svelte-max-658a0-default-rtdb.firebaseio.com/hobbies.json',
-	)
-		.then(res => {
+	let getHobs = fetch('https://svelte-max-658a0-default-rtdb.firebaseio.com/hobbies.json')
+		.then((res) => {
 			if (!res.ok) {
 				throw new Error('failed');
 			}
 
 			return res.json();
 		})
-		.then(data => {
+		.then((data) => {
 			isLoading = false;
 			storeHobs.setHob(Object.values(data));
 			// hobs = Object.values(data);
@@ -29,7 +27,7 @@
 
 			return hobs;
 		})
-		.catch(err => {
+		.catch((err) => {
 			isLoading = false;
 			console.log(err);
 		});
@@ -39,17 +37,14 @@
 
 		storeHobs.addHob(hobInput.value);
 
-		fetch(
-			'https://svelte-max-658a0-default-rtdb.firebaseio.com/hobbies.json',
-			{
-				method: 'POST',
-				body: JSON.stringify(hobInput.value),
-				headers: {
-					'Content-Type': 'application/json',
-				},
-			},
-		)
-			.then(res => {
+		fetch('https://svelte-max-658a0-default-rtdb.firebaseio.com/hobbies.json', {
+			method: 'POST',
+			body: JSON.stringify(hobInput.value),
+			headers: {
+				'Content-Type': 'application/json'
+			}
+		})
+			.then((res) => {
 				isLoading = false;
 				if (!res.ok) {
 					throw new Error('failed');
@@ -57,19 +52,16 @@
 
 				alert('저장');
 			})
-			.catch(err => {
+			.catch((err) => {
 				isLoading = false;
 				console.log(err);
 			});
 	};
 </script>
 
-<style>
-</style>
-
 <label for="hobId">hobs</label>
-<input type="text" id="hobId" bind:this="{hobInput}" />
-<button on:click="{add}">add hobs</button>
+<input type="text" id="hobId" bind:this={hobInput} />
+<button onclick={add}>add hobs</button>
 
 {#if isLoading}
 	<p>isLoading</p>

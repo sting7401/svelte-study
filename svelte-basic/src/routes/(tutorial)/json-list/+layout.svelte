@@ -1,12 +1,9 @@
 <script lang="ts">
 	import { page } from '$app/stores';
 
-	export let data;
+	let { data, children } = $props();
 	const { username } = data;
 </script>
-
-<style>
-</style>
 
 <svelte:head>
 	<title>{$page.data.notification || '다르거나'}</title>
@@ -20,4 +17,4 @@
 
 <p class="text-xl text-gray-800">부모 data 사용 {username}</p>
 
-<slot />
+{@render children?.()}

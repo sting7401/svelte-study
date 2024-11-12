@@ -1,5 +1,5 @@
 <script>
-	let list = [];
+	let list = $state([]);
 	const get = async () => {
 		const url = 'https://jsonplaceholder.typicode.com/todos/';
 		const res = await fetch(url);
@@ -13,10 +13,7 @@
 	};
 </script>
 
-<style>
-</style>
-
-<button type="button" on:click="{() => (list = get())}"> 가져오기 </button>
+<button type="button" onclick={() => (list = get())}> 가져오기 </button>
 
 {#await list}
 	<p>기다림</p>

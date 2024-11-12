@@ -1,15 +1,12 @@
 <script lang="ts">
-	export let data;
+	let { data, children } = $props();
 
 	const username = data.username;
 	const pageTitle: string = data.pageTitle;
 	const jsProducts = data.jsProducts;
 </script>
 
-<style>
-</style>
-
-<slot />
+{@render children?.()}
 
 <h3>{pageTitle} for {username}</h3>
 
